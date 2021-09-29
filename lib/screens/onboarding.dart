@@ -8,11 +8,15 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(children: <Widget>[
-      Container(
+      /*Container(
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/img/onboard-background.png"),
-                  fit: BoxFit.cover))),
+                  fit: BoxFit.cover))),*/
+      Container(
+          decoration: new BoxDecoration(color: Color.fromRGBO(235,115,76,1))),
+          // Color.fromRGBO(225,129,106,1)
+          // Color.fromRGBO(235,115,76,1)
       Padding(
         padding:
             const EdgeInsets.only(top: 73, left: 32, right: 32, bottom: 16),
@@ -22,7 +26,7 @@ class Onboarding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Image.asset("assets/img/argon-logo-onboarding.png", scale: 1),
+                Image.asset("assets/img/rentItLogo.PNG", scale: 0.5),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -30,7 +34,7 @@ class Onboarding extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 48.0),
                       child: Text.rich(TextSpan(
-                        text: "Design System",
+                        text: "Rent It",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 58,
@@ -39,7 +43,7 @@ class Onboarding extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 24.0),
-                      child: Text("Fully coded Flutter widgets and screens.",
+                      child: Text("Rentit es la opción más segura para alquilar lo que quieras y obtener ingresos. ¡Empieza ya!",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
