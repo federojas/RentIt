@@ -7,7 +7,7 @@ class ArgonColors {
 
   static const Color initial = Color.fromRGBO(23, 43, 77, 1.0);
 
-  static const Color primary = Color.fromRGBO(94, 114, 228, 1.0);
+  static const Color primary = Color.fromRGBO(235, 115, 76, 1.0);
 
   static const Color secondary = Color.fromRGBO(247, 250, 252, 1.0);
 
