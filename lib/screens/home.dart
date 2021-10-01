@@ -45,17 +45,20 @@ class Home extends StatelessWidget {
         appBar: Navbar(
           title: "Home",
           searchBar: true,
-          categoryOne: "Beauty",
-          categoryTwo: "Fashion",
+          /*categoryOne: "Beauty",
+          categoryTwo: "Fashion",*/
           bgColor: Color.fromRGBO(225,129,106,1)
         ),
-        backgroundColor: Color.fromRGBO(235,115,76,1)
+        backgroundColor: Colors.white
         ,//ArgonColors.bgColorScreen,
         // key: _scaffoldKey,
         drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: SingleChildScrollView(
+
+
+          //child:
+          /*SingleChildScrollView(
             child: Column(
               children: [
                 Padding(
@@ -109,7 +112,8 @@ class Home extends StatelessWidget {
                 )
               ],
             ),
-          ),
-        ));
+          ),*/
+        )
+    );
   }
 }

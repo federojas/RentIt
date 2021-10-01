@@ -32,6 +32,7 @@ class Input extends StatelessWidget {
         style:
             TextStyle(height: 0.85, fontSize: 14.0, color: ArgonColors.initial),
         textAlignVertical: TextAlignVertical(y: 0.6),
+        textAlign: TextAlign.center,
         decoration: InputDecoration(
             filled: true,
             fillColor: ArgonColors.white,
@@ -41,7 +42,7 @@ class Input extends StatelessWidget {
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(4.0),
+                borderRadius: BorderRadius.circular(20.0),
                 borderSide: BorderSide(
                     color: borderColor, width: 1.0, style: BorderStyle.solid)),
             focusedBorder: OutlineInputBorder(
