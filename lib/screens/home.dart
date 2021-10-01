@@ -43,14 +43,13 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Navbar(
-          title: "Home",
-          searchBar: true,
-          categoryOne: "Beauty",
-          categoryTwo: "Fashion",
-          bgColor: Color.fromRGBO(225,129,106,1)
-        ),
-        backgroundColor: Color.fromRGBO(235,115,76,1)
-        ,//ArgonColors.bgColorScreen,
+            title: "Home",
+            searchBar: true,
+            categoryOne: "Beauty",
+            categoryTwo: "Fashion",
+            bgColor: Color.fromRGBO(225, 129, 106, 1)),
+        backgroundColor:
+            Color.fromRGBO(235, 115, 76, 1), //MyTheme.bgColorScreen,
         // key: _scaffoldKey,
         drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(

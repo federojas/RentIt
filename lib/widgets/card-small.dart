@@ -53,12 +53,12 @@ class CardSmall extends StatelessWidget {
                         children: [
                           Text(title,
                               style: TextStyle(
-                                  color: ArgonColors.header, fontSize: 13)),
+                                  color: MyTheme.header, fontSize: 13)),
                           Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(cta,
                                 style: TextStyle(
-                                    color: ArgonColors.primary,
+                                    color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600)),
                           )

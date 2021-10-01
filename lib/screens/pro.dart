@@ -84,8 +84,8 @@ class Pro extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     child: FlatButton(
-                      textColor: ArgonColors.white,
-                      color: ArgonColors.info,
+                      textColor: MyTheme.white,
+                      color: MyTheme.info,
                       onPressed: _launchURL,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4.0),
