@@ -21,13 +21,16 @@ class _RegisterState extends State<Register> {
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
   TextEditingController _userField = TextEditingController();
+  TextEditingController _passwordField2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyTheme.white,
       body: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height / 1.5,
           decoration: BoxDecoration(
             color: MyTheme.primary,
           ),
@@ -44,6 +47,7 @@ class _RegisterState extends State<Register> {
                     labelText: "Usuario",
                     labelStyle: TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                     )),
               ),
               TextFormField(
@@ -56,6 +60,7 @@ class _RegisterState extends State<Register> {
                     labelText: "Email",
                     labelStyle: TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                     )),
               ),
               TextFormField(
@@ -69,10 +74,11 @@ class _RegisterState extends State<Register> {
                     labelText: "Contraseña",
                     labelStyle: TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                     )),
               ),
               TextFormField(
-                controller: _passwordField,
+                controller: _passwordField2,
                 obscureText: true,
                 decoration: InputDecoration(
                     hintText: "repetir contraseña",
@@ -82,8 +88,28 @@ class _RegisterState extends State<Register> {
                     labelText: "Repetir contraseña",
                     labelStyle: TextStyle(
                       color: Colors.white,
+                      fontSize: 20,
                     )),
               ),
+              TextButton(
+                  child: SizedBox(
+                      width: double.infinity,
+                      child: Text("Registrarse",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center)),
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(MyTheme.white),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.all(15)),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(MyTheme.black),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(
+                                  color: MyTheme.black, width: 1.1)))),
+                  onPressed: () => null),
             ],
           )),
     );
