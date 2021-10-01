@@ -23,7 +23,7 @@ class ArgonDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
-      color: ArgonColors.white,
+      color: MyTheme.white,
       child: Column(children: [
         Container(
             height: MediaQuery.of(context).size.height * 0.1,
@@ -49,7 +49,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Home")
                       Navigator.pushReplacementNamed(context, '/home');
                   },
-                  iconColor: ArgonColors.primary,
+                  iconColor: MyTheme.primary,
                   title: "Home",
                   isSelected: currentPage == "Home" ? true : false),
               DrawerTile(
@@ -58,7 +58,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Profile")
                       Navigator.pushReplacementNamed(context, '/profile');
                   },
-                  iconColor: ArgonColors.warning,
+                  iconColor: MyTheme.warning,
                   title: "Profile",
                   isSelected: currentPage == "Profile" ? true : false),
               DrawerTile(
@@ -67,7 +67,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Account")
                       Navigator.pushReplacementNamed(context, '/account');
                   },
-                  iconColor: ArgonColors.info,
+                  iconColor: MyTheme.info,
                   title: "Account",
                   isSelected: currentPage == "Account" ? true : false),
               DrawerTile(
@@ -76,7 +76,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Elements")
                       Navigator.pushReplacementNamed(context, '/elements');
                   },
-                  iconColor: ArgonColors.error,
+                  iconColor: MyTheme.error,
                   title: "Elements",
                   isSelected: currentPage == "Elements" ? true : false),
               DrawerTile(
@@ -85,7 +85,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Articles")
                       Navigator.pushReplacementNamed(context, '/articles');
                   },
-                  iconColor: ArgonColors.primary,
+                  iconColor: MyTheme.primary,
                   title: "Articles",
                   isSelected: currentPage == "Articles" ? true : false),
             ],
@@ -99,7 +99,7 @@ class ArgonDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(height: 4, thickness: 0, color: ArgonColors.muted),
+                  Divider(height: 4, thickness: 0, color: MyTheme.muted),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 16.0, left: 16, bottom: 8),
@@ -112,7 +112,7 @@ class ArgonDrawer extends StatelessWidget {
                   DrawerTile(
                       icon: Icons.airplanemode_active,
                       onTap: _launchURL,
-                      iconColor: ArgonColors.muted,
+                      iconColor: MyTheme.muted,
                       title: "Getting Started",
                       isSelected:
                           currentPage == "Getting started" ? true : false),

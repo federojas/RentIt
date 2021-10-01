@@ -18,25 +18,24 @@ class Input extends StatelessWidget {
       this.onTap,
       this.onChanged,
       this.autofocus = false,
-      this.borderColor = ArgonColors.border,
+      this.borderColor = MyTheme.border,
       this.controller});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-        cursorColor: ArgonColors.muted,
+        cursorColor: MyTheme.muted,
         onTap: onTap,
         onChanged: onChanged,
         controller: controller,
         autofocus: autofocus,
-        style:
-            TextStyle(height: 0.85, fontSize: 14.0, color: ArgonColors.initial),
+        style: TextStyle(height: 0.85, fontSize: 14.0, color: MyTheme.initial),
         textAlignVertical: TextAlignVertical(y: 0.6),
         decoration: InputDecoration(
             filled: true,
-            fillColor: ArgonColors.white,
+            fillColor: MyTheme.white,
             hintStyle: TextStyle(
-              color: ArgonColors.muted,
+              color: MyTheme.muted,
             ),
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,

@@ -16,11 +16,11 @@ class TableCellSettings extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: TextStyle(color: ArgonColors.text)),
+            Text(title, style: TextStyle(color: MyTheme.text)),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(Icons.arrow_forward_ios,
-                  color: ArgonColors.text, size: 14),
+              child:
+                  Icon(Icons.arrow_forward_ios, color: MyTheme.text, size: 14),
             )
           ],
         ),

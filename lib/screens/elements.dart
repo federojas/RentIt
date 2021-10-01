@@ -31,7 +31,7 @@ class _ElementsState extends State<Elements> {
         appBar: Navbar(
           title: "Elements",
         ),
-        backgroundColor: ArgonColors.bgColorScreen,
+        backgroundColor: MyTheme.bgColorScreen,
         drawer: ArgonDrawer(currentPage: "Elements"),
         body: SingleChildScrollView(
             child: Padding(
@@ -45,7 +45,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Buttons",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),
@@ -56,8 +56,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 16),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.initial,
+                    textColor: MyTheme.white,
+                    color: MyTheme.initial,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -80,8 +80,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.text,
-                    color: ArgonColors.secondary,
+                    textColor: MyTheme.text,
+                    color: MyTheme.secondary,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -104,8 +104,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.primary,
+                    textColor: MyTheme.white,
+                    color: MyTheme.primary,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -128,8 +128,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.info,
+                    textColor: MyTheme.white,
+                    color: MyTheme.info,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -152,8 +152,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.success,
+                    textColor: MyTheme.white,
+                    color: MyTheme.success,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -176,8 +176,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.warning,
+                    textColor: MyTheme.white,
+                    color: MyTheme.warning,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -200,8 +200,8 @@ class _ElementsState extends State<Elements> {
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
                   child: RaisedButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.error,
+                    textColor: MyTheme.white,
+                    color: MyTheme.error,
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
@@ -224,7 +224,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Typography",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),
@@ -234,38 +234,38 @@ class _ElementsState extends State<Elements> {
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 1",
-                      style: TextStyle(fontSize: 44, color: ArgonColors.text)),
+                      style: TextStyle(fontSize: 44, color: MyTheme.text)),
                 ),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Heading 2",
-                    style: TextStyle(fontSize: 38, color: ArgonColors.text)),
+                    style: TextStyle(fontSize: 38, color: MyTheme.text)),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Heading 3",
-                    style: TextStyle(fontSize: 30, color: ArgonColors.text)),
+                    style: TextStyle(fontSize: 30, color: MyTheme.text)),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Heading 4",
-                    style: TextStyle(fontSize: 24, color: ArgonColors.text)),
+                    style: TextStyle(fontSize: 24, color: MyTheme.text)),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Heading 5",
-                    style: TextStyle(fontSize: 21, color: ArgonColors.text)),
+                    style: TextStyle(fontSize: 21, color: MyTheme.text)),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("Paragraph",
-                    style: TextStyle(fontSize: 16, color: ArgonColors.text)),
+                    style: TextStyle(fontSize: 16, color: MyTheme.text)),
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("This is a muted paragraph.",
-                    style: TextStyle(fontSize: 16, color: ArgonColors.muted)),
+                    style: TextStyle(fontSize: 16, color: MyTheme.muted)),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, top: 32),
@@ -273,7 +273,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Inputs",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),
@@ -288,7 +288,7 @@ class _ElementsState extends State<Elements> {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Input(
                   placeholder: "Custom border",
-                  borderColor: ArgonColors.info,
+                  borderColor: MyTheme.info,
                 ),
               ),
               Padding(
@@ -309,17 +309,16 @@ class _ElementsState extends State<Elements> {
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Input(
                   placeholder: "Custom success",
-                  borderColor: ArgonColors.success,
-                  suffixIcon:
-                      Icon(Icons.check_circle, color: ArgonColors.success),
+                  borderColor: MyTheme.success,
+                  suffixIcon: Icon(Icons.check_circle, color: MyTheme.success),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Input(
                   placeholder: "Custom error",
-                  borderColor: ArgonColors.error,
-                  suffixIcon: Icon(Icons.error, color: ArgonColors.error),
+                  borderColor: MyTheme.error,
+                  suffixIcon: Icon(Icons.error, color: MyTheme.error),
                 ),
               ),
               Padding(
@@ -328,7 +327,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Switches",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),
@@ -336,26 +335,24 @@ class _ElementsState extends State<Elements> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Switch is ON",
-                      style: TextStyle(color: ArgonColors.text)),
+                  Text("Switch is ON", style: TextStyle(color: MyTheme.text)),
                   Switch.adaptive(
                     value: switchValueOne,
                     onChanged: (bool newValue) =>
                         setState(() => switchValueOne = newValue),
-                    activeColor: ArgonColors.primary,
+                    activeColor: MyTheme.primary,
                   ),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Switch is OFF",
-                      style: TextStyle(color: ArgonColors.text)),
+                  Text("Switch is OFF", style: TextStyle(color: MyTheme.text)),
                   Switch.adaptive(
                     value: switchValueTwo,
                     onChanged: (bool newValue) =>
                         setState(() => switchValueTwo = newValue),
-                    activeColor: ArgonColors.primary,
+                    activeColor: MyTheme.primary,
                   ),
                 ],
               ),
@@ -365,7 +362,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Navigation",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),
@@ -379,7 +376,7 @@ class _ElementsState extends State<Elements> {
                 child: Navbar(
                     title: "Custom background",
                     backButton: true,
-                    bgColor: ArgonColors.primary),
+                    bgColor: MyTheme.primary),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
@@ -405,7 +402,7 @@ class _ElementsState extends State<Elements> {
                   alignment: Alignment.centerLeft,
                   child: Text("Table Cell",
                       style: TextStyle(
-                          color: ArgonColors.text,
+                          color: MyTheme.text,
                           fontWeight: FontWeight.w600,
                           fontSize: 16)),
                 ),

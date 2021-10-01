@@ -90,7 +90,7 @@ class Articles extends StatelessWidget {
           title: "Articles",
           rightOptions: false,
         ),
-        backgroundColor: ArgonColors.bgColorScreen,
+        backgroundColor: MyTheme.bgColorScreen,
         drawer: ArgonDrawer(currentPage: "Articles"),
         body: Container(
             padding: EdgeInsets.only(right: 24, left: 24, bottom: 36),
@@ -103,7 +103,7 @@ class Articles extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text("Cards",
                           style: TextStyle(
-                              color: ArgonColors.text,
+                              color: MyTheme.text,
                               fontWeight: FontWeight.w600,
                               fontSize: 16)),
                     ),
@@ -169,12 +169,12 @@ class Articles extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16.0,
-                                color: ArgonColors.text),
+                                color: MyTheme.text),
                           ),
                           Text(
                             "View All",
                             style: TextStyle(
-                                color: ArgonColors.primary,
+                                color: MyTheme.primary,
                                 fontSize: 12.0,
                                 fontWeight: FontWeight.w600),
                           )

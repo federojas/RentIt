@@ -37,8 +37,8 @@ class CardShopping extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(3.0)),
                       )),
                   FlatButton(
-                    textColor: ArgonColors.white,
-                    color: ArgonColors.initial,
+                    textColor: MyTheme.white,
+                    color: MyTheme.initial,
                     onPressed: () {},
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0),
@@ -62,7 +62,7 @@ class CardShopping extends StatelessWidget {
                   children: [
                     Text(body,
                         style: TextStyle(
-                            color: ArgonColors.black,
+                            color: MyTheme.black,
                             fontSize: 13,
                             fontWeight: FontWeight.w400)),
                     Expanded(
@@ -77,8 +77,8 @@ class CardShopping extends StatelessWidget {
                                 stock == true ? 'In Stock' : 'Not In Stock',
                                 style: TextStyle(
                                     color: stock == true
-                                        ? ArgonColors.success
-                                        : ArgonColors.error,
+                                        ? MyTheme.success
+                                        : MyTheme.error,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w300)),
                           ),
@@ -86,7 +86,7 @@ class CardShopping extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text("\$$price",
                                 style: TextStyle(
-                                    color: ArgonColors.primary,
+                                    color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w500)),
                           ),
@@ -98,8 +98,8 @@ class CardShopping extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         FlatButton(
-                          textColor: ArgonColors.white,
-                          color: ArgonColors.initial,
+                          textColor: MyTheme.white,
+                          color: MyTheme.initial,
                           onPressed: () {
                             deleteOnPress();
                           },
@@ -115,8 +115,8 @@ class CardShopping extends StatelessWidget {
                                       fontSize: 11.0))),
                         ),
                         FlatButton(
-                          textColor: ArgonColors.white,
-                          color: ArgonColors.initial,
+                          textColor: MyTheme.white,
+                          color: MyTheme.initial,
                           onPressed: () {},
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(4.0),
@@ -137,7 +137,7 @@ class CardShopping extends StatelessWidget {
         ]),
       ),
       decoration: BoxDecoration(
-        color: ArgonColors.white,
+        color: MyTheme.white,
         borderRadius: BorderRadius.all(Radius.circular(5.0)),
         boxShadow: [
           BoxShadow(
@@ -169,7 +169,7 @@ class _DropdownState extends State<Dropdown> {
       child: DropdownButtonHideUnderline(
         child: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: ArgonColors.initial,
+            canvasColor: MyTheme.initial,
           ),
           child: DropdownButton<String>(
             value: dropdownValue,
@@ -177,12 +177,12 @@ class _DropdownState extends State<Dropdown> {
               padding: const EdgeInsets.only(left: 25.0),
               child: Icon(
                 Icons.keyboard_arrow_down,
-                color: ArgonColors.white,
+                color: MyTheme.white,
               ),
             ),
             iconSize: 20,
             elevation: 1,
-            style: TextStyle(color: ArgonColors.white),
+            style: TextStyle(color: MyTheme.white),
             onChanged: (String newValue) {
               setState(() {
                 dropdownValue = newValue;
@@ -194,7 +194,7 @@ class _DropdownState extends State<Dropdown> {
                 value: value,
                 child: Text(value,
                     style: TextStyle(
-                        color: ArgonColors.white,
+                        color: MyTheme.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 12.0)),
               );

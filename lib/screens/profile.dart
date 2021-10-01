@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
           title: "Profile",
           transparent: true,
         ),
-        backgroundColor: ArgonColors.bgColorScreen,
+        backgroundColor: MyTheme.bgColorScreen,
         drawer: ArgonDrawer(currentPage: "Profile"),
         body: Stack(children: <Widget>[
           Container(
@@ -66,7 +66,7 @@ class Profile extends StatelessWidget {
                                           children: [
                                             Container(
                                               decoration: BoxDecoration(
-                                                color: ArgonColors.info,
+                                                color: MyTheme.info,
                                                 borderRadius:
                                                     BorderRadius.circular(3.0),
                                                 boxShadow: [
@@ -83,7 +83,7 @@ class Profile extends StatelessWidget {
                                               child: Text(
                                                 "CONNECT",
                                                 style: TextStyle(
-                                                    color: ArgonColors.white,
+                                                    color: MyTheme.white,
                                                     fontSize: 12.0,
                                                     fontWeight:
                                                         FontWeight.bold),
@@ -97,7 +97,7 @@ class Profile extends StatelessWidget {
                                             ),
                                             Container(
                                               decoration: BoxDecoration(
-                                                color: ArgonColors.initial,
+                                                color: MyTheme.initial,
                                                 borderRadius:
                                                     BorderRadius.circular(3.0),
                                                 boxShadow: [
@@ -114,7 +114,7 @@ class Profile extends StatelessWidget {
                                               child: Text(
                                                 "MESSAGE",
                                                 style: TextStyle(
-                                                    color: ArgonColors.white,
+                                                    color: MyTheme.white,
                                                     fontSize: 12.0,
                                                     fontWeight:
                                                         FontWeight.bold),
@@ -222,7 +222,7 @@ class Profile extends StatelessWidget {
                                         Align(
                                             child: Text("Show more",
                                                 style: TextStyle(
-                                                    color: ArgonColors.primary,
+                                                    color: MyTheme.primary,
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 16.0))),
                                         SizedBox(height: 25.0),
@@ -238,12 +238,12 @@ class Profile extends StatelessWidget {
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 16.0,
-                                                    color: ArgonColors.text),
+                                                    color: MyTheme.text),
                                               ),
                                               Text(
                                                 "View All",
                                                 style: TextStyle(
-                                                    color: ArgonColors.primary,
+                                                    color: MyTheme.primary,
                                                     fontSize: 13.0,
                                                     fontWeight:
                                                         FontWeight.w600),
