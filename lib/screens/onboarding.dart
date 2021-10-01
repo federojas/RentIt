@@ -89,7 +89,9 @@ class Onboarding extends StatelessWidget {
                             )
                         )
                     ),
-                    onPressed: () => null
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/register');
+                    }
                 ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,

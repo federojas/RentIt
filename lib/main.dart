@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
           "/elements": (BuildContext context) => new Elements(),
           "/account": (BuildContext context) => new Register(),
           "/pro": (BuildContext context) => new Pro(),
+          "/register": (BuildContext context) => new Register(),
         });
   }
 }

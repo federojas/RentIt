@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "600928248531",
+    "project_id": "rentit-22348",
+    "storage_bucket": "rentit-22348.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600928248531:android:668e6cbfe3ebc4f1086a26",
+        "android_client_info": {
+          "package_name": "com.example.rentit_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600928248531-1ao684ihgtgflpcvsfbodtkgflf0nikj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJTSztpxW9petYBNip6j78xoKhcbGT15s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600928248531-1ao684ihgtgflpcvsfbodtkgflf0nikj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
