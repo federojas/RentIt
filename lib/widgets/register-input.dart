@@ -10,6 +10,7 @@ class RegisterInput extends StatelessWidget {
   final TextEditingController controller;
   final bool autofocus;
   final Color borderColor;
+  final bool obscureText;
 
   RegisterInput(
       {this.placeholder,
@@ -19,11 +20,13 @@ class RegisterInput extends StatelessWidget {
         this.onChanged,
         this.autofocus = false,
         this.borderColor = MyTheme.border,
-        this.controller});
+        this.controller,
+        this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+        obscureText: obscureText,
         cursorColor: MyTheme.muted,
         onTap: onTap,
         onChanged: onChanged,

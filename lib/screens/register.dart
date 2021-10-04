@@ -16,6 +16,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: MyTheme.white,
       body: Center(
         child: Container(
@@ -33,24 +34,30 @@ class _RegisterState extends State<Register> {
                   padding: const EdgeInsets.only(left:16.0, right:16.0),
                   child: RegisterInput(
                     placeholder: "Usuario",
+                    controller: _userField,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left:16.0, right:16.0),
                   child: RegisterInput(
                     placeholder: "Email",
+                    controller: _emailField,
                   ),
                  ),
                 Padding(
                   padding: const EdgeInsets.only(left:16.0, right:16.0),
                   child: RegisterInput(
                     placeholder: "Contraseña",
+                    controller: _passwordField,
+                    obscureText: true,
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left:16.0, right:16.0),
                   child: RegisterInput(
                     placeholder: "Repetir contraseña",
+                    controller: _passwordField2,
+                    obscureText: true,
                   ),
                 ),
                 Padding(
