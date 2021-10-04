@@ -128,7 +128,60 @@ class Home extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ArgonColors.primary,
+        child: Container(
+          margin: EdgeInsets.all(15.0),
+          child: Icon(Icons.add, size: 25),
+        ),
+        elevation: 4.0,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          margin: EdgeInsets.only(left: 12.0, right: 12.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.favorite_border,
+                ),
+              ),
+              //to leave space in between the bottom app bar items and below the FAB
+              SizedBox(
+                width: 50.0,
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.chat_bubble_outline,
+                ),
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.account_circle_rounded,
+                ),
+              ),
+            ],
+          ),
+        ),
+        //to add a space between the FAB and BottomAppBar
+        shape: CircularNotchedRectangle(),
+        //color of the BottomAppBar
+        color: Colors.white,
+      ),
     );
   }
 }
