@@ -1,17 +1,7 @@
-import 'dart:ui';
+import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:argon_flutter/constants/Theme.dart';
-
-//widgets
-import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:argon_flutter/widgets/input.dart';
-
-import 'package:argon_flutter/widgets/drawer.dart';
-
-import 'package:argon_flutter/constants/Theme.dart';
-
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
@@ -27,7 +17,69 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyTheme.white,
-      body: Container(
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.3,
+          height: MediaQuery.of(context).size.height / 1.5,
+          margin: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: MyTheme.primary,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0, right:16.0),
+                  child: RegisterInput(
+                    placeholder: "Usuario",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0, right:16.0),
+                  child: RegisterInput(
+                    placeholder: "Email",
+                  ),
+                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0, right:16.0),
+                  child: RegisterInput(
+                    placeholder: "Contraseña",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0, right:16.0),
+                  child: RegisterInput(
+                    placeholder: "Repetir contraseña",
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left:16.0, right:16.0),
+                  child:TextButton(
+                      child: SizedBox(
+                          width: double.infinity,
+                          child: Text("Registrarse",
+                              style: TextStyle(fontSize: 20),
+                              textAlign: TextAlign.center)),
+                      style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty.all<Color>(MyTheme.white),
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.all(15)),
+                          foregroundColor:
+                          MaterialStateProperty.all<Color>(MyTheme.black),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  side: BorderSide(
+                                      color: MyTheme.black, width: 1.1)))),
+                      onPressed: () => null),
+                )
+            ]
+        ),
+      )
+
+      /*Container(
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width / 1.5,
           height: MediaQuery.of(context).size.height / 1.5,
@@ -111,7 +163,9 @@ class _RegisterState extends State<Register> {
                                   color: MyTheme.black, width: 1.1)))),
                   onPressed: () => null),
             ],
-          )),
+          )
+       ),*/
+      ),
     );
   }
 }
