@@ -115,16 +115,7 @@ class Home extends StatelessWidget {
                     )
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 32.0),
-                  child: CardSquare(
-                      cta: "View article",
-                      title: homeCards["Argon"]['title'],
-                      img: homeCards["Argon"]['image'],
-                      tap: () {
-                        Navigator.pushNamed(context, '/pro');
-                      }),
-                )
+                SizedBox(height: 16.0),
               ],
             ),
           ),
