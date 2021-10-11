@@ -17,11 +17,11 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: MyTheme.white,
+      backgroundColor: MyTheme.secondary,
       body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width / 1.3,
-          height: MediaQuery.of(context).size.height / 1.5,
+          height: MediaQuery.of(context).size.height / 1.2,
           margin: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -30,6 +30,12 @@ class _RegisterState extends State<Register> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Container(
+                child: Center(
+                  child: Image.asset("assets/img/rentItLogo.png",
+                      height: 200, width: 200),
+                ),
+              ),
                 Padding(
                   padding: const EdgeInsets.only(left:16.0, right:16.0),
                   child: RegisterInput(
