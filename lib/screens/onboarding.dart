@@ -67,7 +67,10 @@ class Onboarding extends StatelessWidget {
                             )
                         )
                     ),
-                    onPressed: () => null
+                   // onPressed: () => null
+                    onPressed: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                    },
                 ),
                 TextButton(
                     child: SizedBox(

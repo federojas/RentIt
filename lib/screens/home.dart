@@ -16,12 +16,12 @@ final Map<String, Map<String, String>> homeCards = {
         "https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80"
   },
   "Makeup": {
-    "title": "Is makeup one of your daily esse …",
+    "title": "Notebooks",
     "image":
         "https://images.unsplash.com/photo-1519368358672-25b03afee3bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2004&q=80"
   },
   "Coffee": {
-    "title": "Coffee is more than just a drink: It’s …",
+    "title": "Bicicletas",
     "image":
         "https://images.unsplash.com/photo-1500522144261-ea64433bbe27?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
   },
@@ -38,20 +38,15 @@ final Map<String, Map<String, String>> homeCards = {
 };
 
 class Home extends StatelessWidget {
-  // final GlobalKey _scaffoldKey = new GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Navbar(
           title: "Home",
           searchBar: true,
-          categoryOne: "Beauty",
-          categoryTwo: "Fashion",
           bgColor: Color.fromRGBO(225,129,106,1)
         ),
-        backgroundColor: Color.fromRGBO(235,115,76,1)
-        ,//ArgonColors.bgColorScreen,
-        // key: _scaffoldKey,
+        backgroundColor: Colors.white,
         drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -60,15 +55,33 @@ class Home extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
-                  child: CardHorizontal(
-                      cta: "View article",
+                  child: Text(
+                    '¡Ofertas en Rent It!',
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: CardSquare(
+                      cta: "Ver oferta",
                       title: homeCards["Ice Cream"]['title'],
                       img: homeCards["Ice Cream"]['image'],
                       tap: () {
                         Navigator.pushNamed(context, '/pro');
                       }),
                 ),
-                SizedBox(height: 8.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: Text(
+                    'Categorías',
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+                SizedBox(height: 8.0),SizedBox(height: 8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -76,40 +89,90 @@ class Home extends StatelessWidget {
                         cta: "View article",
                         title: homeCards["Makeup"]['title'],
                         img: homeCards["Makeup"]['image'],
-                        tap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        }),
+                    ),
+                    SizedBox(width: 16.0),
                     CardSmall(
                         cta: "View article",
                         title: homeCards["Coffee"]['title'],
                         img: homeCards["Coffee"]['image'],
-                        tap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        })
+                    )
                   ],
                 ),
-                SizedBox(height: 8.0),
-                CardHorizontal(
-                    cta: "View article",
-                    title: homeCards["Fashion"]['title'],
-                    img: homeCards["Fashion"]['image'],
-                    tap: () {
-                      Navigator.pushNamed(context, '/pro');
-                    }),
-                SizedBox(height: 8.0),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 32.0),
-                  child: CardSquare(
+                SizedBox(height: 8.0),SizedBox(height: 8.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CardSmall(
                       cta: "View article",
-                      title: homeCards["Argon"]['title'],
-                      img: homeCards["Argon"]['image'],
-                      tap: () {
-                        Navigator.pushNamed(context, '/pro');
-                      }),
-                )
+                      title: homeCards["Makeup"]['title'],
+                      img: homeCards["Makeup"]['image'],
+                    ),
+                    SizedBox(width: 16.0),
+                    CardSmall(
+                      cta: "View article",
+                      title: homeCards["Coffee"]['title'],
+                      img: homeCards["Coffee"]['image'],
+                    )
+                  ],
+                ),
+                SizedBox(height: 16.0),
               ],
             ),
           ),
-        ));
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ArgonColors.primary,
+        child: Container(
+          margin: EdgeInsets.all(15.0),
+          child: Icon(Icons.add, size: 25),
+        ),
+        elevation: 4.0,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          margin: EdgeInsets.only(left: 12.0, right: 12.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.black,
+                ),
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.favorite_border,
+                ),
+              ),
+              //to leave space in between the bottom app bar items and below the FAB
+              SizedBox(
+                width: 50.0,
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.chat_bubble_outline,
+                ),
+              ),
+              IconButton(
+                iconSize: 27.0,
+                icon: Icon(
+                  Icons.account_circle_rounded,
+                ),
+              ),
+            ],
+          ),
+        ),
+        //to add a space between the FAB and BottomAppBar
+        shape: CircularNotchedRectangle(),
+        //color of the BottomAppBar
+        color: Colors.white,
+      ),
+    );
   }
 }
