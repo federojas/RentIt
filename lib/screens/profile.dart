@@ -20,10 +20,9 @@ class Profile extends StatelessWidget {
         body: Stack(children: <Widget>[
           Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      alignment: Alignment.topCenter,
-                      image: AssetImage("assets/img/profile-screen-bg.png"),
-                      fit: BoxFit.fitWidth))),
+                  color: ArgonColors.primary
+              )
+          ),
           SafeArea(
             child: ListView(children: [
               Padding(
@@ -220,7 +219,7 @@ class Profile extends StatelessWidget {
                                         ),
                                         SizedBox(height: 15.0),
                                         Align(
-                                            child: Text("Show more",
+                                            child: Text("Ver más",
                                                 style: TextStyle(
                                                     color: ArgonColors.primary,
                                                     fontWeight: FontWeight.w400,
@@ -234,14 +233,14 @@ class Profile extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                "Album",
+                                                "Publicaciones",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 16.0,
                                                     color: ArgonColors.text),
                                               ),
                                               Text(
-                                                "View All",
+                                                "Ver todas",
                                                 style: TextStyle(
                                                     color: ArgonColors.primary,
                                                     fontSize: 13.0,

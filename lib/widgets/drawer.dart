@@ -34,7 +34,7 @@ class ArgonDrawer extends StatelessWidget {
                 alignment: Alignment.bottomLeft,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 32),
-                  child: Image.asset("assets/img/argon-logo.png"),
+                  child: Image.asset("assets/img/rentItLogo.png"),
                 ),
               ),
             )),
@@ -50,35 +50,17 @@ class ArgonDrawer extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/home');
                   },
                   iconColor: ArgonColors.primary,
-                  title: "Home",
+                  title: "Inicio",
                   isSelected: currentPage == "Home" ? true : false),
               DrawerTile(
-                  icon: Icons.pie_chart,
+                  icon: Icons.account_circle,
                   onTap: () {
                     if (currentPage != "Profile")
                       Navigator.pushReplacementNamed(context, '/profile');
                   },
                   iconColor: ArgonColors.warning,
-                  title: "Profile",
+                  title: "Perfil",
                   isSelected: currentPage == "Profile" ? true : false),
-              DrawerTile(
-                  icon: Icons.account_circle,
-                  onTap: () {
-                    if (currentPage != "Account")
-                      Navigator.pushReplacementNamed(context, '/account');
-                  },
-                  iconColor: ArgonColors.info,
-                  title: "Account",
-                  isSelected: currentPage == "Account" ? true : false),
-              DrawerTile(
-                  icon: Icons.settings_input_component,
-                  onTap: () {
-                    if (currentPage != "Elements")
-                      Navigator.pushReplacementNamed(context, '/elements');
-                  },
-                  iconColor: ArgonColors.error,
-                  title: "Elements",
-                  isSelected: currentPage == "Elements" ? true : false),
               DrawerTile(
                   icon: Icons.apps,
                   onTap: () {
@@ -86,7 +68,7 @@ class ArgonDrawer extends StatelessWidget {
                       Navigator.pushReplacementNamed(context, '/articles');
                   },
                   iconColor: ArgonColors.primary,
-                  title: "Articles",
+                  title: "Mis publicaciones",
                   isSelected: currentPage == "Articles" ? true : false),
             ],
           ),

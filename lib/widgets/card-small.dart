@@ -43,6 +43,22 @@ class CardSmall extends StatelessWidget {
                         )
                     )
                 ),
+                Flexible(
+                    flex: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8.0, bottom: 8.0, left: 8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(title, textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: ArgonColors.header, fontSize: 13)),
+
+                        ],
+                      ),
+                    ))
               ],
             )),
       ),
