@@ -11,9 +11,9 @@ import 'package:argon_flutter/widgets/drawer.dart';
 
 final Map<String, Map<String, String>> homeCards = {
   "Ice Cream": {
-    "title": "Ice cream is made with carrageenan …",
+    "title": "Alquileres de notebooks",
     "image":
-        "https://images.unsplash.com/photo-1516559828984-fb3b99548b21?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80"
+        "https://www.nsx.com.ar/archivos/N_omicron_1.png"
   },
   "Makeup": {
     "title": "Notebooks",
@@ -87,14 +87,14 @@ class Home extends StatelessWidget {
                   children: [
                     CardSmall(
                         cta: "View article",
-                        title: homeCards["Makeup"]['title'],
-                        img: homeCards["Makeup"]['image'],
+                        title: "Consolas",
+                        img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
                     ),
                     SizedBox(width: 16.0),
                     CardSmall(
                         cta: "View article",
-                        title: homeCards["Coffee"]['title'],
-                        img: homeCards["Coffee"]['image'],
+                        title: "Bicicletas",
+                        img: "https://labicikleta.com/wp-content/uploads/2016/07/FeatureBiciMontana-770x513.jpg",
                     )
                   ],
                 ),
@@ -104,14 +104,14 @@ class Home extends StatelessWidget {
                   children: [
                     CardSmall(
                       cta: "View article",
-                      title: homeCards["Makeup"]['title'],
-                      img: homeCards["Makeup"]['image'],
+                      title: "Juegos",
+                      img: "http://d2r9epyceweg5n.cloudfront.net/stores/001/239/905/products/ene-3-plastico1-ca76755057a823aeea16165340604100-640-0.jpg",
                     ),
                     SizedBox(width: 16.0),
                     CardSmall(
                       cta: "View article",
-                      title: homeCards["Coffee"]['title'],
-                      img: homeCards["Coffee"]['image'],
+                      title: "Artículos playa",
+                      img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
                     )
                   ],
                 ),
