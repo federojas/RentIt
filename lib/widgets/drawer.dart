@@ -49,7 +49,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Home")
                       Navigator.pushReplacementNamed(context, '/home');
                   },
-                  iconColor: ArgonColors.primary,
+                  iconColor: MyTheme.primary,
                   title: "Inicio",
                   isSelected: currentPage == "Home" ? true : false),
               DrawerTile(
@@ -58,7 +58,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Profile")
                       Navigator.pushReplacementNamed(context, '/profile');
                   },
-                  iconColor: ArgonColors.warning,
+                  iconColor: MyTheme.warning,
                   title: "Perfil",
                   isSelected: currentPage == "Profile" ? true : false),
               DrawerTile(
@@ -67,7 +67,7 @@ class ArgonDrawer extends StatelessWidget {
                     if (currentPage != "Articles")
                       Navigator.pushReplacementNamed(context, '/articles');
                   },
-                  iconColor: ArgonColors.primary,
+                  iconColor: MyTheme.primary,
                   title: "Mis publicaciones",
                   isSelected: currentPage == "Articles" ? true : false),
             ],

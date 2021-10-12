@@ -20,7 +20,7 @@ class Profile extends StatelessWidget {
         body: Stack(children: <Widget>[
           Container(
               decoration: BoxDecoration(
-                  color: ArgonColors.primary
+                  color: MyTheme.primary
               )
           ),
           SafeArea(

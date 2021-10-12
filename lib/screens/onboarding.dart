@@ -56,11 +56,11 @@ class Onboarding extends StatelessWidget {
                             textAlign: TextAlign.center)),
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-                        foregroundColor: MaterialStateProperty.all<Color>(ArgonColors.white),
+                        foregroundColor: MaterialStateProperty.all<Color>(MyTheme.white),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(color: ArgonColors.white, width: 1.5)
+                                side: BorderSide(color: MyTheme.white, width: 1.5)
                             )
                         )
                     ),

@@ -130,7 +130,7 @@ class Home extends StatelessWidget {
               cancelBtnText: "Cancel",
           );
         },
-        backgroundColor: ArgonColors.primary,
+        backgroundColor: MyTheme.primary,
         child: Container(
           margin: EdgeInsets.all(15.0),
           child: Icon(Icons.add, size: 25),
