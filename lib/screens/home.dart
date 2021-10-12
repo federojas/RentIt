@@ -1,3 +1,4 @@
+import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:argon_flutter/constants/Theme.dart';
@@ -122,6 +123,13 @@ class Home extends StatelessWidget {
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          DialogUtils.showCustomDialog(context,
+              title: "Gallary",
+              okBtnText: "Save",
+              cancelBtnText: "Cancel",
+          );
+        },
         backgroundColor: ArgonColors.primary,
         child: Container(
           margin: EdgeInsets.all(15.0),
