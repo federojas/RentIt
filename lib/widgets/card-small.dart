@@ -55,7 +55,6 @@ class CardSmall extends StatelessWidget {
                           Text(title, textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: ArgonColors.header, fontSize: 13)),
-
                         ],
                       ),
                     ))

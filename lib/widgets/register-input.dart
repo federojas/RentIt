@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
-class Input extends StatelessWidget {
+class RegisterInput extends StatelessWidget {
   final String placeholder;
   final Widget suffixIcon;
   final Widget prefixIcon;
@@ -10,20 +10,23 @@ class Input extends StatelessWidget {
   final TextEditingController controller;
   final bool autofocus;
   final Color borderColor;
+  final bool obscureText;
 
-  Input(
+  RegisterInput(
       {this.placeholder,
-      this.suffixIcon,
-      this.prefixIcon,
-      this.onTap,
-      this.onChanged,
-      this.autofocus = false,
-      this.borderColor = MyTheme.border,
-      this.controller});
+        this.suffixIcon,
+        this.prefixIcon,
+        this.onTap,
+        this.onChanged,
+        this.autofocus = false,
+        this.borderColor = MyTheme.border,
+        this.controller,
+        this.obscureText = false});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+        obscureText: obscureText,
         cursorColor: MyTheme.muted,
         onTap: onTap,
         onChanged: onChanged,
@@ -31,7 +34,6 @@ class Input extends StatelessWidget {
         autofocus: autofocus,
         style: TextStyle(height: 0.85, fontSize: 14.0, color: MyTheme.initial),
         textAlignVertical: TextAlignVertical(y: 0.6),
-        textAlign: TextAlign.center,
         decoration: InputDecoration(
             filled: true,
             fillColor: MyTheme.white,
@@ -41,11 +43,11 @@ class Input extends StatelessWidget {
             suffixIcon: suffixIcon,
             prefixIcon: prefixIcon,
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(16.0),
                 borderSide: BorderSide(
                     color: borderColor, width: 1.0, style: BorderStyle.solid)),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(4.0),
+                borderRadius: BorderRadius.circular(16.0),
                 borderSide: BorderSide(
                     color: borderColor, width: 1.0, style: BorderStyle.solid)),
             hintText: placeholder));

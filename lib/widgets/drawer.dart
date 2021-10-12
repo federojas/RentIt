@@ -23,7 +23,7 @@ class ArgonDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
         child: Container(
-      color: ArgonColors.white,
+      color: MyTheme.white,
       child: Column(children: [
         Container(
             height: MediaQuery.of(context).size.height * 0.1,
@@ -81,7 +81,7 @@ class ArgonDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Divider(height: 4, thickness: 0, color: ArgonColors.muted),
+                  Divider(height: 4, thickness: 0, color: MyTheme.muted),
                   Padding(
                     padding:
                         const EdgeInsets.only(top: 16.0, left: 16, bottom: 8),
@@ -94,7 +94,7 @@ class ArgonDrawer extends StatelessWidget {
                   DrawerTile(
                       icon: Icons.airplanemode_active,
                       onTap: _launchURL,
-                      iconColor: ArgonColors.muted,
+                      iconColor: MyTheme.muted,
                       title: "Getting Started",
                       isSelected:
                           currentPage == "Getting started" ? true : false),

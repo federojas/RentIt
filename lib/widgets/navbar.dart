@@ -35,7 +35,7 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
       this.searchAutofocus = false,
       this.backButton = false,
       this.noShadow = false,
-      this.bgColor = ArgonColors.white,
+      this.bgColor = MyTheme.white,
       this.searchBar = false});
 
   final double _prefferedHeight = 180.0;
@@ -79,7 +79,7 @@ class _NavbarState extends State<Navbar> {
             boxShadow: [
               BoxShadow(
                   color: !widget.transparent && !widget.noShadow
-                      ? ArgonColors.initial
+                      ? MyTheme.initial
                       : Colors.transparent,
                   spreadRadius: -10,
                   blurRadius: 12,
@@ -102,10 +102,10 @@ class _NavbarState extends State<Navbar> {
                                     ? Icons.menu
                                     : Icons.arrow_back_ios,
                                 color: !widget.transparent
-                                    ? (widget.bgColor == ArgonColors.white
-                                        ? ArgonColors.initial
-                                        : ArgonColors.white)
-                                    : ArgonColors.white,
+                                    ? (widget.bgColor == MyTheme.white
+                                        ? MyTheme.initial
+                                        : MyTheme.white)
+                                    : MyTheme.white,
                                 size: 24.0),
                             onPressed: () {
                               if (!widget.backButton)
@@ -116,10 +116,10 @@ class _NavbarState extends State<Navbar> {
                         Text(widget.title,
                             style: TextStyle(
                                 color: !widget.transparent
-                                    ? (widget.bgColor == ArgonColors.white
-                                        ? ArgonColors.initial
-                                        : ArgonColors.white)
-                                    : ArgonColors.white,
+                                    ? (widget.bgColor == MyTheme.white
+                                        ? MyTheme.initial
+                                        : MyTheme.white)
+                                    : MyTheme.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18.0)),
                       ],
@@ -135,10 +135,10 @@ class _NavbarState extends State<Navbar> {
                             child: IconButton(
                                 icon: Icon(Icons.notifications_active,
                                     color: !widget.transparent
-                                        ? (widget.bgColor == ArgonColors.white
-                                            ? ArgonColors.initial
-                                            : ArgonColors.white)
-                                        : ArgonColors.white,
+                                        ? (widget.bgColor == MyTheme.white
+                                            ? MyTheme.initial
+                                            : MyTheme.white)
+                                        : MyTheme.white,
                                     size: 22.0),
                                 onPressed: null),
                           ),
@@ -149,10 +149,10 @@ class _NavbarState extends State<Navbar> {
                             child: IconButton(
                                 icon: Icon(Icons.shopping_basket,
                                     color: !widget.transparent
-                                        ? (widget.bgColor == ArgonColors.white
-                                            ? ArgonColors.initial
-                                            : ArgonColors.white)
-                                        : ArgonColors.white,
+                                        ? (widget.bgColor == MyTheme.white
+                                            ? MyTheme.initial
+                                            : MyTheme.white)
+                                        : MyTheme.white,
                                     size: 22.0),
                                 onPressed: null),
                           ),
@@ -169,8 +169,7 @@ class _NavbarState extends State<Navbar> {
                         controller: widget.searchController,
                         onChanged: widget.searchOnChanged,
                         autofocus: widget.searchAutofocus,
-                        suffixIcon:
-                            Icon(Icons.zoom_in, color: ArgonColors.muted),
+                        suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
                         onTap: () {
                           Navigator.pushNamed(context, '/pro');
                         }),
@@ -190,18 +189,17 @@ class _NavbarState extends State<Navbar> {
                         child: Row(
                           children: [
                             Icon(Icons.camera,
-                                color: ArgonColors.initial, size: 22.0),
+                                color: MyTheme.initial, size: 22.0),
                             SizedBox(width: 10),
                             Text(widget.categoryOne,
                                 style: TextStyle(
-                                    color: ArgonColors.initial,
-                                    fontSize: 16.0)),
+                                    color: MyTheme.initial, fontSize: 16.0)),
                           ],
                         ),
                       ),
                       SizedBox(width: 30),
                       Container(
-                        color: ArgonColors.initial,
+                        color: MyTheme.initial,
                         height: 25,
                         width: 1,
                       ),
@@ -213,12 +211,11 @@ class _NavbarState extends State<Navbar> {
                         child: Row(
                           children: [
                             Icon(Icons.shopping_cart,
-                                color: ArgonColors.initial, size: 22.0),
+                                color: MyTheme.initial, size: 22.0),
                             SizedBox(width: 10),
                             Text(widget.categoryTwo,
                                 style: TextStyle(
-                                    color: ArgonColors.initial,
-                                    fontSize: 16.0)),
+                                    color: MyTheme.initial, fontSize: 16.0)),
                           ],
                         ),
                       )
@@ -253,16 +250,16 @@ class _NavbarState extends State<Navbar> {
                               // width: 90,
                               decoration: BoxDecoration(
                                   color: activeTag == widget.tags[index]
-                                      ? ArgonColors.primary
-                                      : ArgonColors.secondary,
+                                      ? MyTheme.primary
+                                      : MyTheme.secondary,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4.0))),
                               child: Center(
                                 child: Text(widget.tags[index],
                                     style: TextStyle(
                                         color: activeTag == widget.tags[index]
-                                            ? ArgonColors.white
-                                            : ArgonColors.black,
+                                            ? MyTheme.white
+                                            : MyTheme.black,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14.0)),
                               )),

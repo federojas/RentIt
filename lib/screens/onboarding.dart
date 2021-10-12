@@ -13,8 +13,7 @@ class Onboarding extends StatelessWidget {
               image: DecorationImage(
                   image: AssetImage("assets/img/onboard-background.png"),
                   fit: BoxFit.cover))),*/
-      Container(
-          decoration: new BoxDecoration(color: ArgonColors.primary)),
+      Container(decoration: new BoxDecoration(color: MyTheme.primary)),
       Padding(
         padding:
             const EdgeInsets.only(top: 73, left: 32, right: 32, bottom: 16),
@@ -40,7 +39,8 @@ class Onboarding extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 24.0),
-                      child: Text("Rentit es la opción más segura para alquilar lo que quieras y obtener ingresos. ¡Empieza ya!",
+                      child: Text(
+                          "Rentit es la opción más segura para alquilar lo que quieras y obtener ingresos. ¡Empieza ya!",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -51,12 +51,9 @@ class Onboarding extends StatelessWidget {
                 TextButton(
                     child: SizedBox(
                         width: double.infinity,
-                        child: Text(
-                            "Iniciar Sesión",
+                        child: Text("Ingresar",
                             style: TextStyle(fontSize: 20),
-                            textAlign: TextAlign.center
-                        )
-                    ),
+                            textAlign: TextAlign.center)),
                     style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
                         foregroundColor: MaterialStateProperty.all<Color>(ArgonColors.white),
@@ -74,26 +71,26 @@ class Onboarding extends StatelessWidget {
                 ),
                 TextButton(
                     child: SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                          "Registrarse",
-                          style: TextStyle(fontSize: 20),
-                          textAlign: TextAlign.center
-                      )
-                    ),
+                        width: double.infinity,
+                        child: Text("Registrarse",
+                            style: TextStyle(fontSize: 20),
+                            textAlign: TextAlign.center)),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(ArgonColors.white),
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-                        foregroundColor: MaterialStateProperty.all<Color>(ArgonColors.black),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                // side: BorderSide(color: ArgonColors.white, width: 1.5)
-                            )
-                        )
-                    ),
-                    onPressed: () => null
-                ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(MyTheme.white),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(15)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(MyTheme.black),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                          side: BorderSide(color: MyTheme.black, width: 1.1)
+                        ))),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/register');
+                    }),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //   image:DecorationImage(
@@ -102,8 +99,9 @@ class Onboarding extends StatelessWidget {
                 //   )
                 // ),
                 Container(
-                  child:Center(
-                    child:Image.asset("assets/img/welcomepig.png", height: 200, width: 200),
+                  child: Center(
+                    child: Image.asset("assets/img/welcomepig.png",
+                        height: 200, width: 200),
                   ),
                 ),
               ],

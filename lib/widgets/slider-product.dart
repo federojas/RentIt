@@ -55,17 +55,17 @@ class _ProductCarouselState extends State<ProductCarousel> {
                         children: [
                           Text(item["price"],
                               style: TextStyle(
-                                  fontSize: 16, color: ArgonColors.header)),
+                                  fontSize: 16, color: MyTheme.header)),
                           Text(item["title"],
-                              style: TextStyle(
-                                  fontSize: 32, color: ArgonColors.text)),
+                              style:
+                                  TextStyle(fontSize: 32, color: MyTheme.text)),
                           Padding(
                             padding: const EdgeInsets.only(
                                 left: 16.0, right: 16.0, top: 8),
                             child: Text(
                               item["description"],
-                              style: TextStyle(
-                                  fontSize: 16, color: ArgonColors.muted),
+                              style:
+                                  TextStyle(fontSize: 16, color: MyTheme.muted),
                               textAlign: TextAlign.center,
                             ),
                           )

@@ -53,10 +53,10 @@ class CardSquare extends StatelessWidget {
                           children: [
                             Text(title,
                                 style: TextStyle(
-                                    color: ArgonColors.header, fontSize: 13)),
+                                    color: MyTheme.header, fontSize: 13)),
                             Text(cta,
                                 style: TextStyle(
-                                    color: ArgonColors.primary,
+                                    color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600))
                           ],
