@@ -86,7 +86,14 @@ class _RegisterState extends State<Register> {
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: BorderSide(
                                       color: MyTheme.black, width: 1.1)))),
-                      onPressed: () => null),
+                      onPressed: () => null
+                      /* onPressed: ()
+                          bool shouldNavigate = await register(_emailField.text, _passwordField.text)
+                          if(shouldNavigate) {
+                            aca podria mandarme a otra screen
+                          }
+                      */
+                  ),
                 )
             ]
         ),
