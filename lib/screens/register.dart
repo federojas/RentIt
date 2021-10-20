@@ -2,6 +2,7 @@ import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/input.dart';
+import 'package:argon_flutter/net/flutterfire.dart';
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
