@@ -49,25 +49,25 @@ class Onboarding extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                    child: SizedBox(
-                        width: double.infinity,
-                        child: Text("Ingresar",
-                            style: TextStyle(fontSize: 20),
-                            textAlign: TextAlign.center)),
-                    style: ButtonStyle(
-                        padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-                        foregroundColor: MaterialStateProperty.all<Color>(MyTheme.white),
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                side: BorderSide(color: MyTheme.white, width: 1.5)
-                            )
-                        )
-                    ),
-                   // onPressed: () => null
-                    onPressed: () {
+                  child: SizedBox(
+                      width: double.infinity,
+                      child: Text("Ingresar",
+                          style: TextStyle(fontSize: 20),
+                          textAlign: TextAlign.center)),
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.all(15)),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(MyTheme.white),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(
+                                  color: MyTheme.white, width: 1.5)))),
+                  // onPressed: () => null
+                  onPressed: () {
                     Navigator.pushReplacementNamed(context, '/home');
-                    },
+                  },
                 ),
                 TextButton(
                     child: SizedBox(
@@ -85,9 +85,9 @@ class Onboarding extends StatelessWidget {
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(18.0),
-                          side: BorderSide(color: MyTheme.black, width: 1.1)
-                        ))),
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: BorderSide(
+                                        color: MyTheme.black, width: 1.1)))),
                     onPressed: () {
                       Navigator.pushReplacementNamed(context, '/register');
                     }),
