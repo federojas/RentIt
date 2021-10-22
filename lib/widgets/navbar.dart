@@ -96,23 +96,23 @@ class _NavbarState extends State<Navbar> {
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                            icon: Icon(
-                                !widget.backButton
-                                    ? Icons.menu
-                                    : Icons.arrow_back_ios,
-                                color: !widget.transparent
-                                    ? (widget.bgColor == MyTheme.white
-                                        ? MyTheme.initial
-                                        : MyTheme.white)
-                                    : MyTheme.white,
-                                size: 24.0),
-                            onPressed: () {
-                              if (!widget.backButton)
-                                Scaffold.of(context).openDrawer();
-                              else
-                                Navigator.pop(context);
-                            }),
+                        // IconButton(
+                        //     icon: Icon(
+                        //         !widget.backButton
+                        //             ? Icons.menu
+                        //             : Icons.arrow_back_ios,
+                        //         color: !widget.transparent
+                        //             ? (widget.bgColor == MyTheme.white
+                        //                 ? MyTheme.initial
+                        //                 : MyTheme.white)
+                        //             : MyTheme.white,
+                        //         size: 24.0),
+                        //     onPressed: () {
+                        //       if (!widget.backButton)
+                        //         Scaffold.of(context).openDrawer();
+                        //       else
+                        //         Navigator.pop(context);
+                        //     }),
                         Text(widget.title,
                             style: TextStyle(
                                 color: !widget.transparent

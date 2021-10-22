@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
 //widgets
-import 'package:argon_flutter/widgets/drawer.dart';
+// import 'package:argon_flutter/widgets/drawer.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:argon_flutter/widgets/card-horizontal.dart';
 import 'package:argon_flutter/widgets/card-small.dart';
@@ -91,7 +91,7 @@ class Articles extends StatelessWidget {
           rightOptions: false,
         ),
         backgroundColor: MyTheme.bgColorScreen,
-        drawer: ArgonDrawer(currentPage: "Articles"),
+        // drawer: ArgonDrawer(currentPage: "Articles"),
         body: Container(
             padding: EdgeInsets.only(right: 24, left: 24, bottom: 36),
             child: SingleChildScrollView(

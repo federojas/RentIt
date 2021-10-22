@@ -4,7 +4,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 
 //widgets
 import 'package:argon_flutter/widgets/navbar.dart';
-import 'package:argon_flutter/widgets/drawer.dart';
+// import 'package:argon_flutter/widgets/drawer.dart';
 import 'package:argon_flutter/widgets/input.dart';
 import 'package:argon_flutter/widgets/table-cell.dart';
 
@@ -32,7 +32,7 @@ class _ElementsState extends State<Elements> {
           title: "Elements",
         ),
         backgroundColor: MyTheme.bgColorScreen,
-        drawer: ArgonDrawer(currentPage: "Elements"),
+        // drawer: ArgonDrawer(currentPage: "Elements"),
         body: SingleChildScrollView(
             child: Padding(
           padding: EdgeInsets.only(right: 24, left: 24, bottom: 36),
