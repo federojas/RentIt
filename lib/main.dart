@@ -1,3 +1,4 @@
+import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ import 'package:argon_flutter/screens/profile.dart';
 import 'package:argon_flutter/screens/register.dart';
 import 'package:argon_flutter/screens/articles.dart';
 import 'package:argon_flutter/screens/elements.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,12 +19,14 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Argon PRO Flutter',
-        theme: ThemeData(fontFamily: 'OpenSans'),
+        theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         initialRoute: "/onboarding",
+        home: MainPage(),
         debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{
           "/onboarding": (BuildContext context) => new Onboarding(),
@@ -33,6 +37,48 @@ class MyApp extends StatelessWidget {
           "/account": (BuildContext context) => new Register(),
           "/pro": (BuildContext context) => new Pro(),
           "/register": (BuildContext context) => new Register(),
+          "/main" :(BuildContext context)=> new MainPage(),
         });
+  }
+
+}
+class MainPage extends StatefulWidget {
+  final String title;
+
+  const MainPage({
+    @required this.title,
+  });
+
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+class _MainPageState extends State<MainPage> {
+  int index = 0;
+
+  final pages = <Widget>[
+    Home(),
+    Profile(),
+  ];
+
+  @override
+  Widget build(BuildContext context) =>
+      Scaffold(
+        extendBody: true,
+        body: pages[index],
+        bottomNavigationBar: TabBarMaterialWidget(
+          index: index,
+          onChangedTab: onChangedTab,
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () => print('Hello World'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      );
+
+  void onChangedTab(int index) {
+    setState(() {
+      this.index = index;
+    });
   }
 }

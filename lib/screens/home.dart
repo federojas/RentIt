@@ -1,4 +1,5 @@
 import 'package:argon_flutter/widgets/dialog-utils.dart';
+import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:argon_flutter/constants/Theme.dart';
@@ -9,10 +10,11 @@ import 'package:argon_flutter/widgets/card-horizontal.dart';
 import 'package:argon_flutter/widgets/card-small.dart';
 import 'package:argon_flutter/widgets/card-square.dart';
 import 'package:argon_flutter/widgets/drawer.dart';
+import 'package:argon_flutter/screens/profile.dart';
 
 final Map<String, Map<String, String>> homeCards = {
   "Ice Cream": {
-    "title": "Alquileres de notebooks",
+    "title": "Alquileres de notebook",
     "image":
         "https://www.nsx.com.ar/archivos/N_omicron_1.png"
   },
@@ -39,15 +41,19 @@ final Map<String, Map<String, String>> homeCards = {
 };
 
 class Home extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: Navbar(
           title: "Home",
           searchBar: true,
-          bgColor: Color.fromRGBO(225,129,106,1)
+          //bgColor: Color.fromRGBO(225,129,106,1)
+            bgColor: MyTheme.primary
+
         ),
-        backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
+
         drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
@@ -82,7 +88,7 @@ class Home extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-                SizedBox(height: 8.0),SizedBox(height: 8.0),
+                SizedBox(height:9.0),SizedBox(height: 8.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -121,66 +127,69 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          DialogUtils.showCustomDialog(context,
-              title: "Gallary",
-              okBtnText: "Save",
-              cancelBtnText: "Cancel",
-          );
-        },
-        backgroundColor: MyTheme.primary,
-        child: Container(
-          margin: EdgeInsets.all(15.0),
-          child: Icon(Icons.add, size: 25),
-        ),
-        elevation: 4.0,
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          margin: EdgeInsets.only(left: 12.0, right: 12.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                iconSize: 27.0,
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.black,
-                ),
-              ),
-              IconButton(
-                iconSize: 27.0,
-                icon: Icon(
-                  Icons.favorite_border,
-                ),
-              ),
-              //to leave space in between the bottom app bar items and below the FAB
-              SizedBox(
-                width: 50.0,
-              ),
-              IconButton(
-                iconSize: 27.0,
-                icon: Icon(
-                  Icons.chat_bubble_outline,
-                ),
-              ),
-              IconButton(
-                iconSize: 27.0,
-                icon: Icon(
-                  Icons.account_circle_rounded,
-                ),
-              ),
-            ],
-          ),
-        ),
-        //to add a space between the FAB and BottomAppBar
-        shape: CircularNotchedRectangle(),
-        //color of the BottomAppBar
-        color: Colors.white,
-      ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     DialogUtils.showCustomDialog(context,
+      //         title: "Gallary",
+      //         okBtnText: "Save",
+      //         cancelBtnText: "Cancel",
+      //     );
+      //   },
+      //   backgroundColor: MyTheme.primary,
+      //   child: Container(
+      //     margin: EdgeInsets.all(15.0),
+      //     child: Icon(Icons.add, size: 25),
+      //   ),
+      //   elevation: 4.0,
+      // ),
+      //boton nav bar
+      // bottomNavigationBar: BottomAppBar(
+      //   child: Container(
+      //     margin: EdgeInsets.only(left: 12.0, right: 12.0),
+      //     child: Row(
+      //       mainAxisSize: MainAxisSize.max,
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: <Widget>[
+      //         IconButton(
+      //           iconSize: 27.0,
+      //           icon: Icon(
+      //             Icons.home,
+      //             color: Colors.black,
+      //           ),
+      //         ),
+      //         IconButton(
+      //           iconSize: 27.0,
+      //           icon: Icon(
+      //             Icons.favorite_border,
+      //           ),
+      //         ),
+      //         //to leave space in between the bottom app bar items and below the FAB
+      //         SizedBox(
+      //           width: 50.0,
+      //         ),
+      //         IconButton(
+      //           iconSize: 27.0,
+      //           icon: Icon(
+      //             Icons.chat_bubble_outline,
+      //           ),
+      //         ),
+      //         IconButton(
+      //           iconSize: 27.0,
+      //
+      //           icon: Icon(
+      //             Icons.account_circle_rounded,
+      //
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      //   //to add a space between the FAB and BottomAppBar
+      //   shape: CircularNotchedRectangle(),
+      //   //color of the BottomAppBar
+      //   color: Colors.white,
+      // ),
     );
   }
 }

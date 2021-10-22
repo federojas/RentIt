@@ -25,7 +25,8 @@ class CardSmall extends StatelessWidget {
       child: GestureDetector(
         onTap: tap,
         child: Card(
-            elevation: 0.4,
+
+            elevation: 1,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
             child: Column(
