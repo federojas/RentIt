@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+final fireStoreInstance = FirebaseFirestore.instance;
 
 Future<bool> signIn(String email, String password) async {
   try {
@@ -27,4 +30,15 @@ Future<bool> register(String email, String password) async {
     print(e.toString());
     return false;
   }
+}
+
+void addProduct(String id, String name, String detail, String category) {
+  fireStoreInstance.collection("Productos").add(
+      {
+        "Name" : name,
+        "Detail" : detail,
+        "Category" : category,
+      }).then((value){
+    print(value.id);
+  });
 }
