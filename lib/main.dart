@@ -5,6 +5,7 @@ import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // screens
 import 'package:argon_flutter/screens/onboarding.dart';
@@ -14,7 +15,8 @@ import 'package:argon_flutter/screens/profile.dart';
 import 'package:argon_flutter/screens/register.dart';
 import 'package:argon_flutter/screens/articles.dart';
 import 'package:argon_flutter/screens/elements.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:argon_flutter/screens/productview.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,6 +45,7 @@ class MyApp extends StatelessWidget {
           "/register": (BuildContext context) => new Register(),
           "/main" :(BuildContext context)=> new MainPage(),
           "/favourites" :(BuildContext context)=> new Favourites(),
+          "/product":(BuildContext context)=> new ProductView(),
         });
   }
 
