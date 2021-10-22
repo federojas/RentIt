@@ -1,3 +1,7 @@
+import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/chats.dart';
+import 'package:argon_flutter/screens/favourites.dart';
+import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +42,7 @@ class MyApp extends StatelessWidget {
           "/pro": (BuildContext context) => new Pro(),
           "/register": (BuildContext context) => new Register(),
           "/main" :(BuildContext context)=> new MainPage(),
+          "/favourites" :(BuildContext context)=> new Favourites(),
         });
   }
 
@@ -57,6 +62,8 @@ class _MainPageState extends State<MainPage> {
 
   final pages = <Widget>[
     Home(),
+    Favourites(),
+    Chats(),
     Profile(),
   ];
 
@@ -71,7 +78,12 @@ class _MainPageState extends State<MainPage> {
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
-          onPressed: () => print('Hello World'),
+          onPressed: () {
+            DialogUtils.showCustomDialog(context, title: "Galeria",
+              okBtnText: "guardar",
+            cancelBtnText: "cancelar");
+          },
+          backgroundColor: MyTheme.primary,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );

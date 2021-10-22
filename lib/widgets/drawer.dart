@@ -46,7 +46,7 @@ class ArgonDrawer extends StatelessWidget {
               DrawerTile(
                   icon: Icons.home,
                   onTap: () {
-                    if (currentPage != "Home")
+                    if (currentPage != "Inicio")
                       Navigator.pushReplacementNamed(context, '/home');
                   },
                   iconColor: MyTheme.primary,
@@ -61,6 +61,15 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: MyTheme.warning,
                   title: "Perfil",
                   isSelected: currentPage == "Profile" ? true : false),
+              DrawerTile(
+                  icon: Icons.favorite_border,
+                  onTap: () {
+                    if (currentPage != "Favourites")
+                      Navigator.pushReplacementNamed(context, '/favourites');
+                  },
+                  iconColor: MyTheme.warning,
+                  title: "Favoritos",
+                  isSelected: currentPage == "Favourites" ? true : false),
               DrawerTile(
                   icon: Icons.apps,
                   onTap: () {

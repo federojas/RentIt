@@ -52,7 +52,8 @@ class Home extends StatelessWidget {
             bgColor: MyTheme.primary
 
         ),
-      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
+//      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
+      backgroundColor: MyTheme.bgColorScreen,
 
         drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(

@@ -23,7 +23,7 @@ class MyTheme {
 
   static const Color header = Color.fromRGBO(82, 95, 127, 1.0);
 
-  static const Color bgColorScreen = Color.fromRGBO(248, 249, 254, 1.0);
+  static const Color bgColorScreen = Color.fromRGBO(234, 236, 238,1);
 
   static const Color border = Color.fromRGBO(202, 209, 215, 1.0);
 
