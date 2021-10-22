@@ -4,7 +4,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 
 //widgets
 import 'package:argon_flutter/widgets/navbar.dart';
-import 'package:argon_flutter/widgets/drawer.dart';
+// import 'package:argon_flutter/widgets/drawer.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -16,13 +16,9 @@ class Profile extends StatelessWidget {
           transparent: true,
         ),
         backgroundColor: MyTheme.bgColorScreen,
-        drawer: ArgonDrawer(currentPage: "Profile"),
+        // drawer: ArgonDrawer(currentPage: "Profile"),
         body: Stack(children: <Widget>[
-          Container(
-              decoration: BoxDecoration(
-                  color: MyTheme.primary
-              )
-          ),
+          Container(decoration: BoxDecoration(color: MyTheme.primary)),
           SafeArea(
             child: ListView(children: [
               Padding(
