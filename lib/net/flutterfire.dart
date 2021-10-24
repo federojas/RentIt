@@ -76,3 +76,14 @@ Future<bool> addInformation(String firstName, String lastName, int age) async {
     return false;
   }
 }
+
+Future<bool> removeProduct(String id) async {
+  String uid = FirebaseAuth.instance.currentUser.uid;
+  FirebaseFirestore.instance
+      .collection('Users')
+      .doc(uid)
+      .collection('Products')
+      .doc(id)
+      .delete();
+  return true;
+}
