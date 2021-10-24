@@ -83,9 +83,9 @@ class _MainPageState extends State<MainPage> {
           child: Icon(Icons.add),
           onPressed: () {
             DialogUtils.showCustomDialog(context, title: "Publicá tu producto",
-              okBtnText: "guardar",
-            cancelBtnText: "cancelar",
-
+              okBtnText: "Guardar",
+              cancelBtnText: "Cancelar",
+              okBtnFunction: () => null,
             );
           },
           backgroundColor: MyTheme.primary,

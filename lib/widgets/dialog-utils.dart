@@ -1,3 +1,4 @@
+import 'package:argon_flutter/net/flutterfire.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_select/smart_select.dart';
@@ -6,7 +7,9 @@ import 'card-small.dart';
 
 class DialogUtils {
   static DialogUtils _instance = new DialogUtils.internal();
-
+  static TextEditingController _nameField = TextEditingController();
+  static TextEditingController _detailField = TextEditingController();
+  static TextEditingController _categoryField = TextEditingController();
   DialogUtils.internal();
 
   factory DialogUtils() => _instance;
@@ -14,13 +17,11 @@ class DialogUtils {
 
   static void showCustomDialog(BuildContext context,
       {@required String title,
-        String okBtnText = "Ok",
-        String cancelBtnText = "Cancel",
-        @required Function okBtnFunction}) {
-        showDialog(
+      String okBtnText = "Ok",
+      String cancelBtnText = "Cancel",
+      @required Function okBtnFunction}) {
+    showDialog(
         context: context,
-
-
         builder: (_) {
           return AlertDialog(
             title: Text(title),
@@ -32,28 +33,28 @@ class DialogUtils {
             // ),
             actions: <Widget>[
               TextField(
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-              hintText: 'Nombre'
-              ),
+                controller: _nameField,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Nombre'),
               ),
               SizedBox(height: 16.0),
-
               TextField(
+                controller: _detailField,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Descripcion'
+                    border: OutlineInputBorder(), hintText: 'Descripcion'),
+              ),
+              Selector(),
+              TextButton(
+                  child: Text(okBtnText),
+                  onPressed: () async {
+                    bool shouldNavigate =
+                    await addProduct(_nameField.text, _detailField.text, "Bicicletas");
+                    if (shouldNavigate) {
+                      Navigator.pop(context);
+                     }
+                    },
                 ),
-              ),
-
-            Selector(),
-
-
-              FlatButton(
-                child: Text(okBtnText),
-                onPressed: okBtnFunction,
-              ),
-              FlatButton(
+              TextButton(
                   child: Text(cancelBtnText),
                   onPressed: () => Navigator.pop(context))
             ],
@@ -62,14 +63,13 @@ class DialogUtils {
   }
 }
 
-class Selector  extends StatelessWidget {
+class Selector extends StatelessWidget {
   String value = 'Bicicletas';
   List<S2Choice<String>> options = [
     S2Choice<String>(value: 'ion', title: 'Bicicletas'),
     S2Choice<String>(value: 'flu', title: 'Consolas'),
     S2Choice<String>(value: 'rea', title: 'Disfraces'),
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +78,6 @@ class Selector  extends StatelessWidget {
         title: 'Categorias',
         value: value,
         choiceItems: options,
-        onChange: (state) =>(() => value = state.value)
-    );
+        onChange: (state) => (() => value = state.value));
   }
-
 }
