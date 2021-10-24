@@ -1,3 +1,4 @@
+import 'package:argon_flutter/models/user-model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -56,19 +57,26 @@ Future<bool> addInformation(String firstName, String lastName, int age) async {
   y no necesariamente todos.
    */
   try {
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    User _user = FirebaseAuth.instance.currentUser;
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('Users')
-        .doc(uid)
+        .doc(_user.uid)
         .collection('Info')
         .doc("info");
+
+    UserModel userModel = UserModel();
+    userModel.email = _user.email;
+    userModel.age = age;
+    userModel.firstName = firstName;
+    userModel.lastName = lastName;
+
     FirebaseFirestore.instance.runTransaction((transaction) async {
       DocumentSnapshot snapshot = await transaction.get(documentReference);
       if (!snapshot.exists) {
-        documentReference.set({'firstName': firstName, 'lastName': lastName, 'age': age});
+        documentReference.set(userModel.toMap());
         return true;
       }
-      transaction.update(documentReference, {'firstName': firstName, 'lastName': lastName, 'age': age});
+      transaction.update(documentReference, userModel.toMap());
       return true;
     });
     return true;
