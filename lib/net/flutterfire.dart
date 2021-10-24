@@ -21,9 +21,9 @@ Future<bool> register(String email, String password) async {
     return true;
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
+      print('La contraseña es débil');
     } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
+      print('Email en uso.');
     }
     return false;
   } catch (e) {
@@ -32,13 +32,21 @@ Future<bool> register(String email, String password) async {
   }
 }
 
-void addProduct(String id, String name, String detail, String category) {
-  fireStoreInstance.collection("Productos").add(
-      {
-        "Name" : name,
-        "Detail" : detail,
-        "Category" : category,
-      }).then((value){
-    print(value.id);
-  });
+Future<bool> addProduct(String name, String detail, String category) async {
+  try {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(uid)
+        .collection('Products');
+
+    await collectionReference.add({
+      "Name": name,
+      "Detail": detail,
+      "Category": category,
+    });
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
