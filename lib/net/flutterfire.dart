@@ -42,9 +42,9 @@ Future<bool> addProduct(String name, String detail, String category) async {
         .collection('Products');
 
     await collectionReference.add({
-      "Name": name,
-      "Detail": detail,
-      "Category": category,
+      "name": name,
+      "detail": detail,
+      "category": category,
     });
     return true;
   } catch (e) {
@@ -58,6 +58,9 @@ Future<bool> addInformation(String firstName, String lastName, int age) async {
    */
   try {
     User _user = FirebaseAuth.instance.currentUser;
+    /* el doc "info" deberia ser único, todavia no probe si puedo
+    usar la palabra "info" como id.
+     */
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('Users')
         .doc(_user.uid)
