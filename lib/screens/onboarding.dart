@@ -66,7 +66,7 @@ class Onboarding extends StatelessWidget {
                                   color: MyTheme.white, width: 1.5)))),
                   // onPressed: () => null
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/home');
+                    Navigator.pushReplacementNamed(context, '/main');
                   },
                 ),
                 TextButton(
