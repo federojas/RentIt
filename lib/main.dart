@@ -82,9 +82,11 @@ class _MainPageState extends State<MainPage> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            DialogUtils.showCustomDialog(context, title: "Galeria",
+            DialogUtils.showCustomDialog(context, title: "Publicá tu producto",
               okBtnText: "guardar",
-            cancelBtnText: "cancelar");
+            cancelBtnText: "cancelar",
+
+            );
           },
           backgroundColor: MyTheme.primary,
         ),

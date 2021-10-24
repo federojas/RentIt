@@ -26,7 +26,7 @@ class Favourites extends StatelessWidget{
 
       backgroundColor: MyTheme.bgColorScreen, //esto despues vemos si lo sacamos, para mi queda mas claro
       body: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 15.0, bottom: 50),
+        padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 15.0),
         child: SingleChildScrollView(
             child: Column(
             children: [
@@ -58,6 +58,8 @@ class Favourites extends StatelessWidget{
               //       Navigator.pushNamed(context, '/pro');
               //     }
               // )
+              SizedBox(height: 50.0),
+
             ],
 
 

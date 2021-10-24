@@ -24,8 +24,10 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
 
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
-      notchMargin: 8,
-      child: Row(
+      //notchMargin: 16,
+      child: Container(
+
+        child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           buildTabItem(
@@ -46,6 +48,8 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
             icon: Icon(Icons.account_circle_rounded),
           ),
         ],
+
+      ),
       ),
     );
   }

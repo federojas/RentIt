@@ -54,7 +54,6 @@ class Home extends StatelessWidget {
 //      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
       backgroundColor: MyTheme.bgColorScreen,
 
-        drawer: ArgonDrawer(currentPage: "Home"),
         body: Container(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           child: SingleChildScrollView(
@@ -69,7 +68,7 @@ class Home extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
-              ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: CardSquare(
@@ -100,6 +99,7 @@ class Home extends StatelessWidget {
                     title: "Consolas",
                     img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
                   ),
+                  ],
                 ),
                 SizedBox(height:9.0),SizedBox(height: 8.0),
                 Row(
@@ -135,8 +135,9 @@ class Home extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 50.0),
               ],
+
             ),
           ),
         ),
