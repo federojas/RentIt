@@ -50,3 +50,29 @@ Future<bool> addProduct(String name, String detail, String category) async {
     return false;
   }
 }
+
+Future<bool> addInformation(String firstName, String lastName, int age) async {
+  /* me gustaria mejorar al metodo para que puedas actualizar sólo algunos campos
+  y no necesariamente todos.
+   */
+  try {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(uid)
+        .collection('Info')
+        .doc("info");
+    FirebaseFirestore.instance.runTransaction((transaction) async {
+      DocumentSnapshot snapshot = await transaction.get(documentReference);
+      if (!snapshot.exists) {
+        documentReference.set({'firstName': firstName, 'lastName': lastName, 'age': age});
+        return true;
+      }
+      transaction.update(documentReference, {'firstName': firstName, 'lastName': lastName, 'age': age});
+      return true;
+    });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
