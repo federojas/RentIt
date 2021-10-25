@@ -55,172 +55,185 @@ class Profile extends StatelessWidget {
                                   Expanded(
                                     child: Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                color: MyTheme.info,
-                                                borderRadius:
-                                                    BorderRadius.circular(3.0),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.3),
-                                                    spreadRadius: 1,
-                                                    blurRadius: 7,
-                                                    offset: Offset(0,
-                                                        3), // changes position of shadow
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Text(
-                                                "CONNECT",
-                                                style: TextStyle(
-                                                    color: MyTheme.white,
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0,
-                                                  vertical: 8.0),
-                                            ),
-                                            SizedBox(
-                                              width: 30.0,
-                                            ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                color: MyTheme.initial,
-                                                borderRadius:
-                                                    BorderRadius.circular(3.0),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.grey
-                                                        .withOpacity(0.3),
-                                                    spreadRadius: 1,
-                                                    blurRadius: 7,
-                                                    offset: Offset(0,
-                                                        3), // changes position of shadow
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Text(
-                                                "MESSAGE",
-                                                style: TextStyle(
-                                                    color: MyTheme.white,
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0,
-                                                  vertical: 8.0),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 40.0),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                Text("2K",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text("Orders",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text("10",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text("Photos",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            ),
-                                            Column(
-                                              children: [
-                                                Text("89",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            82, 95, 127, 1),
-                                                        fontSize: 20.0,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                                Text("Comments",
-                                                    style: TextStyle(
-                                                        color: Color.fromRGBO(
-                                                            50, 50, 93, 1),
-                                                        fontSize: 12.0))
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(height: 40.0),
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.center,
+                                        //   children: [
+                                        //     Container(
+                                        //       decoration: BoxDecoration(
+                                        //         color: MyTheme.info,
+                                        //         borderRadius:
+                                        //             BorderRadius.circular(3.0),
+                                        //         boxShadow: [
+                                        //           BoxShadow(
+                                        //             color: Colors.grey
+                                        //                 .withOpacity(0.3),
+                                        //             spreadRadius: 1,
+                                        //             blurRadius: 7,
+                                        //             offset: Offset(0,
+                                        //                 3), // changes position of shadow
+                                        //           ),
+                                        //         ],
+                                        //       ),
+                                        //       child: Text(
+                                        //         "CONNECT",
+                                        //         style: TextStyle(
+                                        //             color: MyTheme.white,
+                                        //             fontSize: 12.0,
+                                        //             fontWeight:
+                                        //                 FontWeight.bold),
+                                        //       ),
+                                        //       padding: EdgeInsets.symmetric(
+                                        //           horizontal: 8.0,
+                                        //           vertical: 8.0),
+                                        //     ),
+                                        //     SizedBox(
+                                        //       width: 30.0,
+                                        //     ),
+                                        //     Container(
+                                        //       decoration: BoxDecoration(
+                                        //         color: MyTheme.initial,
+                                        //         borderRadius:
+                                        //             BorderRadius.circular(3.0),
+                                        //         boxShadow: [
+                                        //           BoxShadow(
+                                        //             color: Colors.grey
+                                        //                 .withOpacity(0.3),
+                                        //             spreadRadius: 1,
+                                        //             blurRadius: 7,
+                                        //             offset: Offset(0,
+                                        //                 3), // changes position of shadow
+                                        //           ),
+                                        //         ],
+                                        //       ),
+                                        //       child: Text(
+                                        //         "MESSAGE",
+                                        //         style: TextStyle(
+                                        //             color: MyTheme.white,
+                                        //             fontSize: 12.0,
+                                        //             fontWeight:
+                                        //                 FontWeight.bold),
+                                        //       ),
+                                        //       padding: EdgeInsets.symmetric(
+                                        //           horizontal: 8.0,
+                                        //           vertical: 8.0),
+                                        //     )
+                                        //   ],
+                                        // ),
+                                        // SizedBox(height: 40.0),
+                                        // Row(
+                                        //   mainAxisAlignment:
+                                        //       MainAxisAlignment.spaceAround,
+                                        //   children: [
+                                        //     Column(
+                                        //       children: [
+                                        //         Text("2K",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     82, 95, 127, 1),
+                                        //                 fontSize: 20.0,
+                                        //                 fontWeight:
+                                        //                     FontWeight.bold)),
+                                        //         Text("Orders",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     50, 50, 93, 1),
+                                        //                 fontSize: 12.0))
+                                        //       ],
+                                        //     ),
+                                        //     Column(
+                                        //       children: [
+                                        //         Text("10",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     82, 95, 127, 1),
+                                        //                 fontSize: 20.0,
+                                        //                 fontWeight:
+                                        //                     FontWeight.bold)),
+                                        //         Text("Photos",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     50, 50, 93, 1),
+                                        //                 fontSize: 12.0))
+                                        //       ],
+                                        //     ),
+                                        //     Column(
+                                        //       children: [
+                                        //         Text("89",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     82, 95, 127, 1),
+                                        //                 fontSize: 20.0,
+                                        //                 fontWeight:
+                                        //                     FontWeight.bold)),
+                                        //         Text("Comments",
+                                        //             style: TextStyle(
+                                        //                 color: Color.fromRGBO(
+                                        //                     50, 50, 93, 1),
+                                        //                 fontSize: 12.0))
+                                        //       ],
+                                        //     )
+                                        //   ],
+                                        // ),
+                                        // SizedBox(height: 40.0),
                                         Align(
-                                          child: Text("Jessica Jones, 27",
+                                          child: Text("Jessica Jones",
                                               style: TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      50, 50, 93, 1),
+                                                  color: MyTheme.black,
                                                   fontSize: 28.0)),
                                         ),
                                         SizedBox(height: 10.0),
                                         Align(
-                                          child: Text("San Francisco, USA",
-                                              style: TextStyle(
-                                                  color: Color.fromRGBO(
-                                                      50, 50, 93, 1),
-                                                  fontSize: 18.0,
-                                                  fontWeight: FontWeight.w200)),
-                                        ),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              IconButton(
+                                                icon: Icon(Icons.settings,
+                                                    color: MyTheme.muted,
+                                                    size: 22.0),
+                                                onPressed: null),
+                                              IconButton(
+                                                  icon: Icon(Icons.edit,
+                                                      color: MyTheme.muted,
+                                                      size: 22.0),
+                                                  onPressed: null)])),
+                                        // Align(
+                                        //   child: Text("San Francisco, USA",
+                                        //       style: TextStyle(
+                                        //           color: Color.fromRGBO(
+                                        //               50, 50, 93, 1),
+                                        //           fontSize: 18.0,
+                                        //           fontWeight: FontWeight.w200)),
+                                        // ),
                                         Divider(
                                           height: 40.0,
                                           thickness: 1.5,
                                           indent: 32.0,
                                           endIndent: 32.0,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 32.0, right: 32.0),
-                                          child: Align(
-                                            child: Text(
-                                                "An artist of considerable range, Jessica name taken by Melbourne...",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    color: Color.fromRGBO(
-                                                        82, 95, 127, 1),
-                                                    fontSize: 17.0,
-                                                    fontWeight:
-                                                        FontWeight.w200)),
-                                          ),
-                                        ),
-                                        SizedBox(height: 15.0),
-                                        Align(
-                                            child: Text("Ver más",
-                                                style: TextStyle(
-                                                    color: MyTheme.primary,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 16.0))),
-                                        SizedBox(height: 25.0),
+                                        // Padding(
+                                        //   padding: const EdgeInsets.only(
+                                        //       left: 32.0, right: 32.0),
+                                        //   child: Align(
+                                        //     child: Text(
+                                        //         "An artist of considerable range, Jessica name taken by Melbourne...",
+                                        //         textAlign: TextAlign.center,
+                                        //         style: TextStyle(
+                                        //             color: Color.fromRGBO(
+                                        //                 82, 95, 127, 1),
+                                        //             fontSize: 17.0,
+                                        //             fontWeight:
+                                        //                 FontWeight.w200)),
+                                        //   ),
+                                        // ),
+                                        // SizedBox(height: 15.0),
+                                        // Align(
+                                        //     child: Text("Ver más",
+                                        //         style: TextStyle(
+                                        //             color: MyTheme.primary,
+                                        //             fontWeight: FontWeight.w400,
+                                        //             fontSize: 16.0))),
+                                        // SizedBox(height: 25.0),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               right: 25.0, left: 25.0),
