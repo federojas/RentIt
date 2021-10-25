@@ -19,6 +19,7 @@ class _RegisterState extends State<Register> {
   final firstNameEditingController = new TextEditingController();
   final lastNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
+  final ageEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   final confirmPasswordEditingController = new TextEditingController();
 
@@ -104,6 +105,23 @@ class _RegisterState extends State<Register> {
             borderRadius: BorderRadius.circular(10),
           ),
         ));
+    final ageField = TextFormField(
+        autofocus: false,
+        controller: emailEditingController,
+        keyboardType: TextInputType.number,
+        // FALTA EL VALIDATOR
+        onSaved: (value) {
+          ageEditingController.text = value;
+        },
+        textInputAction: TextInputAction.next,
+        decoration: InputDecoration(
+          prefixIcon: Icon(Icons.calendar_today),
+          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          hintText: "Edad",
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ));
 
     //password field
     final passwordField = TextFormField(
@@ -169,8 +187,8 @@ class _RegisterState extends State<Register> {
               .of(context)
               .size
               .width,
-          onPressed: () {
-            register(emailEditingController.text, passwordEditingController.text);
+          onPressed: () async {
+            await register(emailEditingController.text, passwordEditingController.text);
           },
           child: Text(
             "Registrarse",
@@ -198,7 +216,7 @@ class _RegisterState extends State<Register> {
           child: Container(
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.all(36.0),
+              padding: const EdgeInsets.all(20.0),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -211,12 +229,14 @@ class _RegisterState extends State<Register> {
                           "assets/img/rentItLogo.png",
                           fit: BoxFit.contain,
                         )),
-                    SizedBox(height: 45),
+                    SizedBox(height: 20),
                     firstNameField,
                     SizedBox(height: 20),
                     lastNameField,
                     SizedBox(height: 20),
                     emailField,
+                    SizedBox(height: 20),
+                    ageField,
                     SizedBox(height: 20),
                     passwordField,
                     SizedBox(height: 20),
