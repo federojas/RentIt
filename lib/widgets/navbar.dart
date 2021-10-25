@@ -129,9 +129,7 @@ class _NavbarState extends State<Navbar> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/pro');
-                            },
+                            onTap: () => null,
                             child: IconButton(
                                 icon: Icon(Icons.notifications_active,
                                     color: !widget.transparent
@@ -143,9 +141,7 @@ class _NavbarState extends State<Navbar> {
                                 onPressed: null),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/pro');
-                            },
+                            onTap: () => null,
                             child: IconButton(
                                 icon: Icon(Icons.shopping_basket,
                                     color: !widget.transparent
@@ -170,9 +166,8 @@ class _NavbarState extends State<Navbar> {
                         onChanged: widget.searchOnChanged,
                         autofocus: widget.searchAutofocus,
                         suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
-                        onTap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        }),
+                        onTap: () => null
+                    ),
                   ),
                 SizedBox(
                   height: 10.0,
@@ -183,9 +178,7 @@ class _NavbarState extends State<Navbar> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        },
+                        onTap: () => null,
                         child: Row(
                           children: [
                             Icon(Icons.camera,
@@ -205,9 +198,7 @@ class _NavbarState extends State<Navbar> {
                       ),
                       SizedBox(width: 30),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        },
+                        onTap: () => null,
                         child: Row(
                           children: [
                             Icon(Icons.shopping_cart,
