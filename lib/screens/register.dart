@@ -188,8 +188,21 @@ class _RegisterState extends State<Register> {
               .size
               .width,
           onPressed: () async {
-            await register(emailEditingController.text, passwordEditingController.text);
-            await addInformation(firstNameEditingController.text, lastNameEditingController.text, 22);
+            bool shouldNavigate = await register(emailEditingController.text, passwordEditingController.text);
+            if(shouldNavigate) {
+              shouldNavigate = await addInformation(
+                  firstNameEditingController.text,
+                  lastNameEditingController.text
+                  , ageEditingController.toString());
+            }
+            if (shouldNavigate) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ),
+              );
+            }
           },
           child: Text(
             "Registrarse",

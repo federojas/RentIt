@@ -52,7 +52,7 @@ Future<bool> addProduct(String name, String detail, String category) async {
   }
 }
 
-Future<bool> addInformation(String firstName, String lastName, int age) async {
+Future<bool> addInformation(String firstName, String lastName, String age) async {
   /* me gustaria mejorar al metodo para que puedas actualizar sólo algunos campos
   y no necesariamente todos.
    */
@@ -69,7 +69,7 @@ Future<bool> addInformation(String firstName, String lastName, int age) async {
 
     UserModel userModel = UserModel();
     userModel.email = _user.email;
-    userModel.age = age;
+    userModel.age = 22;
     userModel.firstName = firstName;
     userModel.lastName = lastName;
 
