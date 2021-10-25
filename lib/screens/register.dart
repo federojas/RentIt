@@ -107,7 +107,7 @@ class _RegisterState extends State<Register> {
         ));
     final ageField = TextFormField(
         autofocus: false,
-        controller: emailEditingController,
+        controller: ageEditingController,
         keyboardType: TextInputType.number,
         // FALTA EL VALIDATOR
         onSaved: (value) {
@@ -189,6 +189,7 @@ class _RegisterState extends State<Register> {
               .width,
           onPressed: () async {
             await register(emailEditingController.text, passwordEditingController.text);
+            await addInformation(firstNameEditingController.text, lastNameEditingController.text, 22);
           },
           child: Text(
             "Registrarse",
