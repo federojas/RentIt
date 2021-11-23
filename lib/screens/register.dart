@@ -3,7 +3,7 @@ import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/input.dart';
-import 'package:argon_flutter/net/flutterfire.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
 
 class Register extends StatefulWidget {
   const Register({Key key}) : super(key: key);

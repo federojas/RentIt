@@ -1,4 +1,4 @@
-import 'package:argon_flutter/models/user-model.dart';
+import 'package:argon_flutter/backend/models/user-model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
