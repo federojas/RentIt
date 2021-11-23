@@ -193,7 +193,7 @@ class _RegisterState extends State<Register> {
               shouldNavigate = await addInformation(
                   firstNameEditingController.text,
                   lastNameEditingController.text
-                  , ageEditingController.toString());
+                  , ageEditingController.text);
             }
             if (shouldNavigate) {
               Navigator.push(

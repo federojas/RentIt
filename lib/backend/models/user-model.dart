@@ -2,7 +2,7 @@ class UserModel {
   String email;
   String firstName;
   String lastName;
-  int age;
+  String age;
 
   UserModel({this.email, this.firstName, this.lastName, this.age});
 

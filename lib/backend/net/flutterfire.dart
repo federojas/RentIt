@@ -69,7 +69,7 @@ Future<bool> addInformation(String firstName, String lastName, String age) async
 
     UserModel userModel = UserModel();
     userModel.email = _user.email;
-    userModel.age = 22;
+    userModel.age = age;
     userModel.firstName = firstName;
     userModel.lastName = lastName;
 
