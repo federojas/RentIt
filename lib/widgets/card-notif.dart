@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/widgets/input.dart';
+import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:argon_flutter/constants/Theme.dart';
 
-class CardHorizontal extends StatelessWidget {
-  CardHorizontal(
+class CardNotif extends StatelessWidget {
+  CardNotif(
       {this.title = "Placeholder Title",
       this.cta = "",
       this.img = "https://via.placeholder.com/200",
-      this.tap = defaultFunc});
+      this.tap = defaultFunc,
+      this.notifTitle = "",
+      this.purchaseNotif = false});
 
   final String cta;
   final String img;
   final Function tap;
   final String title;
+  final String notifTitle;
+  final bool purchaseNotif;
 
   static void defaultFunc() {
     print("the function works!");
@@ -27,7 +35,9 @@ class CardHorizontal extends StatelessWidget {
             elevation: 0.6,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6.0))),
-            child: Row(
+            child: Column(
+              children: [
+              Row(
               children: [
                 Flexible(
                   flex: 1,
@@ -49,19 +59,17 @@ class CardHorizontal extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(notifTitle,
+                              style: TextStyle(
+                                  color: MyTheme.header, fontSize: 18)),
                           Text(title,
                               style: TextStyle(
                                   color: MyTheme.header, fontSize: 13)),
-                          Text(cta,
-                              style: TextStyle(
-                                  color: MyTheme.primary,
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w600))
                         ],
                       ),
-                    ))
-              ],
-            ),
+                    )),
+              ],),
+            ],),
           ),
         ));
   }

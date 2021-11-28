@@ -87,7 +87,7 @@ class _NavbarState extends State<Navbar> {
             ]),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+            padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
                 Row(
@@ -114,6 +114,7 @@ class _NavbarState extends State<Navbar> {
                         //         Navigator.pop(context);
                         //     }),
                         Text(widget.title,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: !widget.transparent
                                     ? (widget.bgColor == MyTheme.white
@@ -143,7 +144,8 @@ class _NavbarState extends State<Navbar> {
                           ),
                         ],
 
-                      )
+                      ),
+
                   ],
                 ),
                 if (widget.searchBar)

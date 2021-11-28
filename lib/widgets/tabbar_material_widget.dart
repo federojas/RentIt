@@ -41,14 +41,13 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
           placeholder,
           buildTabItem(
             index: 2,
-            icon: Icon(Icons.notifications_active),
+            icon: Icon(Icons.notifications),
           ),
           buildTabItem(
             index: 3,
             icon: Icon(Icons.account_circle_rounded),
           ),
         ],
-
       ),
       ),
     );

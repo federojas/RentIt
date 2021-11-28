@@ -1,5 +1,4 @@
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/screens/chats.dart';
 import 'package:argon_flutter/screens/favourites.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
@@ -16,6 +15,7 @@ import 'package:argon_flutter/screens/register.dart';
 import 'package:argon_flutter/screens/articles.dart';
 import 'package:argon_flutter/screens/elements.dart';
 import 'package:argon_flutter/screens/productview.dart';
+import 'package:argon_flutter/screens/notifications.dart';
 
 
 void main() async {
@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
           "/main" :(BuildContext context)=> new MainPage(),
           "/favourites" :(BuildContext context)=> new Favourites(),
           "/product":(BuildContext context)=> new ProductView(),
+          "/notifications":(BuildContext context)=> new Notifications(),
         });
   }
 
@@ -66,7 +67,7 @@ class _MainPageState extends State<MainPage> {
   final pages = <Widget>[
     Home(),
     Favourites(),
-    Chats(),
+    Notifications(),
     Profile(),
   ];
 

@@ -5,7 +5,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 //widgets
 // import 'package:argon_flutter/widgets/drawer.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
-import 'package:argon_flutter/widgets/card-horizontal.dart';
+import 'package:argon_flutter/widgets/card-notif.dart';
 import 'package:argon_flutter/widgets/card-small.dart';
 import 'package:argon_flutter/widgets/card-square.dart';
 import 'package:argon_flutter/widgets/card-category.dart';
@@ -110,7 +110,7 @@ class Articles extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0),
-                    child: CardHorizontal(
+                    child: CardNotif(
                         cta: "View article",
                         title: articlesCards["Ice Cream"]['title'],
                         img: articlesCards["Ice Cream"]['image'],
@@ -138,7 +138,7 @@ class Articles extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 8.0),
-                  CardHorizontal(
+                  CardNotif(
                       cta: "View article",
                       title: articlesCards["Fashion"]['title'],
                       img: articlesCards["Fashion"]['image'],

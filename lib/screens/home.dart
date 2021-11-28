@@ -8,7 +8,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 
 //widgets
 import 'package:argon_flutter/widgets/navbar.dart';
-import 'package:argon_flutter/widgets/card-horizontal.dart';
+import 'package:argon_flutter/widgets/card-notif.dart';
 import 'package:argon_flutter/widgets/card-small.dart';
 import 'package:argon_flutter/widgets/card-square.dart';
 // import 'package:argon_flutter/widgets/drawer.dart';
