@@ -11,10 +11,6 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: Navbar(
-          title: "Profile",
-          transparent: true,
-        ),
         backgroundColor: MyTheme.bgColorScreen,
         // drawer: ArgonDrawer(currentPage: "Profile"),
         body: Stack(children: <Widget>[

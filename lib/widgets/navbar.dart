@@ -22,7 +22,7 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
   final Color bgColor;
 
   Navbar(
-      {this.title = "Home",
+      {this.title = "",
       this.categoryOne = "",
       this.categoryTwo = "",
       this.tags,
@@ -124,22 +124,11 @@ class _NavbarState extends State<Navbar> {
                                 fontSize: 18.0)),
                       ],
                     ),
+
                     if (widget.rightOptions)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          GestureDetector(
-                            onTap: () => null,
-                            child: IconButton(
-                                icon: Icon(Icons.notifications_active,
-                                    color: !widget.transparent
-                                        ? (widget.bgColor == MyTheme.white
-                                            ? MyTheme.initial
-                                            : MyTheme.white)
-                                        : MyTheme.white,
-                                    size: 22.0),
-                                onPressed: null),
-                          ),
                           GestureDetector(
                             onTap: () => null,
                             child: IconButton(
@@ -153,25 +142,27 @@ class _NavbarState extends State<Navbar> {
                                 onPressed: null),
                           ),
                         ],
+
                       )
                   ],
                 ),
                 if (widget.searchBar)
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 8, bottom: 4, left: 15, right: 15),
-                    child: Input(
-                        placeholder: "¿Qué buscas?",
-                        controller: widget.searchController,
-                        onChanged: widget.searchOnChanged,
-                        autofocus: widget.searchAutofocus,
-                        suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
-                        onTap: () => null
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 2, bottom: 3, right: 40, left: 40),
+                  child: Input(
+                      placeholder: "¿Qué buscas?",
+                      controller: widget.searchController,
+                      onChanged: widget.searchOnChanged,
+                      autofocus: widget.searchAutofocus,
+                      suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
+                      onTap: () => null
                   ),
-                SizedBox(
-                  height: 10.0,
                 ),
+
+               // SizedBox(
+                 // height: 10.0,
+                //),
                 if (categories)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

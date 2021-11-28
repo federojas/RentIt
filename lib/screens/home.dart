@@ -1,6 +1,7 @@
 
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:argon_flutter/constants/Theme.dart';
@@ -45,11 +46,9 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
-          title: "Home",
           searchBar: true,
           //bgColor: Color.fromRGBO(225,129,106,1)
             bgColor: MyTheme.primary
-
         ),
 //      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
       backgroundColor: MyTheme.bgColorScreen,
@@ -62,23 +61,31 @@ class Home extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Text(
-                    '¡Ofertas en Rent It!',
+                    '¡Ofertas RentIt!',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
 
+          CarouselSlider(
+            items: [
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(bottom: 1.0),
                 child: CardSquare(
-                    cta: "Ver oferta",
+                    cta: "",
                     title: homeCards["Ice Cream"]['title'],
                     img: homeCards["Ice Cream"]['image'],
                     tap: () {
                       Navigator.pushNamed(context, '/pro');
                     }),
               ),
+            ],
+            options: CarouselOptions(
+              autoPlay: true,
+            ),
+          ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(

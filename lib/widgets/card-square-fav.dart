@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
-class CardSquare extends StatelessWidget {
-  CardSquare(
+class CardSquareFav extends StatelessWidget {
+  CardSquareFav(
       {this.title = "Placeholder Title",
-      this.cta = "",
-      this.img = "https://via.placeholder.com/200",
-      this.tap = defaultFunc});
+        this.cta = "",
+        this.img = "https://via.placeholder.com/200",
+        this.tap = defaultFunc});
 
   final String cta;
   final String img;
@@ -47,7 +47,7 @@ class CardSquare extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 8.0, bottom: 1.0, left: 10.0, right: 10.0),
-                        child: Column(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -59,6 +59,7 @@ class CardSquare extends StatelessWidget {
                                     color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600)),
+                            Icon(Icons.favorite)
                           ],
                         ),
                       ))

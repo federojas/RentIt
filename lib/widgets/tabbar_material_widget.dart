@@ -41,7 +41,7 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
           placeholder,
           buildTabItem(
             index: 2,
-            icon: Icon( Icons.chat_bubble_outline),
+            icon: Icon(Icons.notifications_active),
           ),
           buildTabItem(
             index: 3,
