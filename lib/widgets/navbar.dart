@@ -94,8 +94,6 @@ class _NavbarState extends State<Navbar> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
                         // IconButton(
                         //     icon: Icon(
                         //         !widget.backButton
@@ -114,7 +112,6 @@ class _NavbarState extends State<Navbar> {
                         //         Navigator.pop(context);
                         //     }),
                         Text(widget.title,
-                            textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: !widget.transparent
                                     ? (widget.bgColor == MyTheme.white
@@ -123,13 +120,7 @@ class _NavbarState extends State<Navbar> {
                                     : MyTheme.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18.0)),
-                      ],
-                    ),
-
                     if (widget.rightOptions)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
                           GestureDetector(
                             onTap: () => null,
                             child: IconButton(
@@ -142,16 +133,11 @@ class _NavbarState extends State<Navbar> {
                                     size: 22.0),
                                 onPressed: null),
                           ),
-                        ],
-
-                      ),
-
                   ],
                 ),
                 if (widget.searchBar)
                 Padding(
-                  padding: const EdgeInsets.only(
-                      top: 2, bottom: 3, right: 40, left: 40),
+                  padding: const EdgeInsets.all(1.0),
                   child: Input(
                       placeholder: "¿Qué buscas?",
                       controller: widget.searchController,
