@@ -31,7 +31,7 @@ class Input extends StatelessWidget {
         autofocus: autofocus,
         style: TextStyle(height: 0.85, fontSize: 14.0, color: MyTheme.initial),
         textAlignVertical: TextAlignVertical(y: 0.6),
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.left,
         decoration: InputDecoration(
             filled: true,
             fillColor: MyTheme.white,

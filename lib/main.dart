@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
 }
 class MainPage extends StatefulWidget {
   final String title;
-
   const MainPage({
     @required this.title,
   });
@@ -80,17 +79,19 @@ class _MainPageState extends State<MainPage> {
           index: index,
           onChangedTab: onChangedTab,
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            DialogUtils.showCustomDialog(context, title: "Publicá tu producto",
-              okBtnText: "Guardar",
-              cancelBtnText: "Cancelar",
-              okBtnFunction: () => null,
-            );
-          },
-          backgroundColor: MyTheme.primary,
-        ),
+        floatingActionButton: Visibility(
+            visible:  MediaQuery.of(context).viewInsets.bottom == 0,
+            child:  FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                DialogUtils.showCustomDialog(context, title: "Publicá tu producto",
+                  okBtnText: "Guardar",
+                  cancelBtnText: "Cancelar",
+                  okBtnFunction: () => null,
+                );
+              },
+              backgroundColor: MyTheme.primary,
+            ),),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
 
