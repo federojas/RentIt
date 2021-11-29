@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 // import 'package:flutter/ink.dart';
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
+
 
 class Onboarding extends StatelessWidget {
   @override
@@ -64,9 +66,11 @@ class Onboarding extends StatelessWidget {
                               borderRadius: BorderRadius.circular(18.0),
                               side: BorderSide(
                                   color: MyTheme.white, width: 1.5)))),
-                  // onPressed: () => null
-                  onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/main');
+                  onPressed: () async {
+                    bool shouldNavigate = await signIn("santi@mail.com", "12345678");
+                    if(shouldNavigate) {
+                      Navigator.pushReplacementNamed(context, '/main');
+                    };
                   },
                 ),
                 TextButton(

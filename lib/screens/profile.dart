@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
@@ -6,7 +8,14 @@ import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 // import 'package:argon_flutter/widgets/drawer.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
+
+  @override // Level_Indicator
+  ProfileState createState() => ProfileState();
+}
+
+class ProfileState extends State<Profile> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,10 +182,17 @@ class Profile extends StatelessWidget {
                                         // ),
                                         // SizedBox(height: 40.0),
                                         Align(
-                                          child: Text("Jessica Jones",
-                                              style: TextStyle(
-                                                  color: MyTheme.black,
-                                                  fontSize: 28.0)),
+                                          child: FutureBuilder(
+                                        future: getUserInfo(),
+                                        builder: (context, snapshot) {
+                                          if(snapshot.hasData) {
+                                            return Text(snapshot.data['firstName'] + " " + snapshot.data['lastName'],
+                                                style: TextStyle(
+                                                    color: MyTheme.black,
+                                                    fontSize: 28.0));
+                                          } else {return CircularProgressIndicator();}
+                                        }
+                                        ),
                                         ),
                                         SizedBox(height: 10.0),
                                         Align(
