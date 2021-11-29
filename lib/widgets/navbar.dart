@@ -67,7 +67,7 @@ class _NavbarState extends State<Navbar> {
         widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
 
     return Container(
-      height: 102.0,
+        height: (MediaQuery.of(context).size.height)/8.5,
         // height: widget.searchBar
         //     ? (!categories
         //         ? (tagsExist ? 211.0 : 178.0)
