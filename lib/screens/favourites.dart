@@ -19,7 +19,6 @@ class Favourites extends StatelessWidget{
     return Scaffold(
       appBar: Navbar(
           title: "Favoritos",
-          searchBar: false,
           //bgColor: Color.fromRGBO(225,129,106,1)
           bgColor: MyTheme.primary
       ),
