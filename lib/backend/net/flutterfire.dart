@@ -210,7 +210,13 @@ Future<QuerySnapshot> getUserPublications() async {
   }
 }
 
-// falta el delete de publications
+Future<bool> removePublication(String id) async {
+  FirebaseFirestore.instance
+      .collection('Publications')
+      .doc(id)
+      .delete();
+  return true;
+}
 
 
 /// ******************************************************************************************************/
