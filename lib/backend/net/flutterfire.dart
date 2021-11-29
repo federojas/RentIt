@@ -69,6 +69,30 @@ Future<bool> addInformation(String firstName, String lastName, String age) async
   }
 }
 
+/* en el front yo puedo hacer esto:
+DocumentSnapshot userInfo = await getUserInfo();
+
+luego para acceder:
+userInfo.data['lastName']
+userInfo.data['firstName']
+etc
+ */
+Future<DocumentSnapshot> getUserInfo() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+
+    DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(_user.uid)
+        .collection('Info')
+        .doc("info");
+
+    DocumentSnapshot snapshot = await documentReference.get();
+    return snapshot;
+  } catch (e) {
+    return null;
+  }
+}
 
 /// ******************************************************************************************************/
 
@@ -105,22 +129,84 @@ Future<bool> removeProduct(String id) async {
   return true;
 }
 
+
+/*
+para usar los productos puedo hacer esto:
+for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+      var fooValue = data['foo']; // <-- Retrieving the value.
+    }
+ */
+Future<QuerySnapshot> getUserProducts() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Users')
+        .doc(_user.uid)
+        .collection('Products');
+    QuerySnapshot querySnapshot = await collectionReference.get();
+
+    return querySnapshot;
+
+  } catch (e) {
+    return null;
+  }
+}
+
 Future<bool> addPublication(String name, ProductModel productModel, double price) async {
   try {
     String uid = FirebaseAuth.instance.currentUser.uid;
     CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Users')
-        .doc(uid)
         .collection('Publications');
 
     PublicationModel publicationModel = PublicationModel();
     publicationModel.name = name;
     publicationModel.productModel = productModel;
     publicationModel.price = price;
+    publicationModel.uid = uid;
     await collectionReference.add(publicationModel.toMap());
     return true;
   } catch (e) {
     return false;
+  }
+}
+
+/*
+para usar las publicaciones puedo hacer esto:
+for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+      var fooValue = data['foo']; // <-- Retrieving the value.
+    }
+ */
+Future<QuerySnapshot> getPublications() async {
+  try {
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Publications');
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    return querySnapshot;
+
+  } catch (e) {
+    return null;
+  }
+}
+
+/*
+para usar las publicaciones puedo hacer esto:
+for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+      var fooValue = data['foo']; // <-- Retrieving the value.
+    }
+ */
+Future<QuerySnapshot> getUserPublications() async {
+  try {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Publications').where('uid', isEqualTo: uid);
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    return querySnapshot;
+
+  } catch (e) {
+    return null;
   }
 }
 
