@@ -29,10 +29,11 @@ class Input extends StatelessWidget {
         onChanged: onChanged,
         controller: controller,
         autofocus: autofocus,
-        style: TextStyle(height: 0.85, fontSize: 14.0, color: MyTheme.initial),
+        style: TextStyle(height: 1, fontSize: 14.0, color: MyTheme.initial),
         textAlignVertical: TextAlignVertical(y: 0.6),
         textAlign: TextAlign.left,
         decoration: InputDecoration(
+          contentPadding:new EdgeInsets.all(10.0),
             filled: true,
             fillColor: MyTheme.white,
             hintStyle: TextStyle(
