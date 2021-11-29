@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
-class CardSquareFav extends StatelessWidget {
-  CardSquareFav(
-      {this.title = "Placeholder Title",
-        this.cta = "",
-        this.img = "https://via.placeholder.com/200",
-        this.tap = defaultFunc});
+class CardSquareFav extends StatefulWidget {
+  CardSquareFav({this.title = "Placeholder Title",
+    this.img = "https://via.placeholder.com/200",
+    this.fav = false,
+    this.tap = defaultFunc,
+    this.cta = ""});
 
-  final String cta;
   final String img;
-  final Function tap;
   final String title;
+  final bool fav;
+  final Function tap;
+  final String cta;
 
   static void defaultFunc() {
     print("the function works!");
   }
+
+  @override // Level_Indicator
+  CardSquareFavState createState() => CardSquareFavState(title, img, fav, cta, tap);
+}
+
+class CardSquareFavState extends State<CardSquareFav> {
+  String title;
+  String img;
+  bool fav;
+  Function tap;
+  String cta;
+
+  CardSquareFavState(this.title, this.img, this.fav, this.cta, this.tap);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +73,16 @@ class CardSquareFav extends StatelessWidget {
                                     color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600)),
-                            Icon(Icons.favorite)
+                            IconButton(
+                                icon: fav
+                                    ? Icon(Icons.favorite)
+                                    : Icon(Icons.favorite_border),
+                                onPressed: () {
+                                  setState(() {
+                                    // Here we changing the icon.
+                                    fav = !fav;
+                                  });
+                                }),
                           ],
                         ),
                       ))
