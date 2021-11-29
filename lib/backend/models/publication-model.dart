@@ -4,14 +4,16 @@ class PublicationModel {
   String name;
   ProductModel productModel;
   double price;
+  String uid;
 
-  PublicationModel({this.name, this.productModel, this.price});
+  PublicationModel({this.name, this.productModel, this.price, this.uid});
 
   factory PublicationModel.fromMap(map) {
     return PublicationModel(
       name: map['name'],
       productModel: map['productModel'],
       price: map['price'],
+      uid: map['uid']
     );
   }
 
@@ -20,6 +22,7 @@ class PublicationModel {
       'name': name,
       'productModel': productModel,
       'price': price,
+      'uid': uid
     };
   }
 }
