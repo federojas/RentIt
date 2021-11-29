@@ -5,6 +5,9 @@ import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/input.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 
+import '../main.dart';
+import 'onboarding.dart';
+
 class Register extends StatefulWidget {
   const Register({Key key}) : super(key: key);
 
@@ -199,7 +202,7 @@ class _RegisterState extends State<Register> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => MainPage(),
                 ),
               );
             }
