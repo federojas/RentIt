@@ -8,14 +8,20 @@ final fireStoreInstance = FirebaseFirestore.instance;
 
 
 /// ****************************************USERS*********************************************************/
-Future<bool> signIn(String email, String password) async {
+Future<String> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    return true;
+    return "Success";
   } catch (e) {
-    print(e);
-    return false;
+    // esto no anda, seguir revisando o sino devolver siempre lo mismo.
+    switch (e.code) {
+      case "ERROR_USER_NOT_FOUND":
+        return "User not found";
+        break;
+      default:
+        return "An undefined Error happened.";
+    }
   }
 }
 
