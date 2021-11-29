@@ -28,6 +28,11 @@ dependencies:
   url_launcher: ^5.5.2
   scrollable_positioned_list: ^0.1.7
 
+
+  # Utils
+  fluttertoast: ^8.0.8
+
+
   # FlutterFire
   firebase_core: "^0.7.0"
   firebase_auth: "^0.20.1"

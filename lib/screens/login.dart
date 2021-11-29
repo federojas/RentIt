@@ -1,12 +1,7 @@
-import 'package:argon_flutter/screens/home.dart';
-import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/widgets/input.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
-
-import '../main.dart';
-import 'onboarding.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   const Login({Key key}) : super(key: key);
@@ -17,13 +12,45 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-
-  // final firstNameEditingController = new TextEditingController();
-  // final lastNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
-  // final ageEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
-  // final confirmPasswordEditingController = new TextEditingController();
+  FToast fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
+
+  _showToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: MyTheme.error,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.error_outline),
+          SizedBox(
+            width: 12.0,
+          ),
+          Text(message),
+        ],
+      ),
+    );
+
+
+    fToast.showToast(
+      child: toast,
+      gravity: ToastGravity.BOTTOM,
+      toastDuration: Duration(seconds: 2),
+    );
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +70,9 @@ class _LoginState extends State<Login> {
           }
           return null;
         },
-        // onSaved: (value) {
-        //   firstNameEditingController.text = value;
-        // },
+        onSaved: (value) {
+           emailEditingController.text = value;
+        },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.mail),
@@ -70,9 +97,9 @@ class _LoginState extends State<Login> {
           }
           return "";
         },
-        // onSaved: (value) {
-        //   firstNameEditingController.text = value;
-        // },
+        onSaved: (value) {
+           passwordEditingController.text = value;
+        },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
           prefixIcon: Icon(Icons.vpn_key),
@@ -91,25 +118,14 @@ class _LoginState extends State<Login> {
       child: MaterialButton(
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
-          onPressed: null,
-          // () async {
-          //   bool shouldNavigate = await register(
-          //       emailEditingController.text, passwordEditingController.text);
-          //   if (shouldNavigate) {
-          //     shouldNavigate = await addInformation(
-          //         firstNameEditingController.text,
-          //         lastNameEditingController.text,
-          //         ageEditingController.text);
-          //   }
-          //   if (shouldNavigate) {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => MainPage(),
-          //       ),
-          //     );
-          //   }
-          // },
+          onPressed: () async {
+             String shouldNavigate = await signIn(emailEditingController.text, passwordEditingController.text);
+             if(shouldNavigate.compareTo("Success") == 0) {
+               Navigator.pushReplacementNamed(context, '/main');
+             } else {
+               _showToast(shouldNavigate);
+             }
+           },
           child: Text(
             "Ingresar",
             textAlign: TextAlign.center,
