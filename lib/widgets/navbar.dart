@@ -113,8 +113,8 @@ class _NavbarState extends State<Navbar> {
                         //     }),
                     if(widget.searchBar)
                       Container(
-                          height: 50,
-                          width: 280,
+                          height: (MediaQuery.of(context).size.height)/2,
+                          width: (MediaQuery.of(context).size.width)/1.35,
                           child: Input(
                                     placeholder: "¿Qué buscás?",
                                     controller: widget.searchController,
@@ -134,7 +134,7 @@ class _NavbarState extends State<Navbar> {
                                         : MyTheme.white)
                                     : MyTheme.white,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18.0)),
+                                fontSize: 20.0)),
                     if (widget.rightOptions)
                           GestureDetector(
                             onTap: () => null,
@@ -145,7 +145,7 @@ class _NavbarState extends State<Navbar> {
                                             ? MyTheme.initial
                                             : MyTheme.white)
                                         : MyTheme.white,
-                                    size: 22.0),
+                                    size: 26.0),
                                 onPressed: null),
                           ),
 
