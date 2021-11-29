@@ -1,12 +1,8 @@
-import 'package:argon_flutter/screens/home.dart';
-import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/widgets/input.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
-
 import '../main.dart';
-import 'onboarding.dart';
+
 
 class Register extends StatefulWidget {
   const Register({Key key}) : super(key: key);
@@ -22,7 +18,7 @@ class _RegisterState extends State<Register> {
   final firstNameEditingController = new TextEditingController();
   final lastNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
-  final ageEditingController = new TextEditingController();
+  final phoneNumberEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   final confirmPasswordEditingController = new TextEditingController();
 
@@ -108,19 +104,19 @@ class _RegisterState extends State<Register> {
             borderRadius: BorderRadius.circular(10),
           ),
         ));
-    final ageField = TextFormField(
+    final phoneNumberField = TextFormField(
         autofocus: false,
-        controller: ageEditingController,
+        controller: phoneNumberEditingController,
         keyboardType: TextInputType.number,
         // FALTA EL VALIDATOR
         onSaved: (value) {
-          ageEditingController.text = value;
+          phoneNumberEditingController.text = value;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.calendar_today),
+          prefixIcon: Icon(Icons.phone),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Edad",
+          hintText: "Teléfono",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -195,8 +191,9 @@ class _RegisterState extends State<Register> {
             if(shouldNavigate) {
               shouldNavigate = await addInformation(
                   firstNameEditingController.text,
-                  lastNameEditingController.text
-                  , ageEditingController.text);
+                  lastNameEditingController.text,
+                  " - ",
+                  phoneNumberEditingController.text);
             }
             if (shouldNavigate) {
               Navigator.push(
@@ -253,7 +250,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20),
                     emailField,
                     SizedBox(height: 20),
-                    ageField,
+                    phoneNumberField,
                     SizedBox(height: 20),
                     passwordField,
                     SizedBox(height: 20),

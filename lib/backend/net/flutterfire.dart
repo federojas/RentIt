@@ -44,7 +44,7 @@ Future<bool> register(String email, String password) async {
 }
 
 
-Future<bool> addInformation(String firstName, String lastName, String age) async {
+Future<bool> addInformation(String firstName, String lastName, String age, String phoneNumber) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
 
@@ -59,6 +59,7 @@ Future<bool> addInformation(String firstName, String lastName, String age) async
     userModel.age = age;
     userModel.firstName = firstName;
     userModel.lastName = lastName;
+    userModel.phoneNumber = phoneNumber;
 
     FirebaseFirestore.instance.runTransaction((transaction) async {
       DocumentSnapshot snapshot = await transaction.get(documentReference);
