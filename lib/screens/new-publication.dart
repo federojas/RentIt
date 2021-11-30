@@ -59,7 +59,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
+                  padding: EdgeInsets.only(bottom: 20.0),
                   child: TextField(
                     controller: _nameField,
                     decoration: const InputDecoration(
@@ -167,6 +167,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         pm.price = _priceField.text;
                         pm.images = null;
                         DocumentReference docRef = await addPublication(pm);
+                        savePublicationImages(_images, docRef);
                       } else {
                         // TOAST DE QUE FALTA ALGUN CAMPO
                       }
@@ -181,7 +182,8 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                       style: TextStyle(
                           fontSize: 14,
                           letterSpacing: 2.2,
-                          color: Colors.white),
+                          color: Colors.white
+                      ),
                     ),
                   ),
                 ),
@@ -198,7 +200,6 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     if(imagePick != null) {
       _images.add(File(imagePick.path));
     }
-    print(_images);
   }
 
 }
