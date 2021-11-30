@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:argon_flutter/backend/models/product-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/models/user-model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 final fireStoreInstance = FirebaseFirestore.instance;
-
 
 /// ****************************************USERS*********************************************************/
 Future<String> signIn(String email, String password) async {
@@ -45,7 +43,6 @@ Future<bool> register(String email, String password) async {
   }
 }
 
-
 Future<bool> addInformation(String firstName, String lastName, String address, String phoneNumber) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
@@ -78,14 +75,6 @@ Future<bool> addInformation(String firstName, String lastName, String address, S
   }
 }
 
-/* en el front yo puedo hacer esto:
-DocumentSnapshot userInfo = await getUserInfo();
-
-luego para acceder:
-userInfo.data['lastName']
-userInfo.data['firstName']
-etc
- */
 Future<DocumentSnapshot> getUserInfo() async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
@@ -103,145 +92,161 @@ Future<DocumentSnapshot> getUserInfo() async {
   }
 }
 
-/// ******************************************************************************************************/
-
-
-
-/// ************************************PRODUCTS /  PUBLICATIONS******************************************/
-///
-Future<bool> addProduct(String name, String detail, String category) async {
-  try {
-    String uid = FirebaseAuth.instance.currentUser.uid;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Users')
-        .doc(uid)
-        .collection('Products');
-    ProductModel productModel = ProductModel();
-    productModel.name = name;
-    productModel.detail = detail;
-    productModel.category = category;
-    await collectionReference.add(productModel.toMap());
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-Future<bool> removeProduct(String id) async {
-  String uid = FirebaseAuth.instance.currentUser.uid;
-  FirebaseFirestore.instance
-      .collection('Users')
-      .doc(uid)
-      .collection('Products')
-      .doc(id)
-      .delete();
-  return true;
-}
-
-
-/*
-para usar los productos puedo hacer esto:
-for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      var fooValue = data['foo']; // <-- Retrieving the value.
-    }
- */
-Future<QuerySnapshot> getUserProducts() async {
+Future<void> uploadUserImage(File file) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Users')
-        .doc(_user.uid)
-        .collection('Products');
-    QuerySnapshot querySnapshot = await collectionReference.get();
+    final fileName = _user.uid;
+    final destination = 'user_images/$fileName';
+    final ref = FirebaseStorage.instance.ref(destination);
 
-    return querySnapshot;
+    UploadTask uploadTask = ref.putFile(file);
+    await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) {
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection('Users')
+          .doc(_user.uid)
+          .collection('Info')
+          .doc("info");
+      documentReference.update({"image": value});
+    }));
+    print('File Uploaded');
 
-  } catch (e) {
+  } on FirebaseException catch(e) {
     return null;
   }
 }
 
-Future<bool> addPublication(String name, ProductModel productModel, double price) async {
-  try {
-    String uid = FirebaseAuth.instance.currentUser.uid;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications');
-
-    PublicationModel publicationModel = PublicationModel();
-    publicationModel.name = name;
-    publicationModel.productModel = productModel;
-    publicationModel.price = price;
-    publicationModel.uid = uid;
-    await collectionReference.add(publicationModel.toMap());
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+/// ******************************************************************************************************/
+/// ***************************************** PUBLICATIONS ***********************************************/
+///
 
 /*
-para usar las publicaciones puedo hacer esto:
-for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      var fooValue = data['foo']; // <-- Retrieving the value.
-    }
+  Primer paso, addPublication y obtengo la referencia de ese documento.
+  Segundo paso, llamo al image picker para elegir las imagenes de la publicacion
+  Tercer paso llamo a savePublicationImages con la referencia al documento en el que
+  quiero que se guarden (el que me devolvio addPublication)
  */
-Future<QuerySnapshot> getPublications() async {
+Future<DocumentReference> addPublication(PublicationModel publicationModel) async {
   try {
     CollectionReference collectionReference = FirebaseFirestore.instance
         .collection('Publications');
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    return querySnapshot;
-
+    DocumentReference result = await collectionReference.add(publicationModel.toMap());
+    return result;
   } catch (e) {
     return null;
   }
 }
 
-/*
-para usar las publicaciones puedo hacer esto:
-for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      var fooValue = data['foo']; // <-- Retrieving the value.
-    }
- */
-Future<QuerySnapshot> getUserPublications() async {
-  try {
-    String uid = FirebaseAuth.instance.currentUser.uid;
-    /*
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications').where('uid', isEqualTo: uid);
+Future<void> savePublicationImages(List<File> _images, DocumentReference ref) async {
+  _images.forEach((image) async {
+    String imageURL = await uploadFile(image);
+    ref.update({"images": FieldValue.arrayUnion([imageURL])});
+  });
+}
 
 
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    return querySnapshot;
-*/
-  } catch (e) {
-    return null;
-  }
+// este metodo es auxiliar, no llamarlo.
+Future<String> uploadFile(File _image) async {
+  final fileName = _image.toString();
+  final ref = FirebaseStorage.instance.ref('user_images/$fileName');
+  String URL = "";
+  UploadTask uploadTask = ref.putFile(_image);
+  await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) {
+    URL = value;
+  }));
+  return URL;
 }
 
 Future<bool> removePublication(String id) async {
-  FirebaseFirestore.instance
-      .collection('Publications')
-      .doc(id)
-      .delete();
-  return true;
+  try {
+    FirebaseFirestore.instance
+        .collection('Publications')
+        .doc(id)
+        .delete();
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
+Future<List<PublicationModel>> getUserPublications() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Publications');
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    List<PublicationModel> list;
+    for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+      if(_user.uid == data['uid']) {
+        PublicationModel pm = PublicationModel();
+        pm.name = data['name'];
+        pm.uid = data['uid'];
+        pm.detail = data['detail'];
+        pm.category = data['category'];
+        pm.price = data['price'];
+        pm.images = data['images'];
+        list.add(pm);
+      }
+    }
+    return list;
+  } catch (e) {
+    return null;
+  }
+}
 
+Future<List<PublicationModel>> getAllPublications() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Publications');
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    List<PublicationModel> list;
+    for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+        PublicationModel pm = PublicationModel();
+        pm.name = data['name'];
+        pm.uid = data['uid'];
+        pm.detail = data['detail'];
+        pm.category = data['category'];
+        pm.price = data['price'];
+        pm.images = data['images'];
+        list.add(pm);
+    }
+    return list;
+  } catch (e) {
+    return null;
+  }
+}
+
+Future<List<PublicationModel>> getPublicationsByCategory(String category) async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    CollectionReference collectionReference = FirebaseFirestore.instance
+        .collection('Publications');
+    QuerySnapshot querySnapshot = await collectionReference.get();
+    List<PublicationModel> list;
+    for (var doc in querySnapshot.docs) {
+      Map<String, dynamic> data = doc.data();
+      if(category == data['category']) {
+        PublicationModel pm = PublicationModel();
+        pm.name = data['name'];
+        pm.uid = data['uid'];
+        pm.detail = data['detail'];
+        pm.category = data['category'];
+        pm.price = data['price'];
+        pm.images = data['images'];
+        list.add(pm);
+      }
+    }
+    return list;
+  } catch (e) {
+    return null;
+  }
+}
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/
 ///
 
-UploadTask uploadFile(String destination, File file) {
-  try {
-    final ref = FirebaseStorage.instance.ref(destination);
-    return ref.putFile(file);
-  } on FirebaseException catch(e) {
-    return null;
-  }
-}
+
 

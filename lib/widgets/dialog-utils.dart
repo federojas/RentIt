@@ -79,7 +79,8 @@ class DialogUtils {
                 child: Text(okBtnText),
                 onPressed: () async {
                   if(value != "" && _nameField.text != "" && _detailField.text != "" ) {
-                    bool shouldNavigate = await addProduct(_nameField.text, _detailField.text, value);
+                    bool shouldNavigate = true;
+                    //await addProduct(_nameField.text, _detailField.text, value);
                     if (shouldNavigate) {
                       Navigator.pop(context);
                     }

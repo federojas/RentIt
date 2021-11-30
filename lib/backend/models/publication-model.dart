@@ -1,28 +1,33 @@
-import 'package:argon_flutter/backend/models/product-model.dart';
-
 class PublicationModel {
   String name;
-  ProductModel productModel;
-  double price;
   String uid;
+  String detail;
+  String category;
+  String price;
+  List<String> images;
 
-  PublicationModel({this.name, this.productModel, this.price, this.uid});
+  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images});
 
   factory PublicationModel.fromMap(map) {
     return PublicationModel(
       name: map['name'],
-      productModel: map['productModel'],
+      uid: map['uid'],
+      detail: map['detail'],
+      category: map['category'],
       price: map['price'],
-      uid: map['uid']
+      images: map['images']
+
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'productModel': productModel,
+      'uid': uid,
+      'detail': detail,
+      'category': category,
       'price': price,
-      'uid': uid
+      'images': images,
     };
   }
 }
