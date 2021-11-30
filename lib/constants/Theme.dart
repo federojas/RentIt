@@ -35,6 +35,8 @@ class MyTheme {
 
   static const Color text = Color.fromRGBO(50, 50, 93, 1.0);
 
+  static const Color blue = Color.fromRGBO(0, 0, 204,1.0);
+
   static const double padding =20;
   static const double avatarRadius =45;
 }

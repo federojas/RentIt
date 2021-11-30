@@ -161,7 +161,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
                   }
                 },
                 color: MyTheme.primary,
-                padding: EdgeInsets.symmetric(horizontal: 100),
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),

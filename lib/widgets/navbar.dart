@@ -20,6 +20,7 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
   final bool searchAutofocus;
   final bool noShadow;
   final Color bgColor;
+  final bool favOption;
 
   Navbar(
       {this.title = "",
@@ -36,7 +37,8 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
       this.backButton = false,
       this.noShadow = false,
       this.bgColor = MyTheme.white,
-      this.searchBar = false});
+      this.searchBar = false,
+      this.favOption = false});
 
   final double _prefferedHeight = 180.0;
 
@@ -49,6 +51,7 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
 
 class _NavbarState extends State<Navbar> {
   String activeTag;
+  bool fav = false;
 
   ItemScrollController _scrollController = ItemScrollController();
 
@@ -65,6 +68,7 @@ class _NavbarState extends State<Navbar> {
         widget.categoryOne.isNotEmpty && widget.categoryTwo.isNotEmpty;
     final bool tagsExist =
         widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
+    bool fav = false;
 
     return Container(
       height: 100.0,
@@ -94,27 +98,17 @@ class _NavbarState extends State<Navbar> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                        // IconButton(
-                        //     icon: Icon(
-                        //         !widget.backButton
-                        //             ? Icons.menu
-                        //             : Icons.arrow_back_ios,
-                        //         color: !widget.transparent
-                        //             ? (widget.bgColor == MyTheme.white
-                        //                 ? MyTheme.initial
-                        //                 : MyTheme.white)
-                        //             : MyTheme.white,
-                        //         size: 24.0),
-                        //     onPressed: () {
-                        //       if (!widget.backButton)
-                        //         Scaffold.of(context).openDrawer();
-                        //       else
-                        //         Navigator.pop(context);
-                        //     }),
+                    if(widget.backButton)
+                        IconButton(
+                            icon: Icon(Icons.arrow_back_ios,
+                                size: 30.0, color: MyTheme.white),
+                            onPressed: () {
+                                Navigator.pop(context);
+                            }),
                     if(widget.searchBar)
                       Container(
                           height: (MediaQuery.of(context).size.height)/2,
-                          width: (MediaQuery.of(context).size.width)/1.35,
+                          width: (MediaQuery.of(context).size.width)/1.4,
                           child: Input(
                                     placeholder: "¿Qué buscás?",
                                     controller: widget.searchController,
@@ -135,19 +129,42 @@ class _NavbarState extends State<Navbar> {
                                     : MyTheme.white,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 20.0)),
-                    if (widget.rightOptions)
+                    Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          if(widget.favOption)
+                            IconButton(
+                                icon: fav
+                                    ? Icon(Icons.favorite, color: !widget.transparent
+                                    ? (widget.bgColor == MyTheme.white
+                                    ? MyTheme.initial
+                                    : MyTheme.white)
+                                    : MyTheme.white, size: 26.0)
+                                    : Icon(Icons.favorite_border, color: !widget.transparent
+                                    ? (widget.bgColor == MyTheme.white
+                                    ? MyTheme.initial
+                                    : MyTheme.white)
+                                    : MyTheme.white, size: 26.0),
+                                onPressed: () {
+                                  setState(() {
+                                    fav = !fav;
+                                  });
+                                }),
+                          if (widget.rightOptions)
                           GestureDetector(
                             onTap: () => null,
                             child: IconButton(
                                 icon: Icon(Icons.shopping_basket,
                                     color: !widget.transparent
                                         ? (widget.bgColor == MyTheme.white
-                                            ? MyTheme.initial
-                                            : MyTheme.white)
+                                        ? MyTheme.initial
+                                        : MyTheme.white)
                                         : MyTheme.white,
                                     size: 26.0),
                                 onPressed: null),
                           ),
+                          ])
+
 
                 // if (categories)
                 //   Row(

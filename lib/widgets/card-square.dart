@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/listing.dart';
+
 
 class CardSquare extends StatelessWidget {
   CardSquare(
@@ -13,8 +15,8 @@ class CardSquare extends StatelessWidget {
   final Function tap;
   final String title;
 
-  static void defaultFunc() {
-    print("the function works!");
+  static void defaultFunc(BuildContext context) {
+    return;
   }
 
   @override
@@ -23,7 +25,7 @@ class CardSquare extends StatelessWidget {
         height: 250,
         width: null,
         child: GestureDetector(
-          onTap: tap,
+          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
           child: Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(

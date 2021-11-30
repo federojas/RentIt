@@ -79,7 +79,6 @@ class CardSquareFavState extends State<CardSquareFav> {
                                     : Icon(Icons.favorite_border),
                                 onPressed: () {
                                   setState(() {
-                                    // Here we changing the icon.
                                     fav = !fav;
                                   });
                                 }),
