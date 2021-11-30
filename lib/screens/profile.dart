@@ -202,18 +202,17 @@ class ProfileState extends State<Profile> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                              IconButton(
-                                                  icon: Icon(Icons.settings,
-                                                      color: MyTheme.muted,
-                                                      size: 22.0),
-                                                  onPressed: null),
-                                              IconButton(
-                                                  icon: Icon(Icons.edit,
-                                                      color: MyTheme.muted,
-                                                      size: 22.0),
-                                                  onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();}))
-                                              )
-
+                                                  IconButton(
+                                                      icon: Icon(Icons.edit,
+                                                          color: MyTheme.muted,
+                                                          size: 30.0),
+                                                      onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();}))
+                                                  ),
+                                                  IconButton(
+                                                      icon: Icon(Icons.settings,
+                                                          color: MyTheme.muted,
+                                                          size: 30.0),
+                                                      onPressed: null),
                                             ])),
                                         // Align(
                                         //   child: Text("San Francisco, USA",

@@ -53,7 +53,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
       child: ListView(
         children: [
           Text(
-            "Editar perfil",
+            "Editar Perfil",
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
           ),
           SizedBox(
@@ -129,7 +129,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
               future: getUserInfo(),
               builder: (context, snapshot) {
                 if(snapshot.hasData) {
-                  return buildTextField("edad",snapshot.data['age'], false);
+                  return buildTextField("Dirección de Entrega","-", false);
 
                 } else {return CircularProgressIndicator();
                 }}),
@@ -153,23 +153,12 @@ class _EditProfilePageState extends State<EditProfilePage>{
             height: 35,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              OutlineButton(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                onPressed: () {},
-                child: Text("Cancelar",
-                    style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2.2,
-                        color: Colors.black)),
-              ),
               RaisedButton(
                 onPressed: () {},
                 color: MyTheme.primary,
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: EdgeInsets.symmetric(horizontal: 100),
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
