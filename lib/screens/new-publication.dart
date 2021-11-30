@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:smart_select/smart_select.dart';
 
 class settingsUI extends StatelessWidget{
@@ -35,6 +38,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     S2Choice<String>(value: 'Disfraces', title: 'Disfraces'),
   ];
   static String value;
+  List<File> _images = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,6 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   indicatorColor: Colors.blue,
                   indicatorBackgroundColor: Colors.grey,
                   children: [
-
                     Image.network(
                       "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
                       fit: BoxFit.cover,
@@ -87,6 +90,17 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                     print('Page changed: $value');
                   },
                   isLoop: false,
+                ),
+                RawMaterialButton(
+                  fillColor: Theme.of(context).accentColor,
+                  child: Icon(Icons.add_photo_alternate_rounded,
+                    color: Colors.white,),
+                  elevation: 8,
+                  onPressed: () async {
+                    getImage();
+                  },
+                  padding: EdgeInsets.all(15),
+                  shape: CircleBorder(),
                 ),
                 Padding(
                     padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
@@ -178,4 +192,13 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
       ),
     );
   }
+
+  Future getImage() async {
+    final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if(imagePick != null) {
+      _images.add(File(imagePick.path));
+    }
+    print(_images);
+  }
+
 }
