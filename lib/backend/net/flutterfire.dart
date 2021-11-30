@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'package:argon_flutter/backend/models/product-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/models/user-model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 final fireStoreInstance = FirebaseFirestore.instance;
 
@@ -207,11 +209,14 @@ for (var doc in querySnapshot.docs) {
 Future<QuerySnapshot> getUserPublications() async {
   try {
     String uid = FirebaseAuth.instance.currentUser.uid;
+    /*
     CollectionReference collectionReference = FirebaseFirestore.instance
         .collection('Publications').where('uid', isEqualTo: uid);
+
+
     QuerySnapshot querySnapshot = await collectionReference.get();
     return querySnapshot;
-
+*/
   } catch (e) {
     return null;
   }
@@ -229,3 +234,14 @@ Future<bool> removePublication(String id) async {
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/
+///
+
+UploadTask uploadFile(String destination, File file) {
+  try {
+    final ref = FirebaseStorage.instance.ref(destination);
+    return ref.putFile(file);
+  } on FirebaseException catch(e) {
+    return null;
+  }
+}
+
