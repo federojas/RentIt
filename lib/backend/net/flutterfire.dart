@@ -44,7 +44,7 @@ Future<bool> register(String email, String password) async {
 }
 
 
-Future<bool> addInformation(String firstName, String lastName, String age, String phoneNumber) async {
+Future<bool> addInformation(String firstName, String lastName, String address, String phoneNumber) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
 
@@ -56,7 +56,7 @@ Future<bool> addInformation(String firstName, String lastName, String age, Strin
 
     UserModel userModel = UserModel();
     userModel.email = _user.email;
-    userModel.age = age;
+    userModel.address = address;
     userModel.firstName = firstName;
     userModel.lastName = lastName;
     userModel.phoneNumber = phoneNumber;

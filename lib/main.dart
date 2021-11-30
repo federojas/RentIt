@@ -1,7 +1,4 @@
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/screens/edit-profile.dart';
-import 'package:argon_flutter/screens/favourites.dart';
-import 'package:argon_flutter/screens/login.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,7 +15,9 @@ import 'package:argon_flutter/screens/articles.dart';
 import 'package:argon_flutter/screens/elements.dart';
 import 'package:argon_flutter/screens/productview.dart';
 import 'package:argon_flutter/screens/notifications.dart';
-
+import 'package:argon_flutter/screens/edit-profile.dart';
+import 'package:argon_flutter/screens/favourites.dart';
+import 'package:argon_flutter/screens/login.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

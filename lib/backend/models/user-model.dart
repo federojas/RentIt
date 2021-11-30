@@ -2,17 +2,17 @@ class UserModel {
   String email;
   String firstName;
   String lastName;
-  String age;
+  String address;
   String phoneNumber;
 
-  UserModel({this.email, this.firstName, this.lastName, this.age, this.phoneNumber});
+  UserModel({this.email, this.firstName, this.lastName, this.address, this.phoneNumber});
 
   factory UserModel.fromMap(map) {
     return UserModel(
       email: map['email'],
       firstName: map['firstName'],
       lastName: map['lastName'],
-      age: map['age'],
+      address: map['address'],
       phoneNumber: map['phoneNumber']
     );
   }
@@ -22,7 +22,7 @@ class UserModel {
       'email': email,
       'firstName': firstName,
       'lastName': lastName,
-      'age': age,
+      'address': address,
       'phoneNumber': phoneNumber
     };
   }
