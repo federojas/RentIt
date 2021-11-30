@@ -125,8 +125,30 @@ class _EditProfilePageState extends State<EditProfilePage>{
 
                 } else {return CircularProgressIndicator();
                 }}),
-          buildTextField("Password", "********", true),
-          buildTextField("Location", "TLV, Israel", false),
+          FutureBuilder(
+              future: getUserInfo(),
+              builder: (context, snapshot) {
+                if(snapshot.hasData) {
+                  return buildTextField("edad",snapshot.data['age'], false);
+
+                } else {return CircularProgressIndicator();
+                }}),
+          FutureBuilder(
+              future: getUserInfo(),
+              builder: (context, snapshot) {
+                if(snapshot.hasData) {
+                  return buildTextField("Email",snapshot.data['email'], false);
+
+                } else {return CircularProgressIndicator();
+                }}),
+          FutureBuilder(
+              future: getUserInfo(),
+              builder: (context, snapshot) {
+                if(snapshot.hasData) {
+                  return buildTextField("Telefono",snapshot.data['phoneNumber'], false);
+
+                } else {return CircularProgressIndicator();
+                }}),
           SizedBox(
             height: 35,
           ),
