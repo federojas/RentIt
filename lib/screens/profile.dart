@@ -6,6 +6,8 @@ import 'package:argon_flutter/constants/Theme.dart';
 
 //widgets
 import 'package:argon_flutter/widgets/navbar.dart';
+
+import 'edit-profile.dart';
 // import 'package:argon_flutter/widgets/drawer.dart';
 
 class Profile extends StatefulWidget {
@@ -209,7 +211,9 @@ class ProfileState extends State<Profile> {
                                                   icon: Icon(Icons.edit,
                                                       color: MyTheme.muted,
                                                       size: 22.0),
-                                                  onPressed: null)
+                                                  onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();}))
+                                              )
+
                                             ])),
                                         // Align(
                                         //   child: Text("San Francisco, USA",

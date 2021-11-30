@@ -1,4 +1,5 @@
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/edit-profile.dart';
 import 'package:argon_flutter/screens/favourites.dart';
 import 'package:argon_flutter/screens/login.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           "/product": (BuildContext context) => new ProductView(),
           "/notifications": (BuildContext context) => new Notifications(),
           "/login": (BuildContext context) => new Login(),
+          "/edit-profile":(BuildContext context)=> new EditProfilePage(),
         });
   }
 }
