@@ -1,4 +1,5 @@
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/new-publication.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -87,6 +88,8 @@ class _MainPageState extends State<MainPage> {
           child: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NewPublicationScreen()));
+              /*
               DialogUtils.showCustomDialog(
                 context,
                 title: "Publicá tu producto",
@@ -94,6 +97,7 @@ class _MainPageState extends State<MainPage> {
                 cancelBtnText: "Cancelar",
                 okBtnFunction: () => null,
               );
+               */
             },
             backgroundColor: MyTheme.primary,
           ),

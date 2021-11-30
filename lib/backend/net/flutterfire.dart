@@ -127,6 +127,8 @@ Future<void> uploadUserImage(File file) async {
  */
 Future<DocumentReference> addPublication(PublicationModel publicationModel) async {
   try {
+    User _user = FirebaseAuth.instance.currentUser;
+    publicationModel.uid = _user.uid;
     CollectionReference collectionReference = FirebaseFirestore.instance
         .collection('Publications');
     DocumentReference result = await collectionReference.add(publicationModel.toMap());

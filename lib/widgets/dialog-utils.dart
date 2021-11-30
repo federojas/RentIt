@@ -1,12 +1,9 @@
-
 import 'dart:io';
-
-import 'package:argon_flutter/backend/net/flutterfire.dart';
+import 'package:argon_flutter/screens/new-publication.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_select/smart_select.dart';
-import 'package:image_picker/image_picker.dart';
-import 'card-small.dart';
+
 
 class DialogUtils {
   static DialogUtils _instance = new DialogUtils.internal();
@@ -18,11 +15,6 @@ class DialogUtils {
     S2Choice<String>(value: 'Disfraces', title: 'Disfraces'),
   ];
   static String value;
-
-
-  static File image;
-  static String fileName;
-
 
   DialogUtils.internal();
   factory DialogUtils() => _instance;
@@ -60,32 +52,13 @@ class DialogUtils {
                   )
                 ],
               ),
-              Column(
-                children: <Widget>[
-                  const SizedBox(height: 7),
-                  ElevatedButton(
-                    child: Text('Elegir imagen'),
-                    onPressed: () async {
-                     final imagePick = await ImagePicker().pickImage(source: ImageSource.gallery);
-                     image = File(imagePick.path);
-                     final fileName = imagePick.name;
-                     final destination = 'products_images/$fileName';
-                     //uploadFile(destination, image);
-                    }
-                  )
-                ],
-              ),
               TextButton(
-                child: Text(okBtnText),
+                child: Text("Siguiente"),
                 onPressed: () async {
                   if(value != "" && _nameField.text != "" && _detailField.text != "" ) {
-                    bool shouldNavigate = true;
-                    //await addProduct(_nameField.text, _detailField.text, value);
-                    if (shouldNavigate) {
                       Navigator.pop(context);
-                    }
                   } else {
-                    // TOAST DE QUE FALTA SELECCIONAR
+                    // TOAST DE QUE FALTA ALGUN CAMPO
                   }
                 },
               ),
