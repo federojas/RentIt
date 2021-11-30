@@ -8,14 +8,20 @@ final fireStoreInstance = FirebaseFirestore.instance;
 
 
 /// ****************************************USERS*********************************************************/
-Future<bool> signIn(String email, String password) async {
+Future<String> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    return true;
+    return "Success";
   } catch (e) {
-    print(e);
-    return false;
+    // esto no anda, seguir revisando o sino devolver siempre lo mismo.
+    switch (e.code) {
+      case "ERROR_USER_NOT_FOUND":
+        return "User not found";
+        break;
+      default:
+        return "An undefined Error happened.";
+    }
   }
 }
 
@@ -38,7 +44,7 @@ Future<bool> register(String email, String password) async {
 }
 
 
-Future<bool> addInformation(String firstName, String lastName, String age) async {
+Future<bool> addInformation(String firstName, String lastName, String age, String phoneNumber) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
 
@@ -53,6 +59,7 @@ Future<bool> addInformation(String firstName, String lastName, String age) async
     userModel.age = age;
     userModel.firstName = firstName;
     userModel.lastName = lastName;
+    userModel.phoneNumber = phoneNumber;
 
     FirebaseFirestore.instance.runTransaction((transaction) async {
       DocumentSnapshot snapshot = await transaction.get(documentReference);

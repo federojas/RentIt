@@ -1,5 +1,7 @@
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/edit-profile.dart';
 import 'package:argon_flutter/screens/favourites.dart';
+import 'package:argon_flutter/screens/login.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,7 +19,6 @@ import 'package:argon_flutter/screens/elements.dart';
 import 'package:argon_flutter/screens/productview.dart';
 import 'package:argon_flutter/screens/notifications.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -25,12 +26,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Argon PRO Flutter',
-        theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+        theme: ThemeData(
+            textTheme:
+                GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         initialRoute: "/onboarding",
         home: MainPage(),
         debugShowCheckedModeBanner: false,
@@ -43,14 +45,16 @@ class MyApp extends StatelessWidget {
           "/account": (BuildContext context) => new Register(),
           "/pro": (BuildContext context) => new Pro(),
           "/register": (BuildContext context) => new Register(),
-          "/main" :(BuildContext context)=> new MainPage(),
-          "/favourites" :(BuildContext context)=> new Favourites(),
-          "/product":(BuildContext context)=> new ProductView(),
-          "/notifications":(BuildContext context)=> new Notifications(),
+          "/main": (BuildContext context) => new MainPage(),
+          "/favourites": (BuildContext context) => new Favourites(),
+          "/product": (BuildContext context) => new ProductView(),
+          "/notifications": (BuildContext context) => new Notifications(),
+          "/login": (BuildContext context) => new Login(),
+          "/edit-profile":(BuildContext context)=> new EditProfilePage(),
         });
   }
-
 }
+
 class MainPage extends StatefulWidget {
   final String title;
   const MainPage({
@@ -60,6 +64,7 @@ class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
+
 class _MainPageState extends State<MainPage> {
   int index = 0;
 
@@ -71,8 +76,7 @@ class _MainPageState extends State<MainPage> {
   ];
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         extendBody: true,
         body: pages[index],
         bottomNavigationBar: TabBarMaterialWidget(
@@ -80,18 +84,21 @@ class _MainPageState extends State<MainPage> {
           onChangedTab: onChangedTab,
         ),
         floatingActionButton: Visibility(
-            visible:  MediaQuery.of(context).viewInsets.bottom == 0,
-            child:  FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                DialogUtils.showCustomDialog(context, title: "Publicá tu producto",
-                  okBtnText: "Guardar",
-                  cancelBtnText: "Cancelar",
-                  okBtnFunction: () => null,
-                );
-              },
-              backgroundColor: MyTheme.primary,
-            ),),
+          visible: MediaQuery.of(context).viewInsets.bottom == 0,
+          child: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {
+              DialogUtils.showCustomDialog(
+                context,
+                title: "Publicá tu producto",
+                okBtnText: "Guardar",
+                cancelBtnText: "Cancelar",
+                okBtnFunction: () => null,
+              );
+            },
+            backgroundColor: MyTheme.primary,
+          ),
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
 

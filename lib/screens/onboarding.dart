@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 
-
 class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -51,28 +50,32 @@ class Onboarding extends StatelessWidget {
                   ],
                 ),
                 TextButton(
-                  child: SizedBox(
-                      width: double.infinity,
-                      child: Text("Ingresar",
-                          style: TextStyle(fontSize: 20),
-                          textAlign: TextAlign.center)),
-                  style: ButtonStyle(
-                      padding: MaterialStateProperty.all<EdgeInsets>(
-                          EdgeInsets.all(15)),
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(MyTheme.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(
-                                  color: MyTheme.white, width: 1.5)))),
-                  onPressed: () async {
-                    bool shouldNavigate = await signIn("santi@mail.com", "12345678");
-                    if(shouldNavigate) {
-                      Navigator.pushReplacementNamed(context, '/main');
-                    };
-                  },
-                ),
+                    child: SizedBox(
+                        width: double.infinity,
+                        child: Text("Ingresar",
+                            style: TextStyle(fontSize: 20),
+                            textAlign: TextAlign.center)),
+                    style: ButtonStyle(
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(15)),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(MyTheme.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: BorderSide(
+                                        color: MyTheme.white, width: 1.5)))),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/login');
+                    }
+                    // () async {
+                    //   bool shouldNavigate = await signIn("santi@mail.com", "12345678");
+                    //   if(shouldNavigate) {
+                    //     Navigator.pushReplacementNamed(context, '/main');
+                    //   };
+                    // },
+                    ),
                 TextButton(
                     child: SizedBox(
                         width: double.infinity,

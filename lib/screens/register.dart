@@ -1,12 +1,8 @@
-import 'package:argon_flutter/screens/home.dart';
-import 'package:argon_flutter/widgets/register-input.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/widgets/input.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
-
 import '../main.dart';
-import 'onboarding.dart';
+
 
 class Register extends StatefulWidget {
   const Register({Key key}) : super(key: key);
@@ -22,7 +18,7 @@ class _RegisterState extends State<Register> {
   final firstNameEditingController = new TextEditingController();
   final lastNameEditingController = new TextEditingController();
   final emailEditingController = new TextEditingController();
-  final ageEditingController = new TextEditingController();
+  final phoneNumberEditingController = new TextEditingController();
   final passwordEditingController = new TextEditingController();
   final confirmPasswordEditingController = new TextEditingController();
 
@@ -97,7 +93,7 @@ class _RegisterState extends State<Register> {
           return null;
         },
         onSaved: (value) {
-          firstNameEditingController.text = value;
+          emailEditingController.text = value;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -108,19 +104,19 @@ class _RegisterState extends State<Register> {
             borderRadius: BorderRadius.circular(10),
           ),
         ));
-    final ageField = TextFormField(
+    final phoneNumberField = TextFormField(
         autofocus: false,
-        controller: ageEditingController,
+        controller: phoneNumberEditingController,
         keyboardType: TextInputType.number,
         // FALTA EL VALIDATOR
         onSaved: (value) {
-          ageEditingController.text = value;
+          phoneNumberEditingController.text = value;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.calendar_today),
+          prefixIcon: Icon(Icons.phone),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Edad",
+          hintText: "Teléfono",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
           ),
@@ -142,7 +138,7 @@ class _RegisterState extends State<Register> {
           return "";
         },
         onSaved: (value) {
-          firstNameEditingController.text = value;
+          passwordEditingController.text = value;
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
@@ -195,8 +191,9 @@ class _RegisterState extends State<Register> {
             if(shouldNavigate) {
               shouldNavigate = await addInformation(
                   firstNameEditingController.text,
-                  lastNameEditingController.text
-                  , ageEditingController.text);
+                  lastNameEditingController.text,
+                  " - ",
+                  phoneNumberEditingController.text);
             }
             if (shouldNavigate) {
               Navigator.push(
@@ -253,7 +250,7 @@ class _RegisterState extends State<Register> {
                     SizedBox(height: 20),
                     emailField,
                     SizedBox(height: 20),
-                    ageField,
+                    phoneNumberField,
                     SizedBox(height: 20),
                     passwordField,
                     SizedBox(height: 20),
@@ -271,108 +268,3 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-/*
-class Register extends StatefulWidget {
-  @override
-  _RegisterState createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  TextEditingController _emailField = TextEditingController();
-  TextEditingController _passwordField = TextEditingController();
-  TextEditingController _userField = TextEditingController();
-  TextEditingController _passwordField2 = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: MyTheme.secondary,
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width / 1.3,
-          height: MediaQuery.of(context).size.height / 1.2,
-          margin: const EdgeInsets.all(10.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: MyTheme.primary,
-          ),
-          child:
-              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Container(
-              child: Center(
-                child: Image.asset("assets/img/rentItLogo.png",
-                    height: 200, width: 200),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: RegisterInput(
-                placeholder: "Usuario",
-                controller: _userField,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: RegisterInput(
-                placeholder: "Email",
-                controller: _emailField,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: RegisterInput(
-                placeholder: "Contraseña",
-                controller: _passwordField,
-                obscureText: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: RegisterInput(
-                placeholder: "Repetir contraseña",
-                controller: _passwordField2,
-                obscureText: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-              child: TextButton(
-                child: SizedBox(
-                    width: double.infinity,
-                    child: Text("Registrarse",
-                        style: TextStyle(fontSize: 20),
-                        textAlign: TextAlign.center)),
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.white),
-                    padding:
-                        MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.black),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: MyTheme.black, width: 1.1)))),
-                onPressed: () async {
-                  bool shouldNavigate =
-                      await register(_emailField.text, _passwordField.text);
-                  if (shouldNavigate) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(),
-                      ),
-                    );
-                  }
-                },
-              ),
-            )
-          ]),
-        )
-      ),
-    );
-  }
-}
-
- */
