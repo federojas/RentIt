@@ -33,7 +33,6 @@ class Input extends StatelessWidget {
         textAlignVertical: TextAlignVertical(y: 0.6),
         textAlign: TextAlign.left,
         decoration: InputDecoration(
-          contentPadding:new EdgeInsets.all(10.0),
             filled: true,
             fillColor: MyTheme.white,
             hintStyle: TextStyle(
