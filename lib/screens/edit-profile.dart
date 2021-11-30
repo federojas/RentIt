@@ -157,6 +157,16 @@ class _EditProfilePageState extends State<EditProfilePage>{
             children: [
               RaisedButton(
                 onPressed: () {},
+                /*
+                onPressed: () async {
+                  bool updated = await addInformation("Santiagooo", "Sandrinii", "Balcarce 519", "12345678");
+                  if(updated) {
+                    // un toast
+                  } else {
+                    // otro toast, o cargando, vemos que queda mejor
+                  }
+                }
+                 */
                 color: MyTheme.primary,
                 padding: EdgeInsets.symmetric(horizontal: 100),
                 elevation: 2,
