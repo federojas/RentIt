@@ -37,9 +37,9 @@ class ListingPageState extends State<ListingScreen> {
       ),
 
       body: Container(
-        padding: EdgeInsets.all(25.0),
         child: SingleChildScrollView(
           child: Container(
+            padding: EdgeInsets.all(25.0),
             width: double.infinity,
           child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
