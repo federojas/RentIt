@@ -76,13 +76,22 @@ class ListingPageState extends State<ListingScreen> {
               },
               isLoop: false,
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-              child: Text(
-                "\$4.999",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w400),
+            Row(children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+                child: Text(
+                  "\$4.999",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w400),
+                ),
               ),
-            ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
+                child: Text(
+                  "\\mes",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                ),
+              ),
+            ]),
             ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width - 50.0,
                 child: RaisedButton(
