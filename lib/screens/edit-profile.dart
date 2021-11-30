@@ -23,6 +23,10 @@ class EditProfilePage extends StatefulWidget{
 }
 class _EditProfilePageState extends State<EditProfilePage>{
   bool showPassword = false;
+  final firstNameEditingController = new TextEditingController();
+  final lastNameEditingController = new TextEditingController();
+  final addressEditingController = new TextEditingController();
+  final phoneNumberEditingController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +117,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
           future: getUserInfo(),
           builder: (context, snapshot) {
               if(snapshot.hasData) {
-              return buildTextField("Nombre",snapshot.data['firstName'], false);
+              return buildTextField("Nombre",snapshot.data['firstName'], false, firstNameEditingController);
 
               } else {return CircularProgressIndicator();
               }}),
@@ -121,7 +125,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
               future: getUserInfo(),
               builder: (context, snapshot) {
                 if(snapshot.hasData) {
-                  return buildTextField("Apellido",snapshot.data['lastName'], false);
+                  return buildTextField("Apellido",snapshot.data['lastName'], false, lastNameEditingController);
 
                 } else {return CircularProgressIndicator();
                 }}),
@@ -129,7 +133,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
               future: getUserInfo(),
               builder: (context, snapshot) {
                 if(snapshot.hasData) {
-                  return buildTextField("Dirección de Entrega","-", false);
+                  return buildTextField("Dirección de Entrega","-", false, addressEditingController);
 
                 } else {return CircularProgressIndicator();
                 }}),
@@ -137,15 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
               future: getUserInfo(),
               builder: (context, snapshot) {
                 if(snapshot.hasData) {
-                  return buildTextField("Email",snapshot.data['email'], false);
-
-                } else {return CircularProgressIndicator();
-                }}),
-          FutureBuilder(
-              future: getUserInfo(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData) {
-                  return buildTextField("Telefono",snapshot.data['phoneNumber'], false);
+                  return buildTextField("Telefono",snapshot.data['phoneNumber'], false, phoneNumberEditingController);
 
                 } else {return CircularProgressIndicator();
                 }}),
@@ -156,17 +152,14 @@ class _EditProfilePageState extends State<EditProfilePage>{
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               RaisedButton(
-                onPressed: () {},
-                /*
                 onPressed: () async {
-                  bool updated = await addInformation("Santiagooo", "Sandrinii", "Balcarce 519", "12345678");
+                  bool updated = await addInformation(firstNameEditingController.text, lastNameEditingController.text, addressEditingController.text, phoneNumberEditingController.text);
                   if(updated) {
                     // un toast
                   } else {
                     // otro toast, o cargando, vemos que queda mejor
                   }
-                }
-                 */
+                },
                 color: MyTheme.primary,
                 padding: EdgeInsets.symmetric(horizontal: 100),
                 elevation: 2,
@@ -188,10 +181,11 @@ class _EditProfilePageState extends State<EditProfilePage>{
     );
   }
   Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
+      String labelText, String placeholder, bool isPasswordTextField, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
+        controller: controller,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
             suffixIcon: isPasswordTextField
