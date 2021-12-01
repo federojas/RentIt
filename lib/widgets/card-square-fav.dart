@@ -28,7 +28,7 @@ class CardSquareFavState extends State<CardSquareFav> {
         height: 250,
         width: null,
         child: GestureDetector(
-          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
+          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(publicationModel)));},
           child: Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(

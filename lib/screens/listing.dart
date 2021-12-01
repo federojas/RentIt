@@ -1,4 +1,5 @@
 
+import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,25 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
+class ListingScreen extends StatefulWidget {
+  final PublicationModel pm;
 
-
-class settingsUI extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "settings UI",
-      home: ListingScreen(),
-    );
-  }
-}
-
-class ListingScreen extends StatefulWidget{
+  ListingScreen(this.pm);
 
   @override
-  ListingPageState createState() => ListingPageState();
+  ListingPageState createState() => ListingPageState(pm);
 }
 class ListingPageState extends State<ListingScreen> {
+
+  final PublicationModel pm;
+
+  ListingPageState(this.pm);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +43,7 @@ class ListingPageState extends State<ListingScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: 10.0),
               child: Text(
-                "Inflable con Escalera Cumpleaños Zona Sur",
+                pm.name,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               ),
             ),
@@ -58,18 +54,11 @@ class ListingPageState extends State<ListingScreen> {
               indicatorColor: Colors.blue,
               indicatorBackgroundColor: Colors.grey,
               children: [
-                Image.network(
-                  "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
-                  fit: BoxFit.cover,
-                ),
-                Image.network(
-                  "http://d2r9epyceweg5n.cloudfront.net/stores/001/239/905/products/ene-3-plastico1-ca76755057a823aeea16165340604100-640-0.jpg",
-                  fit: BoxFit.cover,
-                ),
-                Image.network(
-                  "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
-                  fit: BoxFit.cover,
-                ),
+                for (var i = 0; i < pm.images.length; i++)
+                  Image.network(
+                    pm.images[i],
+                    fit: BoxFit.cover,
+                  ),
               ],
               onPageChanged: (value) {
                 print('Page changed: $value');
@@ -79,17 +68,29 @@ class ListingPageState extends State<ListingScreen> {
             Row(children: [
               Padding(
                 padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-                child: Text(
-                  "\$4.999",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w400),
-                ),
+                child: Row(children: [
+                  Text(
+                    "\$",
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    pm.price,
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w400),
+                  ),
+                ],),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 10.0, top: 10.0),
-                child: Text(
-                  "\\mes",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
-                ),
+                child: Row(children: [
+                  Text(
+                    "\\",
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                  ),
+                  Text(
+                    pm.timeUnit,
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
+                  ),
+                ],),
               ),
             ]),
             ButtonTheme(
@@ -127,7 +128,7 @@ class ListingPageState extends State<ListingScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: 10.0),
               child: Text(
-                "Inflable impecable, instalación incluida.",
+                pm.detail,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
               ),
             ),

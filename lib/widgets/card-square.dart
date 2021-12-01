@@ -25,7 +25,7 @@ class CardSquare extends StatelessWidget {
         height: 250,
         width: null,
         child: GestureDetector(
-          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
+          onTap: tap, //() {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
           child: Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(

@@ -47,7 +47,7 @@ class _CategoryListState extends State<CategoryList> {
                 itemBuilder: (context, index) {
                   PublicationModel pm = snapshot.data[index];
                   return ListTile(
-                    onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
+                    onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(pm)));},
                     leading: CircleAvatar(
                         backgroundImage: NetworkImage(pm.images[0]),
                         radius: 25.0),
