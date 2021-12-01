@@ -171,42 +171,59 @@ Future<bool> removePublication(String id) async {
   }
 }
 
-// Future<List<PublicationModel>> getUserPublications() async {
-//   try {
-//     User _user = FirebaseAuth.instance.currentUser;
-//     QuerySnapshot querySnapshot = await collectionReference.get();
-//     List<PublicationModel> list;
-//     for (var doc in querySnapshot.docs) {
-//       Map<String, dynamic> data = doc.data();
-//       if (_user.uid == data['uid']) {
-//         PublicationModel pm = PublicationModel();
-//         pm.name = data['name'];
-//         pm.uid = data['uid'];
-//         pm.detail = data['detail'];
-//         pm.category = data['category'];
-//         pm.price = data['price'];
-//         pm.images = data['images'];
-//         list.add(pm);
-//       }
-//     }
-//     return list;
-//   } catch (e) {
-//     return null;
-//   }
-// }
-
-Future<QuerySnapshot> getAllPublications() async {
+Future<List<PublicationModel>> getUserPublications() async {
   try {
-    QuerySnapshot ans;
-    FirebaseFirestore.instance
+    User _user = FirebaseAuth.instance.currentUser;
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
         .collection('Publications')
         .get()
         .then((QuerySnapshot querySnapshot) {
-      ans = querySnapshot;
       querySnapshot.docs.forEach((doc) {
-        print(doc['name']);
+        if(_user.uid == doc['uid']) {
+          PublicationModel pm = PublicationModel();
+          print(doc["name"]);
+          pm.name = doc['name'];
+          pm.uid = doc['uid'];
+          pm.detail = doc['detail'];
+          pm.category = doc['category'];
+          pm.price = doc['price'];
+          for (int i = 0; i < doc['images'].length; i++) {
+            pm.images.add(doc['images'][i]);
+          }
+          ans.add(pm);
+        }
       });
     });
+
+    return ans;
+  } catch (e) {
+    return null;
+  }
+}
+
+Future<List<PublicationModel>> getAllPublications() async {
+  try {
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        PublicationModel pm = PublicationModel();
+        print(doc["name"]);
+        pm.name = doc['name'];
+        pm.uid = doc['uid'];
+        pm.detail = doc['detail'];
+        pm.category = doc['category'];
+        pm.price = doc['price'];
+        for (int i = 0; i < doc['images'].length; i++) {
+          pm.images.add(doc['images'][i]);
+        }
+        ans.add(pm);
+      });
+    });
+
     return ans;
   } catch (e) {
     return null;
@@ -216,33 +233,36 @@ Future<QuerySnapshot> getAllPublications() async {
 Future<List<PublicationModel>> getPublicationsByCategory(
     String category) async {
   try {
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('Publications');
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    List<PublicationModel> list;
-    for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      if (category == data['category']) {
-        PublicationModel pm = PublicationModel();
-        pm.name = data['name'];
-        pm.uid = data['uid'];
-        pm.detail = data['detail'];
-        pm.category = data['category'];
-        pm.price = data['price'];
-        pm.images = data['images'];
-        list.add(pm);
-      }
-    }
-    print(list);
-    return list;
+    User _user = FirebaseAuth.instance.currentUser;
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(category == doc['category']) {
+          PublicationModel pm = PublicationModel();
+          print(doc["name"]);
+          pm.name = doc['name'];
+          pm.uid = doc['uid'];
+          pm.detail = doc['detail'];
+          pm.category = doc['category'];
+          pm.price = doc['price'];
+          for (int i = 0; i < doc['images'].length; i++) {
+            pm.images.add(doc['images'][i]);
+          }
+          ans.add(pm);
+        }
+      });
+    });
+
+    return ans;
   } catch (e) {
     return null;
   }
 }
+
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/
 ///
-
-
-

@@ -6,7 +6,9 @@ class PublicationModel {
   String price;
   List<String> images;
 
-  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images});
+  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images}) {
+    this.images = [];
+  }
 
   factory PublicationModel.fromMap(map) {
     return PublicationModel(

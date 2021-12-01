@@ -49,29 +49,19 @@ class _CategoryListState extends State<CategoryList> {
                 future: getAllPublications(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    print(snapshot.data);
+                    PublicationModel pm = snapshot.data[0];
                     return ListTile(
                       leading: CircleAvatar(
-                          backgroundImage: AssetImage(
-                              "https://unsplash.com/photos/0POwK6iAiRQ"),
+                          backgroundImage: NetworkImage(pm.images[0]),
                           radius: 25.0),
-                      title: Text("title"),
-                      subtitle: Text("price"),
+                      title: Text(pm.name),
+                      subtitle: Text(pm.price),
                       trailing: Icon(Icons.favorite_border),
                     );
                   } else {
                     return CircularProgressIndicator();
                   }
                 }),
-            // ListTile(
-            //   leading: CircleAvatar(
-            //       backgroundImage:
-            //           AssetImage("https://unsplash.com/photos/0POwK6iAiRQ"),
-            //       radius: 25.0),
-            //   title: Text(pm.name),
-            //   subtitle: Text(pm.price),
-            //   trailing: Icon(Icons.favorite_border),
-            // )
           ],
         ));
   }
