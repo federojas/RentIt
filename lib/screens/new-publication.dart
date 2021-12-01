@@ -230,6 +230,9 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         pm.category = value;
                         pm.price = _priceField.text;
                         pm.images = null;
+                        pm.timeUnit = time;
+                        pm.isFavourite = false;
+                        pm.id = "73";
                         DocumentReference docRef = await addPublication(pm);
                         savePublicationImages(_images, docRef);
                       } else {

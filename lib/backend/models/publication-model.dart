@@ -11,9 +11,8 @@ class PublicationModel {
   bool isFavourite;
   List<String> images;
 
-  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit}) {
+  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit, this.id, this.isFavourite}) {
     this.images = [];
-    isFavourite = false;
   }
 
   factory PublicationModel.fromMap(map) {
@@ -24,8 +23,9 @@ class PublicationModel {
       category: map['category'],
       price: map['price'],
       images: map['images'],
-      timeUnit: map['timeUnit']
-
+      timeUnit: map['timeUnit'],
+      id: map['id'],
+      isFavourite: map['isFavourite']
     );
   }
 
@@ -37,15 +37,9 @@ class PublicationModel {
       'category': category,
       'price': price,
       'images': images,
-      'timeUnit': timeUnit
+      'timeUnit': timeUnit,
+      'id': id,
+      'isFavourite': isFavourite
     };
-  }
-
-  void fav() {
-    addFavourite(this);
-  }
-
-  void unfav() {
-    removeFavourite(this);
   }
 }

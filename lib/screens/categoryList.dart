@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 
+import 'listing.dart';
+
 class CategoryList extends StatefulWidget {
   final String category;
 
@@ -45,12 +47,19 @@ class _CategoryListState extends State<CategoryList> {
                 itemBuilder: (context, index) {
                   PublicationModel pm = snapshot.data[index];
                   return ListTile(
+                    onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
                     leading: CircleAvatar(
                         backgroundImage: NetworkImage(pm.images[0]),
                         radius: 25.0),
                     title: Text(pm.name),
                     subtitle: Text(pm.price),
-                    trailing: Icon(Icons.favorite_border),
+                    trailing: IconButton(
+                        icon: pm.isFavourite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+                        onPressed: () {
+                          setState(() {
+                            pm.isFavourite ? removeFavourite(pm) : addFavourite(pm);
+                          });
+                        }),
                   );
                 },
               )

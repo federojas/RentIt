@@ -192,6 +192,9 @@ Future<List<PublicationModel>> getUserPublications() async {
           pm.detail = doc['detail'];
           pm.category = doc['category'];
           pm.price = doc['price'];
+          pm.timeUnit = doc['timeUnit'];
+          pm.isFavourite = doc['isFavourite'];
+          pm.id = doc['id'];
           for (int i = 0; i < doc['images'].length; i++) {
             pm.images.add(doc['images'][i]);
           }
@@ -221,6 +224,9 @@ Future<List<PublicationModel>> getAllPublications() async {
         pm.detail = doc['detail'];
         pm.category = doc['category'];
         pm.price = doc['price'];
+        pm.timeUnit = doc['timeUnit'];
+        pm.isFavourite = doc['isFavourite'];
+        pm.id = doc['id'];
         for (int i = 0; i < doc['images'].length; i++) {
           pm.images.add(doc['images'][i]);
         }
@@ -252,6 +258,9 @@ Future<List<PublicationModel>> getPublicationsByCategory(
           pm.detail = doc['detail'];
           pm.category = doc['category'];
           pm.price = doc['price'];
+          pm.timeUnit = doc['timeUnit'];
+          pm.isFavourite = doc['isFavourite'];
+          pm.id = doc['id'];
           for (int i = 0; i < doc['images'].length; i++) {
             pm.images.add(doc['images'][i]);
           }
@@ -275,6 +284,7 @@ Future<void> addFavourite(PublicationModel publicationModel) async {
 }
 
 Future<void> removeFavourite(PublicationModel publicationModel) async {
+  print(publicationModel.id);
   DocumentReference documentReference = FirebaseFirestore.instance.collection('Publications').doc(publicationModel.id);
   await documentReference.update({
     "isFavourite": false
