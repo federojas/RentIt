@@ -161,6 +161,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         placeholder: "Seleccionar",
                         title: 'Tiempo',
                         value: time,
+                        modalType: S2ModalType.bottomSheet,
                         choiceItems: times,
                         onChange: (selected) => time = selected.value
                     )
@@ -209,6 +210,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         placeholder: "Seleccionar",
                         title: 'Categorias',
                         value: value,
+                        modalType: S2ModalType.bottomSheet,
                         choiceItems: options,
                         onChange: (selected) => value = selected.value
                     )
