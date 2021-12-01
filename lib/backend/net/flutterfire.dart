@@ -291,6 +291,40 @@ Future<void> removeFavourite(PublicationModel publicationModel) async {
   });
   publicationModel.isFavourite = false;
 }
+
+Future<List<PublicationModel>> getFavouritesPublications() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(_user.uid == doc['uid'] && doc['isFavourite'] == true) {
+          PublicationModel pm = PublicationModel();
+          print(doc["name"]);
+          pm.name = doc['name'];
+          pm.uid = doc['uid'];
+          pm.detail = doc['detail'];
+          pm.category = doc['category'];
+          pm.price = doc['price'];
+          pm.timeUnit = doc['timeUnit'];
+          pm.isFavourite = doc['isFavourite'];
+          pm.id = doc['id'];
+          for (int i = 0; i < doc['images'].length; i++) {
+            pm.images.add(doc['images'][i]);
+          }
+          ans.add(pm);
+        }
+      });
+    });
+
+    return ans;
+  } catch (e) {
+    return null;
+  }
+}
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/

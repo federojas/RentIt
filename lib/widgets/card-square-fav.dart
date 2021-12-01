@@ -1,35 +1,26 @@
+import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
+import 'package:argon_flutter/screens/favourites.dart';
+import 'package:argon_flutter/screens/listing.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
 class CardSquareFav extends StatefulWidget {
-  CardSquareFav({this.title = "Placeholder Title",
-    this.img = "https://via.placeholder.com/200",
-    this.fav = false,
-    this.tap = defaultFunc,
-    this.cta = ""});
-
-  final String img;
-  final String title;
-  final bool fav;
-  final Function tap;
-  final String cta;
+  CardSquareFav(this.publicationModel);
+  final PublicationModel publicationModel;
 
   static void defaultFunc() {
     print("the function works!");
   }
 
   @override // Level_Indicator
-  CardSquareFavState createState() => CardSquareFavState(title, img, fav, cta, tap);
+  CardSquareFavState createState() => CardSquareFavState(this.publicationModel);
 }
 
 class CardSquareFavState extends State<CardSquareFav> {
-  String title;
-  String img;
-  bool fav;
-  Function tap;
-  String cta;
+  final PublicationModel publicationModel;
 
-  CardSquareFavState(this.title, this.img, this.fav, this.cta, this.tap);
+  CardSquareFavState(this.publicationModel);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +28,7 @@ class CardSquareFavState extends State<CardSquareFav> {
         height: 250,
         width: null,
         child: GestureDetector(
-          onTap: tap,
+          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen()));},
           child: Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(
@@ -53,7 +44,7 @@ class CardSquareFavState extends State<CardSquareFav> {
                                   topLeft: Radius.circular(6.0),
                                   topRight: Radius.circular(6.0)),
                               image: DecorationImage(
-                                image: NetworkImage(img),
+                                image: NetworkImage(publicationModel.images[0]),
                                 fit: BoxFit.cover,
                               )))),
                   Flexible(
@@ -65,21 +56,27 @@ class CardSquareFavState extends State<CardSquareFav> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(title,
+                            Text(publicationModel.name,
                                 style: TextStyle(
                                     color: MyTheme.header, fontSize: 13)),
-                            Text(cta,
+                            /* Este no se para que estaba
+                            Text(publicationModel.name,
                                 style: TextStyle(
                                     color: MyTheme.primary,
                                     fontSize: 11,
                                     fontWeight: FontWeight.w600)),
+
+                             */
                             IconButton(
-                                icon: fav
+                                icon: publicationModel.isFavourite
                                     ? Icon(Icons.favorite)
                                     : Icon(Icons.favorite_border),
                                 onPressed: () {
                                   setState(() {
-                                    fav = !fav;
+                                    publicationModel.isFavourite ? removeFavourite(publicationModel) : addFavourite(publicationModel);
+                                    Navigator.push(context, MaterialPageRoute(builder:(context) {
+                                      return Favourites();
+                                    }));
                                   });
                                 }),
                           ],

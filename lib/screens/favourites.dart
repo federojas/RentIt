@@ -1,17 +1,13 @@
-
-import 'dart:ffi';
-
+import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/widgets/card-category.dart';
-import 'package:argon_flutter/widgets/card-notif.dart';
-import 'package:argon_flutter/widgets/card-shopping.dart';
-import 'package:argon_flutter/widgets/card-small.dart';
-import 'package:argon_flutter/widgets/card-square.dart';
 import 'package:argon_flutter/widgets/card-square-fav.dart';
 import 'package:argon_flutter/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
+
+import 'listing.dart';
 class Favourites extends StatelessWidget{
 
   @override
@@ -19,57 +15,40 @@ class Favourites extends StatelessWidget{
     return Scaffold(
       appBar: Navbar(
           title: "Favoritos",
-          //bgColor: Color.fromRGBO(225,129,106,1)
           bgColor: MyTheme.primary
       ),
-
       drawer: ArgonDrawer(currentPage: "Favourites"),
-
-      backgroundColor: MyTheme.bgColorScreen, //esto despues vemos si lo sacamos, para mi queda mas claro
-      body: Container(
-        padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 15.0),
-        child: SingleChildScrollView(
-            child: Column(
-            children: [
-              CardSquareFav(
-                  title:"Notebook",
-                  img: "https://www.nsx.com.ar/archivos/N_omicron_1.png",
-                  tap: () {
-                    Navigator.pushNamed(context, '/pro');}
-
-                    ),
-              CardSquareFav(
-                  title:"Inflable dona",
-                  img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/302/233/products/bdab5e2474f4a5fdbb91fceed4558bba-for-the-summer-summer-time1-af58f92bed8b339d5815123715549446-640-0.jpg",
-                  tap: () {
-                    Navigator.pushNamed(context, '/pro');}
-
+      backgroundColor: MyTheme.bgColorScreen,
+      body: FutureBuilder(
+        builder: (context, snapshot) {
+          if (snapshot.hasData && snapshot.data != null && snapshot.data.length != 0) {
+            return Container(
+                padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+                child: ListView.builder(
+                  itemCount: snapshot.data == null ? 0 : snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    PublicationModel pm = snapshot.data[index];
+                    return CardSquareFav(pm);
+                  },
+                )
+            );
+          } else if( snapshot.connectionState == ConnectionState.waiting){
+            return Container(
+                child: CircularProgressIndicator()
+            );
+          } else {
+            return Container(
+              child: Text(
+                "No hay favoritos",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              CardSquareFav(
-                  title:"Inflable dona",
-                  img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/302/233/products/bdab5e2474f4a5fdbb91fceed4558bba-for-the-summer-summer-time1-af58f92bed8b339d5815123715549446-640-0.jpg",
-                  tap: () {
-                    Navigator.pushNamed(context, '/pro');}
-
-              ),
-              //     cta: "Ver oferta",
-              //     title:"Notebook",
-              //     img: "https://www.nsx.com.ar/archivos/N_omicron_1.png",
-              //     tap: () {
-              //       Navigator.pushNamed(context, '/pro');
-              //     }
-              // )
-              SizedBox(height: 50.0),
-
-            ],
-
-
-            ),
-        ),
-      ) ,
+            );
+          }
+        },
+        future: getFavouritesPublications(),
+      ),
     );
-    // TODO: implement build
-    throw UnimplementedError();
   }
-
 }
