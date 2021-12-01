@@ -206,7 +206,7 @@ class ProfileState extends State<Profile> {
                                                       icon: Icon(Icons.edit,
                                                           color: MyTheme.muted,
                                                           size: 30.0),
-                                                      onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();}))
+                                                      onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();})).then((_) => setState(() {}))
                                                   ),
                                                   IconButton(
                                                       icon: Icon(Icons.settings,

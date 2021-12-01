@@ -29,6 +29,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
   final phoneNumberEditingController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
+    String userName, lastName,address,phoneNumber;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -38,7 +39,12 @@ class _EditProfilePageState extends State<EditProfilePage>{
             Icons.arrow_back,
             color: MyTheme.primary,
           ),
-          onPressed: () =>Navigator.pop(context),
+          onPressed: () =>
+          {
+            showAlertDialog(context),
+          //  Navigator.pop(context),
+
+          },
         ),
         actions: [
           IconButton(
@@ -113,38 +119,60 @@ class _EditProfilePageState extends State<EditProfilePage>{
           SizedBox(
             height: 35,
           ),
-         FutureBuilder(
-          future: getUserInfo(),
-          builder: (context, snapshot) {
-              if(snapshot.hasData) {
-              return buildTextField("Nombre",snapshot.data['firstName'], false, firstNameEditingController);
 
-              } else {return CircularProgressIndicator();
-              }}),
-          FutureBuilder(
-              future: getUserInfo(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData) {
-                  return buildTextField("Apellido",snapshot.data['lastName'], false, lastNameEditingController);
+           FutureBuilder(
+               future: getUserInfo(),
+               builder: (context, snapshot) {
+                 if (snapshot.hasData) {
+                   userName = snapshot.data['firstName'];
+                   return buildTextField(
+                       "Nombre", userName, false, firstNameEditingController);
+                 } else {
+                   return LinearProgressIndicator();
+                 }
+               }),
+           FutureBuilder(
+               future: getUserInfo(),
+               builder: (context, snapshot) {
+                 if (snapshot.hasData) {
+                   lastName = snapshot.data['lastName'];
+                   return buildTextField(
+                       "Apellido", lastName, false, lastNameEditingController);
+                 } else {
+                   return LinearProgressIndicator();
+                 }
+               }),
+           FutureBuilder(
+               future: getUserInfo(),
+               builder: (context, snapshot) {
+                 if (snapshot.hasData) {
+                   address = snapshot.data['address'];
+                   if (address == '') {
+                     return buildTextField("Dirección de Entrega", "-", false,
+                         addressEditingController);
+                   }
+                   return buildTextField("Dirección de Entrega", address, false,
+                       addressEditingController);
+                 } else {
+                   return LinearProgressIndicator();
+                 }
+               }),
+           FutureBuilder(
+               future: getUserInfo(),
+               builder: (context, snapshot) {
+                 if (snapshot.hasData) {
+                   phoneNumber = snapshot.data['phoneNumber'];
+                   if (phoneNumber == '') {
+                     return buildTextField(
+                         "Telefono", "-", false, phoneNumberEditingController);
+                   }
+                   return buildTextField("Telefono", phoneNumber, false,
+                       phoneNumberEditingController);
+                 } else {
+                   return LinearProgressIndicator();
+                 }
+               }),
 
-                } else {return CircularProgressIndicator();
-                }}),
-          FutureBuilder(
-              future: getUserInfo(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData) {
-                  return buildTextField("Dirección de Entrega","-", false, addressEditingController);
-
-                } else {return CircularProgressIndicator();
-                }}),
-          FutureBuilder(
-              future: getUserInfo(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData) {
-                  return buildTextField("Telefono",snapshot.data['phoneNumber'], false, phoneNumberEditingController);
-
-                } else {return CircularProgressIndicator();
-                }}),
           SizedBox(
             height: 35,
           ),
@@ -153,20 +181,33 @@ class _EditProfilePageState extends State<EditProfilePage>{
             children: [
               RaisedButton(
                 onPressed: () async {
-                  if(firstNameEditingController.text!=''&&lastNameEditingController.text!=''&&addressEditingController.text!=''&&phoneNumberEditingController.text!='') {
+
+                    if(firstNameEditingController.text==''){
+                      firstNameEditingController.text=userName;
+                    }
+                    if(lastNameEditingController.text==''){
+                      lastNameEditingController.text=lastName;
+                    }
+                    if(addressEditingController.text==''){
+                      addressEditingController.text=address;
+                    }
+                    if(phoneNumberEditingController.text==''){
+                      phoneNumberEditingController.text=phoneNumber;
+                    }
                     bool updated = await addInformation(
                         firstNameEditingController.text,
                         lastNameEditingController.text,
                         addressEditingController.text,
                         phoneNumberEditingController.text);
                     if (updated) {
+                      successDialog(context);
+
                       // un toast
                     } else {
                       // otro toast, o cargando, vemos que queda mejor
                     }
-                  }else{
 
-                  }
+
                 },
                 color: MyTheme.primary,
                 padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
@@ -215,10 +256,63 @@ class _EditProfilePageState extends State<EditProfilePage>{
             hintText: placeholder,
             hintStyle: TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.bold,
+              //fontWeight: FontWeight.bold,
               color: Colors.black,
             )),
       ),
     );
   }
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+    Widget cancelButton = TextButton(
+      child: Text("Si"),
+      onPressed:  () {
+        Navigator.pop(context);
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.pop(context);
+
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Cuidado"),
+      content: Text("Si regresás se perderán todos los datos no guardados\n ¿Deseás continuar?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+}
+Future<bool> successDialog( BuildContext context) {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.green,
+          title: Text('Datos cargados con éxito',style: TextStyle(color: Colors.white)),
+          content: Text('Add Success',style: TextStyle(color: Colors.white)),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Ok',style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      });
 }
