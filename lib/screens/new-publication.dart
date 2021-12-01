@@ -37,7 +37,14 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     S2Choice<String>(value: 'Consolas', title: 'Consolas'),
     S2Choice<String>(value: 'Disfraces', title: 'Disfraces'),
   ];
+  static List<S2Choice<String>> times = [
+    S2Choice<String>(value: 'Hora', title: 'Hora'),
+    S2Choice<String>(value: 'Dia', title: 'Día'),
+    S2Choice<String>(value: 'Mes', title: 'Mes'),
+    S2Choice<String>(value: 'Anio', title: 'Año'),
+  ];
   static String value;
+  static String time;
   List<File> _images = [];
   @override
   Widget build(BuildContext context) {
@@ -47,7 +54,6 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
           favOption: false,
           backButton: true,
           bgColor: MyTheme.primary,
-          title: "Nueva publicación",
       ),
 
       body: Container(
@@ -60,12 +66,34 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(bottom: 20.0),
+                  child: Text(
+                    "Título de la publicación",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.0),
                   child: TextField(
                     controller: _nameField,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'Nombre'),
+                        border: OutlineInputBorder(), hintText: 'Agregue un título a su producto'),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: Text(
+                    "Fotos del producto",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Divider(
+                      thickness: 1.0,
+                      color: Colors.grey
+                  ),
+                ),
+
                 ImageSlideshow(
                   width: double.infinity,
                   height: 250,
@@ -91,6 +119,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   },
                   isLoop: false,
                 ),
+
                 RawMaterialButton(
                   fillColor: Theme.of(context).accentColor,
                   child: Icon(Icons.add_photo_alternate_rounded,
@@ -103,14 +132,40 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   shape: CircleBorder(),
                 ),
                 Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Divider(
+                      thickness: 1.0,
+                      color: Colors.grey
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Text(
+                    "Precio por tiempo de uso",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Padding(
                     padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
                     child: TextField(
                       keyboardType: TextInputType.number,
                       controller: _priceField,
                       decoration: const InputDecoration(
-                          border: OutlineInputBorder(), hintText: 'Price'),
+                          border: OutlineInputBorder(), hintText: 'Elija un precio'),
                     ),
                   ),
+                Column(
+                  children: <Widget>[
+                    const SizedBox(height: 7),
+                    SmartSelect<String>.single(
+                        placeholder: "Seleccionar",
+                        title: 'Tiempo',
+                        value: time,
+                        choiceItems: times,
+                        onChange: (selected) => time = selected.value
+                    )
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Divider(
@@ -130,7 +185,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   child: TextField(
                     controller: _detailField,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'Escribe aquí una descripción'),
+                        border: OutlineInputBorder(), hintText: 'Escriba aquí una descripción'),
                   ),
                 ),
                 Padding(
@@ -140,11 +195,18 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                       color: Colors.grey
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: Text(
+                    "Categoria",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
                 Column(
                   children: <Widget>[
                     const SizedBox(height: 7),
                     SmartSelect<String>.single(
-                        placeholder: "seleccionar",
+                        placeholder: "Seleccionar",
                         title: 'Categorias',
                         value: value,
                         choiceItems: options,
@@ -178,7 +240,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      "Guardar",
+                      "Publicar",
                       style: TextStyle(
                           fontSize: 14,
                           letterSpacing: 2.2,

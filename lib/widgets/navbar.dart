@@ -105,6 +105,7 @@ class _NavbarState extends State<Navbar> {
                             onPressed: () {
                                 Navigator.pop(context);
                             }),
+
                     if(widget.searchBar)
                       Container(
                           height: (MediaQuery.of(context).size.height)/2,
