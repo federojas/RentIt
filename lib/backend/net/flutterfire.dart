@@ -134,6 +134,10 @@ Future<DocumentReference> addPublication(
         FirebaseFirestore.instance.collection('Publications');
     DocumentReference result =
         await collectionReference.add(publicationModel.toMap());
+    await result.update({
+      "id": result.id
+    });
+    publicationModel.id = result.id;
     return result;
   } catch (e) {
     return null;
@@ -262,6 +266,21 @@ Future<List<PublicationModel>> getPublicationsByCategory(
   }
 }
 
+Future<void> addFavourite(PublicationModel publicationModel) async {
+  DocumentReference documentReference = FirebaseFirestore.instance.collection('Publications').doc(publicationModel.id);
+  await documentReference.update({
+    "isFavourite": true
+  });
+  publicationModel.isFavourite = true;
+}
+
+Future<void> removeFavourite(PublicationModel publicationModel) async {
+  DocumentReference documentReference = FirebaseFirestore.instance.collection('Publications').doc(publicationModel.id);
+  await documentReference.update({
+    "isFavourite": false
+  });
+  publicationModel.isFavourite = false;
+}
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/

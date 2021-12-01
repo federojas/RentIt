@@ -1,3 +1,5 @@
+import 'package:argon_flutter/backend/net/flutterfire.dart';
+
 class PublicationModel {
   String name;
   String uid;
@@ -5,10 +7,13 @@ class PublicationModel {
   String category;
   String price;
   String timeUnit;
+  String id;
+  bool isFavourite;
   List<String> images;
 
   PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit}) {
     this.images = [];
+    isFavourite = false;
   }
 
   factory PublicationModel.fromMap(map) {
@@ -34,5 +39,13 @@ class PublicationModel {
       'images': images,
       'timeUnit': timeUnit
     };
+  }
+
+  void fav() {
+    addFavourite(this);
+  }
+
+  void unfav() {
+    removeFavourite(this);
   }
 }
