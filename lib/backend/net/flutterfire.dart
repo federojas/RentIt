@@ -43,7 +43,8 @@ Future<bool> register(String email, String password) async {
   }
 }
 
-Future<bool> addInformation(String firstName, String lastName, String address, String phoneNumber) async {
+Future<bool> addInformation(String firstName, String lastName, String address,
+    String phoneNumber) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
 
@@ -101,16 +102,15 @@ Future<void> uploadUserImage(File file) async {
 
     UploadTask uploadTask = ref.putFile(file);
     await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) {
-      DocumentReference documentReference = FirebaseFirestore.instance
-          .collection('Users')
-          .doc(_user.uid)
-          .collection('Info')
-          .doc("info");
-      documentReference.update({"image": value});
-    }));
+          DocumentReference documentReference = FirebaseFirestore.instance
+              .collection('Users')
+              .doc(_user.uid)
+              .collection('Info')
+              .doc("info");
+          documentReference.update({"image": value});
+        }));
     print('File Uploaded');
-
-  } on FirebaseException catch(e) {
+  } on FirebaseException catch (e) {
     return null;
   }
 }
@@ -125,26 +125,30 @@ Future<void> uploadUserImage(File file) async {
   Tercer paso llamo a savePublicationImages con la referencia al documento en el que
   quiero que se guarden (el que me devolvio addPublication)
  */
-Future<DocumentReference> addPublication(PublicationModel publicationModel) async {
+Future<DocumentReference> addPublication(
+    PublicationModel publicationModel) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
     publicationModel.uid = _user.uid;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications');
-    DocumentReference result = await collectionReference.add(publicationModel.toMap());
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('Publications');
+    DocumentReference result =
+        await collectionReference.add(publicationModel.toMap());
     return result;
   } catch (e) {
     return null;
   }
 }
 
-Future<void> savePublicationImages(List<File> _images, DocumentReference ref) async {
+Future<void> savePublicationImages(
+    List<File> _images, DocumentReference ref) async {
   _images.forEach((image) async {
     String imageURL = await uploadFile(image);
-    ref.update({"images": FieldValue.arrayUnion([imageURL])});
+    ref.update({
+      "images": FieldValue.arrayUnion([imageURL])
+    });
   });
 }
-
 
 // este metodo es auxiliar, no llamarlo.
 Future<String> uploadFile(File _image) async {
@@ -153,17 +157,14 @@ Future<String> uploadFile(File _image) async {
   String URL = "";
   UploadTask uploadTask = ref.putFile(_image);
   await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) {
-    URL = value;
-  }));
+        URL = value;
+      }));
   return URL;
 }
 
 Future<bool> removePublication(String id) async {
   try {
-    FirebaseFirestore.instance
-        .collection('Publications')
-        .doc(id)
-        .delete();
+    FirebaseFirestore.instance.collection('Publications').doc(id).delete();
     return true;
   } catch (e) {
     return false;
@@ -173,24 +174,29 @@ Future<bool> removePublication(String id) async {
 Future<List<PublicationModel>> getUserPublications() async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications');
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    List<PublicationModel> list;
-    for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      if(_user.uid == data['uid']) {
-        PublicationModel pm = PublicationModel();
-        pm.name = data['name'];
-        pm.uid = data['uid'];
-        pm.detail = data['detail'];
-        pm.category = data['category'];
-        pm.price = data['price'];
-        pm.images = data['images'];
-        list.add(pm);
-      }
-    }
-    return list;
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(_user.uid == doc['uid']) {
+          PublicationModel pm = PublicationModel();
+          print(doc["name"]);
+          pm.name = doc['name'];
+          pm.uid = doc['uid'];
+          pm.detail = doc['detail'];
+          pm.category = doc['category'];
+          pm.price = doc['price'];
+          for (int i = 0; i < doc['images'].length; i++) {
+            pm.images.add(doc['images'][i]);
+          }
+          ans.add(pm);
+        }
+      });
+    });
+
+    return ans;
   } catch (e) {
     return null;
   }
@@ -198,57 +204,65 @@ Future<List<PublicationModel>> getUserPublications() async {
 
 Future<List<PublicationModel>> getAllPublications() async {
   try {
-    User _user = FirebaseAuth.instance.currentUser;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications');
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    List<PublicationModel> list;
-    for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
         PublicationModel pm = PublicationModel();
-        pm.name = data['name'];
-        pm.uid = data['uid'];
-        pm.detail = data['detail'];
-        pm.category = data['category'];
-        pm.price = data['price'];
-        pm.images = data['images'];
-        list.add(pm);
-    }
-    return list;
+        print(doc["name"]);
+        pm.name = doc['name'];
+        pm.uid = doc['uid'];
+        pm.detail = doc['detail'];
+        pm.category = doc['category'];
+        pm.price = doc['price'];
+        for (int i = 0; i < doc['images'].length; i++) {
+          pm.images.add(doc['images'][i]);
+        }
+        ans.add(pm);
+      });
+    });
+
+    return ans;
   } catch (e) {
     return null;
   }
 }
 
-Future<List<PublicationModel>> getPublicationsByCategory(String category) async {
+Future<List<PublicationModel>> getPublicationsByCategory(
+    String category) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
-    CollectionReference collectionReference = FirebaseFirestore.instance
-        .collection('Publications');
-    QuerySnapshot querySnapshot = await collectionReference.get();
-    List<PublicationModel> list;
-    for (var doc in querySnapshot.docs) {
-      Map<String, dynamic> data = doc.data();
-      if(category == data['category']) {
-        PublicationModel pm = PublicationModel();
-        pm.name = data['name'];
-        pm.uid = data['uid'];
-        pm.detail = data['detail'];
-        pm.category = data['category'];
-        pm.price = data['price'];
-        pm.images = data['images'];
-        list.add(pm);
-      }
-    }
-    return list;
+    List<PublicationModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Publications')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(category == doc['category']) {
+          PublicationModel pm = PublicationModel();
+          print(doc["name"]);
+          pm.name = doc['name'];
+          pm.uid = doc['uid'];
+          pm.detail = doc['detail'];
+          pm.category = doc['category'];
+          pm.price = doc['price'];
+          for (int i = 0; i < doc['images'].length; i++) {
+            pm.images.add(doc['images'][i]);
+          }
+          ans.add(pm);
+        }
+      });
+    });
+
+    return ans;
   } catch (e) {
     return null;
   }
 }
+
 /// ******************************************************************************************************/
 ///
 /// ****************************************** ORDERS ****************************************************/
 ///
-
-
-

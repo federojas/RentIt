@@ -26,29 +26,28 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
       shape: CircularNotchedRectangle(),
       //notchMargin: 16,
       child: Container(
-
         child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          buildTabItem(
-            index: 0,
-            icon: Icon(Icons.home),
-          ),
-          buildTabItem(
-            index: 1,
-            icon: Icon(Icons.favorite_border),
-          ),
-          placeholder,
-          buildTabItem(
-            index: 2,
-            icon: Icon(Icons.notifications),
-          ),
-          buildTabItem(
-            index: 3,
-            icon: Icon(Icons.account_circle_rounded),
-          ),
-        ],
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buildTabItem(
+              index: 0,
+              icon: Icon(Icons.home),
+            ),
+            buildTabItem(
+              index: 1,
+              icon: Icon(Icons.favorite),
+            ),
+            placeholder,
+            buildTabItem(
+              index: 2,
+              icon: Icon(Icons.notifications),
+            ),
+            buildTabItem(
+              index: 3,
+              icon: Icon(Icons.account_circle_rounded),
+            ),
+          ],
+        ),
       ),
     );
   }
