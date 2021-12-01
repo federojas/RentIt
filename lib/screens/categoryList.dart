@@ -35,6 +35,35 @@ class _CategoryListState extends State<CategoryList> {
     pm.category = "category";
     pm.price = "price";
     pm.images = null;
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.none &&
+            snapshot.hasData == null) {
+          return Container();
+        } else {
+          return Container(
+              padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+              child: ListView.builder(
+                itemCount: snapshot.data == null ? 0 : snapshot.data.length,
+                itemBuilder: (context, index) {
+                  PublicationModel pm = snapshot.data[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                        backgroundImage: NetworkImage(pm.images[0]),
+                        radius: 25.0),
+                    title: Text(pm.name),
+                    subtitle: Text(pm.price),
+                    trailing: Icon(Icons.favorite_border),
+                  );
+                },
+              )
+          );
+        }
+      },
+      future: getPublicationsByCategory(category),
+    );
+
+    /*
     return Container(
         padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
         child: ListView(
@@ -46,7 +75,7 @@ class _CategoryListState extends State<CategoryList> {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             FutureBuilder(
-                future: getAllPublications(),
+                future: getPublicationsByCategory(category),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     PublicationModel pm = snapshot.data[0];
@@ -64,5 +93,7 @@ class _CategoryListState extends State<CategoryList> {
                 }),
           ],
         ));
+
+     */
   }
 }
