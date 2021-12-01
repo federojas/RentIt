@@ -41,26 +41,37 @@ class _CategoryListState extends State<CategoryList> {
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null && snapshot.data.length != 0) {
           return Container(
-              padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              height: MediaQuery.of(context).size.height,
               child: ListView.builder(
                 itemCount: snapshot.data == null ? 0 : snapshot.data.length,
                 itemBuilder: (context, index) {
                   PublicationModel pm = snapshot.data[index];
-                  return ListTile(
-                    onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(pm)));},
-                    leading: CircleAvatar(
-                        backgroundImage: NetworkImage(pm.images[0]),
-                        radius: 25.0),
-                    title: Text(pm.name),
-                    subtitle: Text(pm.price),
-                    trailing: IconButton(
-                        icon: pm.isFavourite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-                        onPressed: () {
-                          setState(() {
-                            pm.isFavourite ? removeFavourite(pm) : addFavourite(pm);
-                          });
-                        }),
-                  );
+                  return Column(children:[
+                    ListTile(
+                      onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(pm)));},
+                      leading: ConstrainedBox(
+                        constraints: BoxConstraints(
+                            minWidth: MediaQuery.of(context).size.width/2.5,
+                        ),
+                        child: Image.network(pm.images[0], fit: BoxFit.cover),
+                      ),
+                      title: Text(pm.name),
+                      subtitle: Row(children:[Text("\$ ", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black)),
+                                    Text(pm.price, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black)),
+                                    Text("\\", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black)),
+                                    Text(pm.timeUnit, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black))]),
+                       trailing: IconButton(
+                               icon: pm.isFavourite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+                               onPressed: () {
+                                     setState(() {
+                                       pm.isFavourite ? removeFavourite(pm) : addFavourite(pm);
+                      });
+                    }),
+                    ),
+                    Divider(thickness: 0.5,
+                        color: Colors.grey),
+                  ]);
                 },
               )
           );
