@@ -1,4 +1,5 @@
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/categoryList.dart';
 import 'package:argon_flutter/screens/new-publication.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
@@ -19,6 +20,7 @@ import 'package:argon_flutter/screens/notifications.dart';
 import 'package:argon_flutter/screens/edit-profile.dart';
 import 'package:argon_flutter/screens/favourites.dart';
 import 'package:argon_flutter/screens/login.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -50,7 +52,8 @@ class MyApp extends StatelessWidget {
           "/product": (BuildContext context) => new ProductView(),
           "/notifications": (BuildContext context) => new Notifications(),
           "/login": (BuildContext context) => new Login(),
-          "/edit-profile":(BuildContext context)=> new EditProfilePage(),
+          "/edit-profile": (BuildContext context) => new EditProfilePage(),
+          "/category-products": (BuildContext context) => CategoryList(),
         });
   }
 }
@@ -88,7 +91,10 @@ class _MainPageState extends State<MainPage> {
           child: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NewPublicationScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NewPublicationScreen()));
               /*
               DialogUtils.showCustomDialog(
                 context,

@@ -1,3 +1,4 @@
+import 'package:argon_flutter/screens/categoryList.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
@@ -23,9 +24,13 @@ class CardSmall extends StatelessWidget {
         child: Container(
       height: 180,
       child: GestureDetector(
-        onTap: tap,
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryList(category: title)));
+        },
         child: Card(
-
             elevation: 1,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))),
@@ -36,14 +41,12 @@ class CardSmall extends StatelessWidget {
                     flex: 2,
                     child: Container(
                         decoration: BoxDecoration(
-                            borderRadius:  BorderRadius.all(Radius.circular(16.0)),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16.0)),
                             image: DecorationImage(
                               image: NetworkImage(img),
                               fit: BoxFit.cover,
-                            )
-                        )
-                    )
-                ),
+                            )))),
                 Flexible(
                     flex: 0,
                     child: Padding(
@@ -53,7 +56,8 @@ class CardSmall extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(title, textAlign: TextAlign.center,
+                          Text(title,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: MyTheme.header, fontSize: 13)),
                         ],

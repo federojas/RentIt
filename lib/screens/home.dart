@@ -1,4 +1,3 @@
-
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -41,51 +40,48 @@ final Map<String, Map<String, String>> homeCards = {
 };
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
           searchBar: true,
           //bgColor: Color.fromRGBO(225,129,106,1)
-            bgColor: MyTheme.primary
-        ),
+          bgColor: MyTheme.primary),
 //      backgroundColor: Color.fromRGBO(234, 236, 238,1), //esto despues vemos si lo sacamos, para mi queda mas claro
       backgroundColor: MyTheme.bgColorScreen,
 
-        body: Container(
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Text(
-                    '¡Ofertas RentIt!',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-
-          CarouselSlider(
-            items: [
+      body: Container(
+        padding: EdgeInsets.only(left: 24.0, right: 24.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
               Padding(
-                padding: const EdgeInsets.only(bottom: 1.0),
-                child: CardSquare(
-                    cta: "",
-                    title: homeCards["Ice Cream"]['title'],
-                    img: homeCards["Ice Cream"]['image'],
-                    tap: () {
-                      Navigator.pushNamed(context, '/pro');
-                    }),
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Text(
+                  '¡Ofertas RentIt!',
+                  textAlign: TextAlign.center,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                ),
               ),
-            ],
-            options: CarouselOptions(
-              autoPlay: true,
-            ),
-          ),
-
+              CarouselSlider(
+                items: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 1.0),
+                    child: CardSquare(
+                        cta: "",
+                        title: homeCards["Ice Cream"]['title'],
+                        img: homeCards["Ice Cream"]['image'],
+                        tap: () {
+                          Navigator.pushNamed(context, '/pro');
+                        }),
+                  ),
+                ],
+                options: CarouselOptions(
+                  autoPlay: true,
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
@@ -106,48 +102,52 @@ class Home extends StatelessWidget {
                     title: "Consolas",
                     img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
                   ),
-                  ],
-                ),
-                SizedBox(height:9.0),SizedBox(height: 8.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CardSmall(
-                        cta: "View article",
-                        title: "Consolas",
-                        img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
-                    ),
-                    SizedBox(width: 16.0),
-                    CardSmall(
-                        cta: "View article",
-                        title: "Bicicletas",
-                        img: "https://labicikleta.com/wp-content/uploads/2016/07/FeatureBiciMontana-770x513.jpg",
-                    )
-                  ],
-                ),
-                SizedBox(height: 8.0),SizedBox(height: 8.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CardSmall(
-                      cta: "View article",
-                      title: "Juegos",
-                      img: "http://d2r9epyceweg5n.cloudfront.net/stores/001/239/905/products/ene-3-plastico1-ca76755057a823aeea16165340604100-640-0.jpg",
-                    ),
-                    SizedBox(width: 16.0),
-                    CardSmall(
-                      cta: "View article",
-                      title: "Artículos playa",
-                      img: "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
-                    )
-                  ],
-                ),
-                SizedBox(height: 124.0),
-              ],
-
-            ),
+                ],
+              ),
+              SizedBox(height: 9.0),
+              SizedBox(height: 8.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CardSmall(
+                    cta: "View article",
+                    title: "Consolas",
+                    img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
+                  ),
+                  SizedBox(width: 16.0),
+                  CardSmall(
+                    cta: "View article",
+                    title: "Bicicletas",
+                    img:
+                        "https://labicikleta.com/wp-content/uploads/2016/07/FeatureBiciMontana-770x513.jpg",
+                  )
+                ],
+              ),
+              SizedBox(height: 8.0),
+              SizedBox(height: 8.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CardSmall(
+                    cta: "View article",
+                    title: "Juegos",
+                    img:
+                        "http://d2r9epyceweg5n.cloudfront.net/stores/001/239/905/products/ene-3-plastico1-ca76755057a823aeea16165340604100-640-0.jpg",
+                  ),
+                  SizedBox(width: 16.0),
+                  CardSmall(
+                    cta: "View article",
+                    title: "Artículos playa",
+                    img:
+                        "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
+                  )
+                ],
+              ),
+              SizedBox(height: 124.0),
+            ],
           ),
         ),
+      ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
