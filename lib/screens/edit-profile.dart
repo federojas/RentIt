@@ -4,6 +4,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class settingsUI extends StatelessWidget{
   @override
@@ -95,24 +96,41 @@ class _EditProfilePageState extends State<EditProfilePage>{
                           ))),
                 ),
                 Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          width: 4,
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                        ),
-                        color: MyTheme.primary,
-                      ),
-                      child: Icon(
+                  bottom:0,
+                  right: 0,
+                  child:CircleAvatar(
+                    radius: 20,
+                    backgroundColor: MyTheme.primary,
+                    child: IconButton(
+                      icon: Icon(
                         Icons.edit,
                         color: Colors.white,
                       ),
-                    )),
+                      onPressed:() =>
+                      {
+                        showPictureDialog(context),
+                        //  Navigator.pop(context),
+
+                      },
+                    ),)
+                )
+                // Positioned(
+                //     bottom: 1,
+                //     right: 1,
+                //     child: Container(
+                //       height: 40,
+                //       width: 40,
+                //       decoration: BoxDecoration(
+                //         shape: BoxShape.circle,
+                //         border: Border.all(
+                //           width: 4,
+                //           color: Theme.of(context).scaffoldBackgroundColor,
+                //         ),
+                //         color: MyTheme.primary,
+                //       ),
+                //
+                //
+                //     )),
               ],
             ),
           ),
@@ -316,3 +334,42 @@ Future<bool> successDialog( BuildContext context) {
         );
       });
 }
+openCamera(){
+  PickedFile pickedFile = ( ImagePicker().pickImage(
+    source: ImageSource.camera,
+    maxWidth: 1800,
+    maxHeight: 1800,
+  )) as PickedFile;
+}
+openGallery(){
+  PickedFile pickedFile = ( ImagePicker().pickImage(
+    source: ImageSource.gallery,
+    maxWidth: 1800,
+    maxHeight: 1800,
+  )) as PickedFile;
+}
+Future<void> showPictureDialog(BuildContext context) {
+  return showDialog(context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: new SingleChildScrollView(
+            child: new ListBody(
+              children: <Widget>[
+                GestureDetector(
+                  child: new Text('Tomar una foto de la cámara'),
+                  onTap: openCamera,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                ),
+                GestureDetector(
+                  child: new Text('Seleccionar de la galeria'),
+                  onTap: openGallery,
+                ),
+              ],
+            ),
+          ),
+        );
+      });
+}
+
