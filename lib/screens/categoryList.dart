@@ -65,17 +65,22 @@ class _CategoryListState extends State<CategoryList> {
               )
           );
         } else if( snapshot.connectionState == ConnectionState.waiting){
-          return Container(
+          return Align(
+              alignment: Alignment.center,
+            child: Container(
             child: CircularProgressIndicator()
-          );
+          ),);
         } else {
-          return Container(
-            child: Text(
-              "No hay productos de  todavía",
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+          return Align(
+              alignment: Alignment.center,
+            child: Container(
+              child: Text(
+                "No hay publicaciones",
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+          ),
           );
         }
       },
