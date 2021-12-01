@@ -4,9 +4,10 @@ class PublicationModel {
   String detail;
   String category;
   String price;
+  String timeUnit;
   List<String> images;
 
-  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images});
+  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit});
 
   factory PublicationModel.fromMap(map) {
     return PublicationModel(
@@ -15,7 +16,8 @@ class PublicationModel {
       detail: map['detail'],
       category: map['category'],
       price: map['price'],
-      images: map['images']
+      images: map['images'],
+      timeUnit: map['timeUnit']
 
     );
   }
@@ -28,6 +30,7 @@ class PublicationModel {
       'category': category,
       'price': price,
       'images': images,
+      'timeUnit': timeUnit
     };
   }
 }
