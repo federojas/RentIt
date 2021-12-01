@@ -37,10 +37,7 @@ class _CategoryListState extends State<CategoryList> {
     pm.images = null;
     return FutureBuilder(
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.none &&
-            snapshot.hasData == null) {
-          return Container();
-        } else {
+        if (snapshot.hasData && snapshot.data != null && snapshot.data.length != 0) {
           return Container(
               padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
               child: ListView.builder(
@@ -57,6 +54,19 @@ class _CategoryListState extends State<CategoryList> {
                   );
                 },
               )
+          );
+        } else if( snapshot.connectionState == ConnectionState.waiting){
+          return Container(
+            child: CircularProgressIndicator()
+          );
+        } else {
+          return Container(
+            child: Text(
+              "No hay productos de  todavía",
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
           );
         }
       },
