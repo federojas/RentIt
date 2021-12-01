@@ -222,6 +222,70 @@ class ProfileState extends State<Profile> {
                                         //           fontSize: 18.0,
                                         //           fontWeight: FontWeight.w200)),
                                         // ),
+                                        SizedBox(height: 10.0),
+                                        Align(
+                                          child:FutureBuilder(
+                                              future: getUserInfo(),
+                                              builder: (context, snapshot) {
+                                                if(snapshot.hasData) {
+                                                  return Text("Dirección:",
+                                                      style: TextStyle(
+                                                          color: MyTheme.black,
+                                                          fontSize: 20.0));
+                                                } else {return CircularProgressIndicator();}
+                                              }
+                                          ),
+                                        ),
+                                        Align(
+                                          child:FutureBuilder(
+                                              future: getUserInfo(),
+                                              builder: (context, snapshot) {
+                                                if(snapshot.hasData) {
+                                                  return Text(snapshot.data['address'],
+                                                      style: TextStyle(
+                                                          color: MyTheme.black,
+                                                          fontSize: 20.0));
+                                                } else {return CircularProgressIndicator();}
+                                              }
+                                          ),
+                                        ),
+                                        SizedBox(height: 10.0),
+                                        Align(
+                                          child:FutureBuilder(
+                                              future: getUserInfo(),
+                                              builder: (context, snapshot) {
+                                                if(snapshot.hasData) {
+                                                  return Text("Telefono:",
+                                                      style: TextStyle(
+                                                          color: MyTheme.black,
+                                                          fontSize: 20.0));
+                                                } else {return CircularProgressIndicator();}
+                                              }
+                                          ),
+                                        ),
+                                        Align(
+                                          child:FutureBuilder(
+                                              future: getUserInfo(),
+                                              builder: (context, snapshot) {
+                                                if(snapshot.hasData) {
+                                                  if(snapshot.data['phoneNumber']!='') {
+                                                    return Text(snapshot
+                                                        .data['phoneNumber'],
+                                                        style: TextStyle(
+                                                            color: MyTheme
+                                                                .black,
+                                                            fontSize: 20.0));
+                                                  }else{
+                                                    return Text("-",
+                                                        style: TextStyle(
+                                                            color: MyTheme
+                                                                .black,
+                                                            fontSize: 20.0));
+                                                  }
+                                                } else {return CircularProgressIndicator();}
+                                              }
+                                          ),
+                                        ),
                                         Divider(
                                           height: 40.0,
                                           thickness: 1.5,

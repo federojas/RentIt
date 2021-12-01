@@ -153,11 +153,19 @@ class _EditProfilePageState extends State<EditProfilePage>{
             children: [
               RaisedButton(
                 onPressed: () async {
-                  bool updated = await addInformation(firstNameEditingController.text, lastNameEditingController.text, addressEditingController.text, phoneNumberEditingController.text);
-                  if(updated) {
-                    // un toast
-                  } else {
-                    // otro toast, o cargando, vemos que queda mejor
+                  if(firstNameEditingController.text!=''&&lastNameEditingController.text!=''&&addressEditingController.text!=''&&phoneNumberEditingController.text!='') {
+                    bool updated = await addInformation(
+                        firstNameEditingController.text,
+                        lastNameEditingController.text,
+                        addressEditingController.text,
+                        phoneNumberEditingController.text);
+                    if (updated) {
+                      // un toast
+                    } else {
+                      // otro toast, o cargando, vemos que queda mejor
+                    }
+                  }else{
+
                   }
                 },
                 color: MyTheme.primary,
