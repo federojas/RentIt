@@ -28,6 +28,13 @@ class _CategoryListState extends State<CategoryList> {
   }
 
   Widget getListView() {
+    PublicationModel pm = PublicationModel();
+    pm.name = "name";
+    pm.uid = "uid";
+    pm.detail = "detail";
+    pm.category = "category";
+    pm.price = "price";
+    pm.images = null;
     return Container(
         padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
         child: ListView(
@@ -38,9 +45,33 @@ class _CategoryListState extends State<CategoryList> {
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            ListTile(
-                // leading: PublicationModel(),
-                )
+            FutureBuilder(
+                future: getAllPublications(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    print(snapshot.data);
+                    return ListTile(
+                      leading: CircleAvatar(
+                          backgroundImage: AssetImage(
+                              "https://unsplash.com/photos/0POwK6iAiRQ"),
+                          radius: 25.0),
+                      title: Text("title"),
+                      subtitle: Text("price"),
+                      trailing: Icon(Icons.favorite_border),
+                    );
+                  } else {
+                    return CircularProgressIndicator();
+                  }
+                }),
+            // ListTile(
+            //   leading: CircleAvatar(
+            //       backgroundImage:
+            //           AssetImage("https://unsplash.com/photos/0POwK6iAiRQ"),
+            //       radius: 25.0),
+            //   title: Text(pm.name),
+            //   subtitle: Text(pm.price),
+            //   trailing: Icon(Icons.favorite_border),
+            // )
           ],
         ));
   }
