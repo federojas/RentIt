@@ -37,8 +37,7 @@ class Notifications extends StatelessWidget{
                   purchaseNotif: true,
                   title:"Consola PS5",
                   img: "https://www.nsx.com.ar/archivos/N_omicron_1.png",
-                  tap: () {
-                    Navigator.pushNamed(context, '/pro');}
+                  tap: () {Navigator.pushNamed(context, '/pro');}
 
               ),
               CardNotif(
@@ -58,7 +57,6 @@ class Notifications extends StatelessWidget{
                     Navigator.pushNamed(context, '/pro');}
 
               ),
-              SizedBox(height: 50.0),
             ],
           ),
         ),
