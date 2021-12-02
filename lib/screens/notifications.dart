@@ -1,4 +1,6 @@
 import 'dart:ffi';
+import 'package:argon_flutter/backend/models/rent-model.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/card-category.dart';
 import 'package:argon_flutter/widgets/card-notif.dart';
@@ -29,7 +31,50 @@ class Notifications extends StatelessWidget{
       backgroundColor: MyTheme.bgColorScreen,
       body: Container(
         padding: EdgeInsets.only(left: 24.0, right: 24.0, top: 15.0),
-        child: SingleChildScrollView(
+        child: FutureBuilder(
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data != null && snapshot.data.length != 0) {
+              return Container(
+                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+                  child: ListView.builder(
+                    itemCount: snapshot.data == null ? 0 : snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      RentModel rm = snapshot.data[index];
+                      return CardNotif(
+                          notifTitle: "Alquilaste",
+                          purchaseNotif: true,
+                          title: rm.productName,
+                          img: rm.image,
+                          tap: () {}
+                      );
+                    },
+                  )
+              );
+            } else if( snapshot.connectionState == ConnectionState.waiting){
+              return Align(
+                alignment: Alignment.center,
+                child: Container(
+                    child: CircularProgressIndicator()
+                ),
+              );
+            } else {
+              return Align(
+                alignment: Alignment.center,
+                child: Container(
+                  child: Text(
+                    "No has realizado alquileres",
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+              );
+            }
+          },
+          future: getUserRents(),
+        ),
+        /*
+        SingleChildScrollView(
           child: Column(
             children: [
               CardNotif(
@@ -59,7 +104,7 @@ class Notifications extends StatelessWidget{
               ),
             ],
           ),
-        ),
+        ), */
       ) ,
     );
     // TODO: implement build

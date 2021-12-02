@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/models/rent-model.dart';
 import 'package:argon_flutter/backend/models/user-model.dart';
 import 'package:argon_flutter/backend/net/mercadopago.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -357,6 +358,42 @@ Future<PaymentResult> addOrder(OrderModel orderModel) async {
     } else {
       throw Exception('Failed to create preference.');
     }
+  } catch (e) {
+    return null;
+  }
+}
+
+Future<bool> addRent(RentModel rentModel) async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    CollectionReference collectionReference =
+    FirebaseFirestore.instance.collection('Users').doc(_user.uid).collection('Rents');
+    await collectionReference.add(rentModel.toMap());
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+Future<List<RentModel>> getUserRents() async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    List<RentModel> ans = [];
+    await FirebaseFirestore.instance
+        .collection('Users').doc(_user.uid).collection('Rents')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        RentModel rm = RentModel();
+        rm.description = doc['description'];
+        print(rm.description);
+        rm.image = doc['image'];
+        rm.productName = doc['productName'];
+        rm.price = doc['price'];
+        ans.add(rm);
+      });
+    });
+    return ans;
   } catch (e) {
     return null;
   }

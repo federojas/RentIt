@@ -1,6 +1,7 @@
 
 import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/models/rent-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -120,6 +121,12 @@ class ListingPageState extends State<ListingScreen> {
                     // en ese link hay mas casos por si quieren contemplar
                     if(paymentResult.status == "approved") {
                       print("se aprobo el pago");
+                      RentModel rentModel = RentModel();
+                      rentModel.price = pm.price;
+                      rentModel.productName = pm.name;
+                      rentModel.image = pm.images[0];
+                      rentModel.description = pm.detail;
+                      addRent(rentModel);
                     } else if (paymentResult.status == "pending"){
                       // mostrar algo de cargando
                       print("cargando");
