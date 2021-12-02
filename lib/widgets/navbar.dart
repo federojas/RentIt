@@ -155,7 +155,7 @@ class _NavbarState extends State<Navbar> {
                           GestureDetector(
                             onTap: () => null,
                             child: IconButton(
-                                icon: Icon(Icons.shopping_basket,
+                                icon: Icon(Icons.shopping_bag ,
                                     color: !widget.transparent
                                         ? (widget.bgColor == MyTheme.white
                                         ? MyTheme.initial
