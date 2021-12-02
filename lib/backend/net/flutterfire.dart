@@ -153,7 +153,7 @@ Future<DocumentReference> addPublication(
 Future<void> savePublicationImages(
     List<File> _images, DocumentReference ref) async {
   _images.forEach((image) async {
-    String imageURL = await uploadFile(image);
+    String imageURL = await uploadFile(image, image.hashCode.toString());
     ref.update({
       "images": FieldValue.arrayUnion([imageURL])
     });
@@ -161,9 +161,8 @@ Future<void> savePublicationImages(
 }
 
 // este metodo es auxiliar, no llamarlo.
-Future<String> uploadFile(File _image) async {
-  final fileName = _image.toString();
-  final ref = FirebaseStorage.instance.ref('user_images/$fileName');
+Future<String> uploadFile(File _image, String fileName) async {
+  final ref = FirebaseStorage.instance.ref('publications_images/$fileName');
   String URL = "";
   UploadTask uploadTask = ref.putFile(_image);
   await uploadTask.whenComplete(() => ref.getDownloadURL().then((value) {
@@ -345,7 +344,7 @@ Future<PaymentResult> addOrder(OrderModel orderModel) async {
     await collectionReference.add(orderModel.toMap());
     Uri url = Uri.parse('https://api.mercadopago.com/checkout/preferences?access_token=TEST-1914964039544354-112822-76a67e6f1400654202f70eb959a208c7-315145485');
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": ${orderModel.productName},"description": ${orderModel.description},"quantity": 1,"currency_id": "ARS","unit_price": ${orderModel.price}, "picture_url": ${orderModel.image}],}';
+    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": ${orderModel.productName},"description": ${orderModel.description},"quantity": 1 ,"currency_id": "ARS","unit_price": ${orderModel.price}],}';
     Response response = await post(url, headers: headers, body: json);
 
     int statusCode = response.statusCode;
