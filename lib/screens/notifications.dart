@@ -17,7 +17,7 @@ class Notifications extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
-          title: "Notificaciones",
+          title: "Mis Alquileres",
           searchBar: false,
           rightOptions: false,
           //bgColor: Color.fromRGBO(225,129,106,1)

@@ -211,11 +211,6 @@ class ProfileState extends State<Profile> {
                                                           size: 30.0),
                                                       onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();})).then((_) => setState(() {}))
                                                   ),
-                                                  IconButton(
-                                                      icon: Icon(Icons.settings,
-                                                          color: MyTheme.muted,
-                                                          size: 30.0),
-                                                      onPressed: null),
                                             ])),
                                         // Align(
                                         //   child: Text("San Francisco, USA",
@@ -299,28 +294,6 @@ class ProfileState extends State<Profile> {
                                           Card(
                                             elevation: 1,
                                             child: ListTile(
-                                              title: Text('Notificaciones'),
-                                              leading: Icon(Icons.notifications),
-                                              onTap:  () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => Notifications(),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          Card(
-                                            elevation: 1,
-                                            child: ListTile(
-                                              title: Text('Mis alquileres'),
-                                              leading: Icon(Icons.shopping_bag_outlined),
-                                            ),
-                                          ),
-                                          Card(
-                                            elevation: 1,
-                                            child: ListTile(
                                               title: Text('Mis publicaciones'),
                                               leading: Icon(Icons.view_list),
                                               onTap:  () {
@@ -336,8 +309,24 @@ class ProfileState extends State<Profile> {
                                           Card(
                                             elevation: 1,
                                             child: ListTile(
+                                              title: Text('Mis alquileres'),
+                                              leading: Icon(Icons.shopping_basket_outlined),
+                                              onTap:  () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => Notifications(),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+
+                                          Card(
+                                            elevation: 1,
+                                            child: ListTile(
                                               title: Text('Favoritos'),
-                                              leading: Icon(Icons.favorite),
+                                              leading: Icon(Icons.favorite_border),
                                               onTap:  () {
                                                 Navigator.push(
                                                   context,

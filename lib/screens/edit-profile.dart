@@ -299,7 +299,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text("Cuidado"),
-      content: Text("Si regresás se perderán todos los datos no guardados\n ¿Deseás continuar?"),
+      content: Text("Si regresas se perderán todos los datos no guardados\n ¿Desea continuar?"),
       actions: [
         cancelButton,
         continueButton,
@@ -321,7 +321,6 @@ Future<bool> successDialog( BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.green,
           title: Text('Datos cargados con éxito',style: TextStyle(color: Colors.white)),
-          content: Text('Add Success',style: TextStyle(color: Colors.white)),
           actions: <Widget>[
             FlatButton(
               child: Text('Ok',style: TextStyle(color: Colors.white)),
@@ -363,7 +362,7 @@ Future<void> showPictureDialog(BuildContext context) {
                   padding: EdgeInsets.all(8.0),
                 ),
                 GestureDetector(
-                  child: new Text('Seleccionar de la galeria'),
+                  child: new Text('Seleccionar de la galería'),
                   onTap: openGallery,
                 ),
               ],

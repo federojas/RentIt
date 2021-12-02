@@ -152,23 +152,10 @@ class ListingPageState extends State<ListingScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: 10.0),
               child: Text(
-                "Preguntas",
+                "Contacto",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
             ),
-            Padding(padding: EdgeInsets.only(bottom: 20.0),
-            child: TextField(
-              controller: null,
-              decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(bottom: 3.0, left: 5.0),
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  border: OutlineInputBorder(),
-                  hintText: "Escribí tu pregunta...",
-                  hintStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  )),
-            ),),
             ButtonTheme(
               minWidth: MediaQuery.of(context).size.width - 50.0,
               child: RaisedButton(
@@ -179,7 +166,7 @@ class ListingPageState extends State<ListingScreen> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               child: Text(
-                "Preguntar",
+                "Contactar",
                 style: TextStyle(
                     fontSize: 14,
                     letterSpacing: 2.2,
