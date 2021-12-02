@@ -1,4 +1,5 @@
 
+import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
@@ -106,7 +107,15 @@ class ListingPageState extends State<ListingScreen> {
             ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width - 50.0,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    OrderModel orderModel = OrderModel();
+                    orderModel.uid = "1";
+                    orderModel.productName = "nombre";
+                    orderModel.price = "20";
+                    orderModel.publicationId = "73";
+
+                    await addOrder(orderModel, "a");
+                  },
                   color: MyTheme.blue,
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                   elevation: 2,
