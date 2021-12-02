@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/models/user-model.dart';
+import 'package:argon_flutter/backend/net/mercadopago.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
 final fireStoreInstance = FirebaseFirestore.instance;
 
@@ -329,3 +332,18 @@ Future<List<PublicationModel>> getFavouritesPublications() async {
 ///
 /// ****************************************** ORDERS ****************************************************/
 ///
+
+Future<DocumentReference> addOrder(OrderModel orderModel, String preferenceId) async {
+  try {
+    User _user = FirebaseAuth.instance.currentUser;
+    orderModel.uid = _user.uid;
+    CollectionReference collectionReference =
+    FirebaseFirestore.instance.collection('Orders');
+    DocumentReference result =
+    await collectionReference.add(orderModel.toMap());
+    await MercadoPagoMobileCheckout.startCheckout(mpPublicKey, "315145485-2704e6dd-c3a7-40c7-a445-93cedf139732");
+    return result;
+  } catch (e) {
+    return null;
+  }
+}
