@@ -4,6 +4,7 @@ import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/models/rent-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
+import 'package:argon_flutter/screens/rent.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -110,29 +111,34 @@ class ListingPageState extends State<ListingScreen> {
                 minWidth: MediaQuery.of(context).size.width - 50.0,
                 child: RaisedButton(
                   onPressed: () async {
-                    OrderModel orderModel = OrderModel();
-                    orderModel.productName = pm.name;
-                    orderModel.price = pm.price;
-                    orderModel.description = pm.detail;
-                    orderModel.publicationId = pm.id;
-                    orderModel.image = pm.images[0];
-                    PaymentResult paymentResult = await addOrder(orderModel);
-                    // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
-                    // en ese link hay mas casos por si quieren contemplar
-                    if(paymentResult.status == "approved") {
-                      print("se aprobo el pago");
-                      RentModel rentModel = RentModel();
-                      rentModel.price = pm.price;
-                      rentModel.productName = pm.name;
-                      rentModel.image = pm.images[0];
-                      rentModel.description = pm.detail;
-                      addRent(rentModel);
-                    } else if (paymentResult.status == "pending"){
-                      // mostrar algo de cargando
-                      print("cargando");
-                    } else {
-                      print("no se aprobo el pago");
-                    }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RentScreen(pm),
+                        ));
+                    // OrderModel orderModel = OrderModel();
+                    // orderModel.productName = pm.name;
+                    // orderModel.price = pm.price;
+                    // orderModel.description = pm.detail;
+                    // orderModel.publicationId = pm.id;
+                    // orderModel.image = pm.images[0];
+                    // PaymentResult paymentResult = await addOrder(orderModel);
+                    // // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
+                    // // en ese link hay mas casos por si quieren contemplar
+                    // if(paymentResult.status == "approved") {
+                    //   print("se aprobo el pago");
+                    //   RentModel rentModel = RentModel();
+                    //   rentModel.price = pm.price;
+                    //   rentModel.productName = pm.name;
+                    //   rentModel.image = pm.images[0];
+                    //   rentModel.description = pm.detail;
+                    //   addRent(rentModel);
+                    // } else if (paymentResult.status == "pending"){
+                    //   // mostrar algo de cargando
+                    //   print("cargando");
+                    // } else {
+                    //   print("no se aprobo el pago");
+                    // }
                   },
                   color: MyTheme.blue,
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),

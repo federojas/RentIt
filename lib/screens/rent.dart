@@ -1,5 +1,7 @@
 
+import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/models/rent-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
 class RentScreen extends StatefulWidget {
   final PublicationModel pm;
@@ -17,6 +20,8 @@ class RentScreen extends StatefulWidget {
   RentScreenState createState() => RentScreenState(pm);
 }
 class RentScreenState extends State<RentScreen> {
+  String dropdownvalue = 'Aseguradora A';
+  var items =  ['Aseguradora A','Aseguradora B','Aseguradora C','A convenir'];
 
   final PublicationModel pm;
 
@@ -43,44 +48,47 @@ class RentScreenState extends State<RentScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    pm.name,
+                    "¡Completá los siguientes pasos para alquilar tu "+ pm.name+"!",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Divider(
+                      thickness: 1.0,
+                      color: Colors.grey
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    "Primer paso:",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
-                ImageSlideshow(
-                  width: double.infinity,
-                  height: 250,
-                  initialPage: 0,
-                  indicatorColor: Colors.blue,
-                  indicatorBackgroundColor: Colors.grey,
-                  children: [
-                    for (var i = 0; i < pm.images.length; i++)
-                      Image.network(
-                        pm.images[i],
-                        fit: BoxFit.cover,
+                Text("    Elegí como asegurarte:"),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      DropdownButton(
+                        value: dropdownvalue,
+                        icon: Icon(Icons.keyboard_arrow_down),
+                        items:items.map((String items) {
+                          return DropdownMenuItem(
+                              value: items,
+                              child: Text(items)
+                          );
+                        }
+                        ).toList(),
+                        onChanged: (String newValue){
+                          setState(() {
+                            dropdownvalue = newValue;
+                          });
+                        },
                       ),
-                  ],
-                  onPageChanged: (value) {
-                    print('Page changed: $value');
-                  },
-                  isLoop: false,
-                ),
-                ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width - 50.0,
-                  child: RaisedButton(
-                    onPressed: () {},
-                    color: MyTheme.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "Chatear ahora",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -91,17 +99,95 @@ class RentScreenState extends State<RentScreen> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Descripción",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    "Segundo paso:",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
+                Text("    Pagá con MercadoPago:"),
+
+                // Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //       thickness: 1.0,
+                //       color: Colors.grey
+                //   ),
+                // ),
+                ButtonTheme(
+                  minWidth: MediaQuery.of(context).size.width - 50.0,
+                  child: RaisedButton(
+                    onPressed: () async {
+                      OrderModel orderModel = OrderModel();
+                      orderModel.productName = pm.name;
+                      orderModel.price = pm.price;
+                      orderModel.description = pm.detail;
+                      orderModel.publicationId = pm.id;
+                      orderModel.image = pm.images[0];
+                      PaymentResult paymentResult = await addOrder(orderModel);
+                      // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
+                      // en ese link hay mas casos por si quieren contemplar
+                      if(paymentResult.status == "approved") {
+                        print("se aprobo el pago");
+                        RentModel rentModel = RentModel();
+                        rentModel.price = pm.price;
+                        rentModel.productName = pm.name;
+                        rentModel.image = pm.images[0];
+                        rentModel.description = pm.detail;
+                        addRent(rentModel);
+                      } else if (paymentResult.status == "pending"){
+                        // mostrar algo de cargando
+                        print("cargando");
+                      } else {
+                        print("no se aprobo el pago");
+                      }
+                    },
+                    color: MyTheme.blue,
+                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      "¡Alquilá ya!",
+                      style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 2.2,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8.0),
+
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Divider(
+                      thickness: 1.0,
+                      color: Colors.grey
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    pm.detail,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w300),
+                    "Tercer paso:",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
+              //  Text("    Contactá al vendedor:"),
+                ButtonTheme(
+                  //minWidth: MediaQuery.of(context).size.width - 50.0,
+                  child: RaisedButton(
+                    color: MyTheme.blue,
+                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+                    elevation: 2,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Text(
+                      "Contactá al vendedor",
+                      style: TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 2.2,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               ],
@@ -112,3 +198,5 @@ class RentScreenState extends State<RentScreen> {
     );
   }
 }
+
+

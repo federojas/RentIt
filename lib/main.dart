@@ -1,6 +1,7 @@
 import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/screens/categoryList.dart';
 import 'package:argon_flutter/screens/new-publication.dart';
+import 'package:argon_flutter/screens/rent.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
