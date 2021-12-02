@@ -211,11 +211,6 @@ class ProfileState extends State<Profile> {
                                                           size: 30.0),
                                                       onPressed: ()=>Navigator.push(context,MaterialPageRoute(builder: (context) {return EditProfilePage();})).then((_) => setState(() {}))
                                                   ),
-                                                  IconButton(
-                                                      icon: Icon(Icons.settings,
-                                                          color: MyTheme.muted,
-                                                          size: 30.0),
-                                                      onPressed: null),
                                             ])),
                                         // Align(
                                         //   child: Text("San Francisco, USA",

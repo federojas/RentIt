@@ -48,6 +48,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
   List<File> _images = [];
   @override
   Widget build(BuildContext context) {
+    bool loaded = false;
     return Scaffold(
       appBar: Navbar(
           rightOptions: false,
@@ -119,6 +120,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   elevation: 8,
                   onPressed: () async {
                     getImage();
+                    loaded = true;
                   },
                   padding: EdgeInsets.all(15),
                   shape: CircleBorder(),
@@ -215,7 +217,7 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
                     onPressed: () async {
-                      if(value != "" && _nameField.text != "" && _detailField.text != "" && _priceField.text != "") {
+                      if(value != "" && _nameField.text != "" && _detailField.text != "" && _priceField.text != "" && time != "" && _images.isNotEmpty) {
                         PublicationModel pm = PublicationModel();
                         pm.name = _nameField.text;
                         pm.detail = _detailField.text;
@@ -227,8 +229,19 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         pm.id = "73";
                         DocumentReference docRef = await addPublication(pm);
                         savePublicationImages(_images, docRef);
+                        successDialog(context);
                       } else {
-                        // TOAST DE QUE FALTA ALGUN CAMPO
+                        AlertDialog alert = AlertDialog(
+                          title: Text("ERROR"),
+                          content: Text("¡Por favor llene todos los campos!"),
+                        );
+                        // show the dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alert;
+                          },
+                        );
                       }
                     },
                     color: MyTheme.blue,
@@ -261,4 +274,25 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     }
   }
 
+  Future<bool> successDialog( BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.green,
+            title: Text('¡Publicación creada!',style: TextStyle(color: Colors.white)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok',style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
+  }
+
 }
+
