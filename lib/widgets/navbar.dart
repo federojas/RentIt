@@ -28,7 +28,7 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
       this.categoryTwo = "",
       this.tags,
       this.transparent = false,
-      this.rightOptions = true,
+      this.rightOptions = false,
       this.getCurrentPage,
       this.searchController,
       this.isOnSearch = false,
@@ -72,6 +72,7 @@ class _NavbarState extends State<Navbar> {
 
     return Container(
       height: 100.0,
+        width: (MediaQuery.of(context).size.width),
         // height: widget.searchBar
         //     ? (!categories
         //         ? (tagsExist ? 211.0 : 178.0)
@@ -91,7 +92,7 @@ class _NavbarState extends State<Navbar> {
                   offset: Offset(0, 5))
             ]),
         child: SafeArea(
-          child: Padding(
+          child: Container(
             padding: const EdgeInsets.all(25.0),
             child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,8 +109,8 @@ class _NavbarState extends State<Navbar> {
 
                     if(widget.searchBar)
                       Container(
-                          height: (MediaQuery.of(context).size.height)/2,
-                          width: (MediaQuery.of(context).size.width)/1.4,
+                          height: (MediaQuery.of(context).size.height),
+                          width: (MediaQuery.of(context).size.width)/1.15,
                           child: Input(
                                     placeholder: "¿Qué buscás?",
                                     controller: widget.searchController,

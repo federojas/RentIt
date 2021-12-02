@@ -40,7 +40,7 @@ class _TabBarMaterialWidgetState extends State<TabBarMaterialWidget> {
             placeholder,
             buildTabItem(
               index: 2,
-              icon: Icon(Icons.notifications),
+              icon: Icon(Icons.shopping_basket),
             ),
             buildTabItem(
               index: 3,
