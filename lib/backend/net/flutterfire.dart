@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:argon_flutter/backend/models/order-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
@@ -7,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
+import 'package:http/http.dart';
 
 final fireStoreInstance = FirebaseFirestore.instance;
 
@@ -333,7 +335,7 @@ Future<List<PublicationModel>> getFavouritesPublications() async {
 /// ****************************************** ORDERS ****************************************************/
 ///
 
-Future<DocumentReference> addOrder(OrderModel orderModel, String preferenceId) async {
+Future<DocumentReference> addOrder(OrderModel orderModel) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
     orderModel.uid = _user.uid;
@@ -341,9 +343,36 @@ Future<DocumentReference> addOrder(OrderModel orderModel, String preferenceId) a
     FirebaseFirestore.instance.collection('Orders');
     DocumentReference result =
     await collectionReference.add(orderModel.toMap());
-    await MercadoPagoMobileCheckout.startCheckout(mpPublicKey, "315145485-2704e6dd-c3a7-40c7-a445-93cedf139732");
-    return result;
+    Uri url = Uri.parse('https://api.mercadopago.com/checkout/preferences?access_token=TEST-1914964039544354-112822-76a67e6f1400654202f70eb959a208c7-315145485');
+    Map<String, String> headers = {"Content-type": "application/json"};
+    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": ${orderModel.productName},"description": ${orderModel.description},"quantity": 1,"currency_id": "ARS","unit_price": ${orderModel.price}, "picture_url": ${orderModel.image}],}';
+    Response response = await post(url, headers: headers, body: json);
+
+    int statusCode = response.statusCode;
+    String body = response.body;
+    print(body);
+    if (statusCode == 201) {
+      Preference preference = Preference.fromJson(jsonDecode(response.body));
+      await MercadoPagoMobileCheckout.startCheckout(mpPublicKey, preference.id);
+      return result;
+    } else {
+      throw Exception('Failed to create preference.');
+      return null;
+    }
+
   } catch (e) {
     return null;
+  }
+}
+
+class Preference {
+  final String id;
+
+  Preference({this.id});
+
+  factory Preference.fromJson(Map<String, dynamic> json) {
+    return Preference(
+      id: json['id'],
+    );
   }
 }

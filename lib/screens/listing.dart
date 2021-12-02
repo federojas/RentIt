@@ -109,12 +109,12 @@ class ListingPageState extends State<ListingScreen> {
                 child: RaisedButton(
                   onPressed: () async {
                     OrderModel orderModel = OrderModel();
-                    orderModel.uid = "1";
-                    orderModel.productName = "nombre";
-                    orderModel.price = "20";
-                    orderModel.publicationId = "73";
-
-                    await addOrder(orderModel, "a");
+                    orderModel.productName = pm.name;
+                    orderModel.price = pm.price;
+                    orderModel.description = pm.detail;
+                    orderModel.publicationId = pm.id;
+                    orderModel.image = pm.images[0];
+                    await addOrder(orderModel);
                   },
                   color: MyTheme.blue,
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),

@@ -2,16 +2,20 @@ class OrderModel {
   String publicationId;
   String price;
   String productName;
+  String description;
   String uid;
+  String image;
 
-  OrderModel({this.publicationId, this.price, this.productName, this.uid});
+  OrderModel({this.publicationId, this.price, this.productName, this.description, this.uid, this.image});
 
   factory OrderModel.fromMap(map) {
     return OrderModel(
         publicationId: map['publicationId'],
         price: map['price'],
         productName: map['productName'],
-        uid: map['uid']
+        description: map['description'],
+        uid: map['uid'],
+        image: map['image']
     );
   }
 
@@ -20,7 +24,9 @@ class OrderModel {
       'publicationId': publicationId,
       'price': price,
       'productName': productName,
-      'uid': uid
+      'description': description,
+      'uid': uid,
+      'image': image
     };
   }
 }
