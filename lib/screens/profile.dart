@@ -9,6 +9,7 @@ import 'package:argon_flutter/widgets/navbar.dart';
 
 import 'edit-profile.dart';
 import 'favourites.dart';
+import 'my-listings.dart';
 import 'notifications.dart';
 // import 'package:argon_flutter/widgets/drawer.dart';
 
@@ -322,6 +323,14 @@ class ProfileState extends State<Profile> {
                                             child: ListTile(
                                               title: Text('Mis publicaciones'),
                                               leading: Icon(Icons.view_list),
+                                              onTap:  () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => MyListings(),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                           Card(

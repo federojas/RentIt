@@ -98,19 +98,11 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   width: double.infinity,
                   height: 250,
                   initialPage: 0,
-                  indicatorColor: Colors.blue,
+                  indicatorColor: Colors.grey,
                   indicatorBackgroundColor: Colors.grey,
                   children: [
                     Image.network(
-                      "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      "http://d2r9epyceweg5n.cloudfront.net/stores/001/239/905/products/ene-3-plastico1-ca76755057a823aeea16165340604100-640-0.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                    Image.network(
-                      "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
+                      "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png",
                       fit: BoxFit.cover,
                     ),
                   ],
