@@ -5,8 +5,8 @@ import 'package:argon_flutter/screens/listing.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
-class CardSquareFav extends StatefulWidget {
-  CardSquareFav(this.publicationModel);
+class CardSquareListing extends StatefulWidget {
+  CardSquareListing(this.publicationModel);
   final PublicationModel publicationModel;
 
   static void defaultFunc() {
@@ -14,13 +14,13 @@ class CardSquareFav extends StatefulWidget {
   }
 
   @override // Level_Indicator
-  CardSquareFavState createState() => CardSquareFavState(this.publicationModel);
+  CardSquareListingState createState() => CardSquareListingState(this.publicationModel);
 }
 
-class CardSquareFavState extends State<CardSquareFav> {
+class CardSquareListingState extends State<CardSquareListing> {
   final PublicationModel publicationModel;
 
-  CardSquareFavState(this.publicationModel);
+  CardSquareListingState(this.publicationModel);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,10 @@ class CardSquareFavState extends State<CardSquareFav> {
         height: 250,
         width: null,
         child: GestureDetector(
-          onTap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(publicationModel)));},
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(
+                builder: (context) => ListingScreen(publicationModel)));
+          },
           child: Card(
               elevation: 0.4,
               shape: RoundedRectangleBorder(
@@ -37,7 +40,7 @@ class CardSquareFavState extends State<CardSquareFav> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Flexible(
-                      flex: 3,
+                      flex: 8,
                       child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
@@ -48,7 +51,7 @@ class CardSquareFavState extends State<CardSquareFav> {
                                 fit: BoxFit.cover,
                               )))),
                   Flexible(
-                      flex: 1,
+                      flex: 2,
                       child: Padding(
                         padding: const EdgeInsets.only(
                             top: 8.0, bottom: 1.0, left: 10.0, right: 10.0),
@@ -59,29 +62,47 @@ class CardSquareFavState extends State<CardSquareFav> {
                             Text(publicationModel.name,
                                 style: TextStyle(
                                     color: MyTheme.header, fontSize: 20)),
-                            /* Este no se para que estaba
-                            Text(publicationModel.name,
-                                style: TextStyle(
-                                    color: MyTheme.primary,
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w600)),
-
-                             */
                             IconButton(
                                 icon: publicationModel.isFavourite
                                     ? Icon(Icons.favorite)
                                     : Icon(Icons.favorite_border),
                                 onPressed: () {
                                   setState(() {
-                                    publicationModel.isFavourite ? removeFavourite(publicationModel) : addFavourite(publicationModel);
-                                    publicationModel.isFavourite = !publicationModel.isFavourite;
+                                    publicationModel.isFavourite
+                                        ? removeFavourite(publicationModel)
+                                        : addFavourite(publicationModel);
+                                    publicationModel.isFavourite =
+                                    !publicationModel.isFavourite;
                                   });
                                 }),
                           ],
                         ),
-                      ))
+                      ),),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5.0),
+                    child: Row(children: [
+                      Text(
+                        "\$",
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        publicationModel.price,
+                        style: TextStyle(
+                            fontSize: 40, fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        "\\",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        publicationModel.timeUnit,
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w400),
+                      ),
+                    ],),),
                 ],
               )),
-        ));
+        )); }
   }
-}
