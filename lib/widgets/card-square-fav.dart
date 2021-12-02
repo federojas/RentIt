@@ -74,7 +74,7 @@ class CardSquareFavState extends State<CardSquareFav> {
                                 onPressed: () {
                                   setState(() {
                                     publicationModel.isFavourite ? removeFavourite(publicationModel) : addFavourite(publicationModel);
-                                    publicationModel.isFavourite = false;
+                                    publicationModel.isFavourite = !publicationModel.isFavourite;
                                   });
                                 }),
                           ],

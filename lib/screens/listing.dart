@@ -27,7 +27,7 @@ class ListingPageState extends State<ListingScreen> {
     return Scaffold(
       appBar: Navbar(
           rightOptions: true,
-          favOption: true,
+          favOption: false,
           backButton: true,
           bgColor: MyTheme.primary
       ),
@@ -90,6 +90,16 @@ class ListingPageState extends State<ListingScreen> {
                     pm.timeUnit,
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.w400),
                   ),
+                  IconButton(
+                      icon: pm.isFavourite
+                          ? Icon(Icons.favorite)
+                          : Icon(Icons.favorite_border),
+                      onPressed: () {
+                        setState(() {
+                          pm.isFavourite ? removeFavourite(pm) : addFavourite(pm);
+                          pm.isFavourite = !pm.isFavourite;
+                        });
+                      }),
                 ],),
               ),
             ]),

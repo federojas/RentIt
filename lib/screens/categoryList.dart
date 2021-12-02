@@ -61,13 +61,6 @@ class _CategoryListState extends State<CategoryList> {
                                     Text(pm.price, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black)),
                                     Text("\\", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black)),
                                     Text(pm.timeUnit, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: MyTheme.black))]),
-                       trailing: IconButton(
-                               icon: pm.isFavourite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-                               onPressed: () {
-                                     setState(() {
-                                       pm.isFavourite ? removeFavourite(pm) : addFavourite(pm);
-                      });
-                    }),
                     ),
                     Divider(thickness: 0.5,
                         color: Colors.grey),
