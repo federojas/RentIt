@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 
 class ListingScreen extends StatefulWidget {
   final PublicationModel pm;
@@ -114,7 +115,17 @@ class ListingPageState extends State<ListingScreen> {
                     orderModel.description = pm.detail;
                     orderModel.publicationId = pm.id;
                     orderModel.image = pm.images[0];
-                    await addOrder(orderModel);
+                    PaymentResult paymentResult = await addOrder(orderModel);
+                    // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
+                    // en ese link hay mas casos por si quieren contemplar
+                    if(paymentResult.status == "approved") {
+                      print("se aprobo el pago");
+                    } else if (paymentResult.status == "pending"){
+                      // mostrar algo de cargando
+                      print("cargando");
+                    } else {
+                      print("no se aprobo el pago");
+                    }
                   },
                   color: MyTheme.blue,
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),

@@ -335,13 +335,12 @@ Future<List<PublicationModel>> getFavouritesPublications() async {
 /// ****************************************** ORDERS ****************************************************/
 ///
 
-Future<DocumentReference> addOrder(OrderModel orderModel) async {
+Future<PaymentResult> addOrder(OrderModel orderModel) async {
   try {
     User _user = FirebaseAuth.instance.currentUser;
     orderModel.uid = _user.uid;
     CollectionReference collectionReference =
     FirebaseFirestore.instance.collection('Orders');
-    DocumentReference result =
     await collectionReference.add(orderModel.toMap());
     Uri url = Uri.parse('https://api.mercadopago.com/checkout/preferences?access_token=TEST-1914964039544354-112822-76a67e6f1400654202f70eb959a208c7-315145485');
     Map<String, String> headers = {"Content-type": "application/json"};
@@ -353,13 +352,11 @@ Future<DocumentReference> addOrder(OrderModel orderModel) async {
     print(body);
     if (statusCode == 201) {
       Preference preference = Preference.fromJson(jsonDecode(response.body));
-      await MercadoPagoMobileCheckout.startCheckout(mpPublicKey, preference.id);
-      return result;
+      PaymentResult paymentResult = await MercadoPagoMobileCheckout.startCheckout(mpPublicKey, preference.id);
+      return paymentResult;
     } else {
       throw Exception('Failed to create preference.');
-      return null;
     }
-
   } catch (e) {
     return null;
   }
