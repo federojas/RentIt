@@ -22,7 +22,7 @@ class RentScreen extends StatefulWidget {
 class RentScreenState extends State<RentScreen> {
   String dropdownvalue = 'Aseguradora A';
   var items =  ['Aseguradora A','Aseguradora B','Aseguradora C','A convenir'];
-
+  TextEditingController quantity = TextEditingController(text: "1");
   final PublicationModel pm;
 
   RentScreenState(this.pm);
@@ -31,8 +31,8 @@ class RentScreenState extends State<RentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
-          rightOptions: true,
-          favOption: true,
+          rightOptions: false,
+          favOption: false,
           backButton: true,
           bgColor: MyTheme.primary
       ),
@@ -46,20 +46,50 @@ class RentScreenState extends State<RentScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
+                  padding: EdgeInsets.only(bottom: 30.0),
                   child: Text(
-                    "¡Completá los siguientes pasos para alquilar tu "+ pm.name+"!",
+                    "¡Completá los siguientes pasos para alquilar "+ pm.name+"!",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 8.0),
-                Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Divider(
-                      thickness: 1.0,
-                      color: Colors.grey
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(bottom: 10.0),
+                //   child: Text(
+                //     "Primer paso:",
+                //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                //   ),
+                // ),
+                // Text("    Elegí como asegurarte:"),
+                // Center(
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: [
+                //       DropdownButton(
+                //         value: dropdownvalue,
+                //         icon: Icon(Icons.keyboard_arrow_down),
+                //         items:items.map((String items) {
+                //           return DropdownMenuItem(
+                //               value: items,
+                //               child: Text(items)
+                //           );
+                //         }
+                //         ).toList(),
+                //         onChanged: (String newValue){
+                //           setState(() {
+                //             dropdownvalue = newValue;
+                //           });
+                //         },
+                //       ),
+                //     ],
+                //   ),
+                // ),Padding(
+                //   padding: EdgeInsets.only(top: 10.0),
+                //   child: Divider(
+                //       thickness: 1.0,
+                //       color: Colors.grey
+                //   ),
+                // ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
@@ -67,30 +97,51 @@ class RentScreenState extends State<RentScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
-                Text("    Elegí como asegurarte:"),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      DropdownButton(
-                        value: dropdownvalue,
-                        icon: Icon(Icons.keyboard_arrow_down),
-                        items:items.map((String items) {
-                          return DropdownMenuItem(
-                              value: items,
-                              child: Text(items)
-                          );
-                        }
-                        ).toList(),
-                        onChanged: (String newValue){
-                          setState(() {
-                            dropdownvalue = newValue;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child:  Text("    Elegí por cuanto tiempo alquilar:"),
                 ),
+
+
+                Row( children:[
+                  Container(
+                    width: MediaQuery.of(context).size.width/1.5,
+                    child: TextFormField(
+                      autofocus: true,
+                      textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.number,
+                  controller: quantity,
+                  validator: (value) {
+                    if (int.parse(value) > 50) {
+                      return ("Ingrese una cantidad menor a 51.");
+                    }
+                    // reg expression for email validation
+                    if (int.parse(value) < 1) {
+                      return ("Ingrese una cantidad mayor a 0.");
+                    }
+                    return null;
+                  },
+                      onFieldSubmitted: (value) {
+                        quantity.text = quantity.text == "" ? "1" : value;
+                      },
+
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 3.0, left: 5.0),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      border: OutlineInputBorder(),
+                      hintText: "Ingrese cantidad...",
+                      hintStyle: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,)),),),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      pm.timeUnit == "Mes" ? pm.timeUnit+"/es" : pm.timeUnit+"/s",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    ),
+                  ),
+                ]),
                 Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Divider(
@@ -105,22 +156,24 @@ class RentScreenState extends State<RentScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
-                Text("    Pagá con MercadoPago:"),
-
-                // Padding(
-                //   padding: EdgeInsets.only(top: 10.0),
-                //   child: Divider(
-                //       thickness: 1.0,
-                //       color: Colors.grey
-                //   ),
-                // ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child:  Text("    Pagá con MercadoPago:"),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    "Total: \$"+(int.parse(pm.price)*int.parse(quantity.text)).toString(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
                 ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
                     onPressed: () async {
                       OrderModel orderModel = OrderModel();
                       orderModel.productName = pm.name;
-                      orderModel.price = pm.price;
+                      orderModel.price = (int.parse(pm.price)*int.parse(quantity.text)).toString();
                       orderModel.description = pm.detail;
                       orderModel.publicationId = pm.id;
                       orderModel.image = pm.images[0];
@@ -128,18 +181,18 @@ class RentScreenState extends State<RentScreen> {
                       // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
                       // en ese link hay mas casos por si quieren contemplar
                       if(paymentResult.status == "approved") {
-                        print("se aprobo el pago");
+                        print("Se aprobo el pago");
                         RentModel rentModel = RentModel();
-                        rentModel.price = pm.price;
+                        rentModel.price = (int.parse(pm.price)*int.parse(quantity.text)).toString();
                         rentModel.productName = pm.name;
                         rentModel.image = pm.images[0];
                         rentModel.description = pm.detail;
                         addRent(rentModel);
                       } else if (paymentResult.status == "pending"){
                         // mostrar algo de cargando
-                        print("cargando");
+                        print("Cargando");
                       } else {
-                        print("no se aprobo el pago");
+                        print("No se aprobo el pago");
                       }
                     },
                     color: MyTheme.blue,
@@ -172,19 +225,24 @@ class RentScreenState extends State<RentScreen> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child:  Text("    Contactate con el vendedor:"),
+                ),
               //  Text("    Contactá al vendedor:"),
                 ButtonTheme(
-                  //minWidth: MediaQuery.of(context).size.width - 50.0,
+                  minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
+                    onPressed: (){},
                     color: MyTheme.blue,
                     padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                     elevation: 2,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Text(
-                      "Contactá al vendedor",
+                      "Contacto",
                       style: TextStyle(
-                          fontSize: 10,
+                          fontSize: 14,
                           letterSpacing: 2.2,
                           color: Colors.white),
                     ),
