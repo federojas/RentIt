@@ -28,49 +28,46 @@ class CardNotif extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 130,
+        height: 250,
+        width: null,
         child: GestureDetector(
-          onTap: tap,
           child: Card(
-            elevation: 0.6,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(6.0))),
-            child: Column(
-              children: [
-              Row(
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(6.0),
-                              bottomLeft: Radius.circular(6.0)),
-                          image: DecorationImage(
-                            image: NetworkImage(img),
-                            fit: BoxFit.cover,
-                          ))),
-                ),
-                Flexible(
-                    flex: 1,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(notifTitle,
-                              style: TextStyle(
-                                  color: MyTheme.header, fontSize: 18)),
-                          Text(title,
-                              style: TextStyle(
-                                  color: MyTheme.header, fontSize: 13)),
-                        ],
-                      ),
-                    )),
-              ],),
-            ],),
-          ),
-        ));
+              elevation: 0.4,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                      flex: 3,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(6.0),
+                                  topRight: Radius.circular(6.0)),
+                              image: DecorationImage(
+                                image: NetworkImage(img),
+                                fit: BoxFit.cover,
+                              )))),
+                  Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 8.0, bottom: 1.0, left: 10.0, right: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(title,
+                                style: TextStyle(
+                                    color: MyTheme.header, fontSize: 20)
+                            ),
+                          ],
+                        ),
+                      ))
+                ],
+              )),
+        )
+    );
   }
 }
