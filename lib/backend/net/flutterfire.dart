@@ -301,7 +301,7 @@ Future<List<PublicationModel>> getFavouritesPublications() async {
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        if(_user.uid == doc['uid'] && doc['isFavourite'] == true) {
+        if(doc['isFavourite'] == true) {
           PublicationModel pm = PublicationModel();
           print(doc["name"]);
           pm.name = doc['name'];
