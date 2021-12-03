@@ -152,19 +152,6 @@ class _NavbarState extends State<Navbar> {
                                     fav = !fav;
                                   });
                                 }),
-                          if (widget.rightOptions)
-                          GestureDetector(
-                            onTap: () => null,
-                            child: IconButton(
-                                icon: Icon(Icons.shopping_bag ,
-                                    color: !widget.transparent
-                                        ? (widget.bgColor == MyTheme.white
-                                        ? MyTheme.initial
-                                        : MyTheme.white)
-                                        : MyTheme.white,
-                                    size: 26.0),
-                                onPressed: null),
-                          ),
                           ])
 
 

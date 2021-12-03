@@ -108,16 +108,6 @@ class Articles extends StatelessWidget {
                               fontSize: 16)),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: CardNotif(
-                        cta: "View article",
-                        title: articlesCards["Ice Cream"]['title'],
-                        img: articlesCards["Ice Cream"]['image'],
-                        tap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        }),
-                  ),
                   SizedBox(height: 8.0),
                   Row(
                     children: [
@@ -138,13 +128,6 @@ class Articles extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 8.0),
-                  CardNotif(
-                      cta: "View article",
-                      title: articlesCards["Fashion"]['title'],
-                      img: articlesCards["Fashion"]['image'],
-                      tap: () {
-                        Navigator.pushNamed(context, '/pro');
-                      }),
                   SizedBox(height: 8.0),
                   CardSquare(
                       cta: "View article",

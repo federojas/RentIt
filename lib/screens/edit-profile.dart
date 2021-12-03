@@ -48,15 +48,6 @@ class _EditProfilePageState extends State<EditProfilePage>{
           },
         ),
         actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: MyTheme.primary,
-            ),
-            onPressed: () {
-
-            },
-          ),
         ],
       ),
     body: Container(
@@ -190,40 +181,36 @@ class _EditProfilePageState extends State<EditProfilePage>{
                    return LinearProgressIndicator();
                  }
                }),
-
-          SizedBox(
-            height: 35,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               RaisedButton(
                 onPressed: () async {
 
-                    if(firstNameEditingController.text==''){
-                      firstNameEditingController.text=userName;
-                    }
-                    if(lastNameEditingController.text==''){
-                      lastNameEditingController.text=lastName;
-                    }
-                    if(addressEditingController.text==''){
-                      addressEditingController.text=address;
-                    }
-                    if(phoneNumberEditingController.text==''){
-                      phoneNumberEditingController.text=phoneNumber;
-                    }
-                    bool updated = await addInformation(
-                        firstNameEditingController.text,
-                        lastNameEditingController.text,
-                        addressEditingController.text,
-                        phoneNumberEditingController.text);
-                    if (updated) {
-                      successDialog(context);
+                  if(firstNameEditingController.text==''){
+                    firstNameEditingController.text=userName;
+                  }
+                  if(lastNameEditingController.text==''){
+                    lastNameEditingController.text=lastName;
+                  }
+                  if(addressEditingController.text==''){
+                    addressEditingController.text=address;
+                  }
+                  if(phoneNumberEditingController.text==''){
+                    phoneNumberEditingController.text=phoneNumber;
+                  }
+                  bool updated = await addInformation(
+                      firstNameEditingController.text,
+                      lastNameEditingController.text,
+                      addressEditingController.text,
+                      phoneNumberEditingController.text);
+                  if (updated) {
+                    successDialog(context);
 
-                      // un toast
-                    } else {
-                      // otro toast, o cargando, vemos que queda mejor
-                    }
+                    // un toast
+                  } else {
+                    // otro toast, o cargando, vemos que queda mejor
+                  }
 
 
                 },
@@ -239,7 +226,8 @@ class _EditProfilePageState extends State<EditProfilePage>{
                       letterSpacing: 2.2,
                       color: Colors.white),
                 ),
-              )
+              ),
+
             ],
           )
         ],

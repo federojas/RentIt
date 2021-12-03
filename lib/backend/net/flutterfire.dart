@@ -352,7 +352,7 @@ Future<PaymentResult> addOrder(OrderModel orderModel) async {
     Uri url = Uri.parse('https://api.mercadopago.com/checkout/preferences?access_token=TEST-1914964039544354-112822-76a67e6f1400654202f70eb959a208c7-315145485');
     Map<String, String> headers = {"Content-type": "application/json"};
     String totalPrice = (int.parse(orderModel.price) + int.parse(orderModel.insurancePrice)).toString();
-    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": "productName","description": ${orderModel.description},"quantity": 1 ,"currency_id": "ARS","unit_price": $totalPrice],}';
+    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": ${orderModel.productName},"description": ${orderModel.productName},"quantity": 1 ,"currency_id": "ARS","unit_price": $totalPrice}],}';
     Response response = await post(url, headers: headers, body: json);
 
     int statusCode = response.statusCode;
@@ -397,6 +397,9 @@ Future<List<RentModel>> getUserRents() async {
         rm.image = doc['image'];
         rm.productName = doc['productName'];
         rm.price = doc['price'];
+        rm.time = doc['time'];
+        rm.timeUnit = doc['timeUnit'];
+        rm.insurance = doc['insurance'];
         ans.add(rm);
       });
     });

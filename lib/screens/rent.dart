@@ -24,7 +24,7 @@ class RentScreenState extends State<RentScreen> {
   var items =  ['Aseguradora A','Aseguradora B','Aseguradora C','A convenir'];
   TextEditingController quantity = TextEditingController(text: "1");
   final PublicationModel pm;
-
+  String payed;
   RentScreenState(this.pm);
 
   @override
@@ -203,12 +203,28 @@ class RentScreenState extends State<RentScreen> {
                         rentModel.productName = pm.name;
                         rentModel.image = pm.images[0];
                         rentModel.description = pm.detail;
+                        rentModel.time = quantity.text;
+                        rentModel.timeUnit = pm.timeUnit;
+                        rentModel.insurance = pm.insuranceName;
                         addRent(rentModel);
+                        successDialog(context);
                       } else if (paymentResult.status == "pending"){
-                        // mostrar algo de cargando
-                        print("Cargando");
-                      } else {
+                        print("Pago pending");
+                        CircularProgressIndicator();
+                      } else if(paymentResult.status == "rejected"){
                         print("No se aprobo el pago");
+                        AlertDialog alert = AlertDialog(
+                          backgroundColor: Colors.red,
+                          title: Text("ERROR"),
+                          content: Text("¡El pago no fue aprobado!"),
+                        );
+                        // show the dialog
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alert;
+                          },
+                        );
                       }
                     },
                     color: MyTheme.blue,
@@ -270,6 +286,26 @@ class RentScreenState extends State<RentScreen> {
         ),
       ),
     );
+  }
+
+  Future<bool> successDialog( BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.green,
+            title: Text('¡Disfrute su compra!',style: TextStyle(color: Colors.white)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok',style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        });
   }
 }
 

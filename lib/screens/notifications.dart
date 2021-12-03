@@ -35,11 +35,7 @@ class Notifications extends StatelessWidget{
                     itemBuilder: (context, index) {
                       RentModel rm = snapshot.data[index];
                       return CardNotif(
-                          notifTitle: "Alquilaste",
-                          purchaseNotif: true,
-                          title: rm.productName,
-                          img: rm.image,
-                          tap: () {}
+                          rm
                       );
                     },
                   )
