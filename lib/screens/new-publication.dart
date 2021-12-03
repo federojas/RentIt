@@ -30,9 +30,9 @@ class NewPublicationScreen extends StatefulWidget{
   NewPublicationScreenState createState() => NewPublicationScreenState();
 }
 class NewPublicationScreenState extends State<NewPublicationScreen> {
-  static TextEditingController _nameField = TextEditingController();
-  static TextEditingController _detailField = TextEditingController();
-  static TextEditingController _priceField = TextEditingController();
+  TextEditingController _nameField;
+  TextEditingController _detailField;
+  TextEditingController _priceField;
   static List<S2Choice<String>> options = [
     S2Choice<String>(value: 'Bicicletas', title: 'Bicicletas'),
     S2Choice<String>(value: 'Consolas', title: 'Consolas'),
@@ -51,6 +51,27 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
   static String time;
   static InsuranceModel insuranceValue;
   List<File> _images = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _nameField = TextEditingController();
+    _detailField = TextEditingController();
+    _priceField = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _nameField.dispose();
+    _detailField.dispose();
+    _priceField.dispose();
+    _images.clear();
+    value = null;
+    time = null;
+    insuranceValue = null;
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     List<S2Choice<InsuranceModel>> insurances = [
@@ -85,15 +106,13 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   padding: EdgeInsets.only(bottom: 20.0),
                   child: TextField(
                     controller: _nameField,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'Agregue un título a su producto'),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                  child: Text(
-                    "Fotos del producto",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), hintText: 'Agregue un título a su producto...',
+                      suffixIcon: IconButton(
+                      onPressed: _nameField.clear,
+                      icon: Icon(Icons.clear),
+                    ),),
+
                   ),
                 ),
                 Padding(
@@ -103,18 +122,31 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                       color: Colors.grey
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: Text(
+                    "Fotos del producto",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
 
                 ImageSlideshow(
                   width: double.infinity,
                   height: 250,
                   initialPage: 0,
-                  indicatorColor: Colors.grey,
+                  indicatorColor: Colors.blue,
                   indicatorBackgroundColor: Colors.grey,
                   children: [
+                    if(_images.length == 0)
                     Image.network(
                       "http://www.carsaludable.com.ar/wp-content/uploads/2014/03/default-placeholder.png",
                       fit: BoxFit.cover,
                     ),
+                    for(var i = 0; i < _images.length; i++)
+                        Image.file(
+                          _images[i],
+                          fit: BoxFit.cover,
+                        ),
                   ],
                   onPageChanged: (value) {
                     print('Page changed: $value');
@@ -122,18 +154,24 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   isLoop: false,
                 ),
 
-                RawMaterialButton(
-                  fillColor: Theme.of(context).accentColor,
-                  child: Icon(Icons.add_photo_alternate_rounded,
-                    color: Colors.white,),
-                  elevation: 8,
-                  onPressed: () async {
-                    getImage();
-                    loaded = true;
-                  },
-                  padding: EdgeInsets.all(15),
-                  shape: CircleBorder(),
-                ),
+                Padding(padding: EdgeInsets.only(top:10.0),
+                child: Row(
+                    children:[
+                      Text("Cargue las fotos:"),
+                      RawMaterialButton(
+                        fillColor: Theme.of(context).accentColor,
+                        child: Icon(Icons.add_photo_alternate_rounded,
+                          color: Colors.white,),
+                        elevation: 8,
+                        onPressed: () async {
+                          getImage();
+                          loaded = true;
+                        },
+                        padding: EdgeInsets.all(15),
+                        shape: CircleBorder(),
+                      ),]),),
+
+
                 Padding(
                   padding: EdgeInsets.only(top: 10.0),
                   child: Divider(
@@ -153,8 +191,11 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                     child: TextField(
                       keyboardType: TextInputType.number,
                       controller: _priceField,
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(), hintText: 'Elija un precio'),
+                      decoration:  InputDecoration(
+                          border: OutlineInputBorder(), hintText: 'Elija un precio...',
+                        suffixIcon: IconButton(
+                          onPressed: _priceField.clear,
+                          icon: Icon(Icons.clear),),),
                     ),
                   ),
                 Column(
@@ -188,10 +229,13 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: TextField(
                     controller: _detailField,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'Escriba aquí una descripción'),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), hintText: 'Escriba aquí una descripción...',
+                    suffixIcon: IconButton(
+                      onPressed: _detailField.clear,
+                      icon: Icon(Icons.clear),),
                   ),
-                ),
+                ),),
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Divider(
@@ -218,6 +262,13 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         onChange: (selected) => value = selected.value
                     )
                   ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10.0),
+                  child: Divider(
+                      thickness: 1.0,
+                      color: Colors.grey
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 10.0, bottom: 10.0),

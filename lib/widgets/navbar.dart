@@ -71,7 +71,7 @@ class _NavbarState extends State<Navbar> {
     bool fav = false;
 
     return Container(
-      height: 100.0,
+      height: (MediaQuery.of(context).size.height)/8,
         width: (MediaQuery.of(context).size.width),
         // height: widget.searchBar
         //     ? (!categories
