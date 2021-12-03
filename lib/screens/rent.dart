@@ -163,7 +163,21 @@ class RentScreenState extends State<RentScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Total: \$"+(int.parse(pm.price)*int.parse(quantity.text)).toString(),
+                    "Producto: \$"+(int.parse(pm.price)*int.parse(quantity.text)).toString(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    "Seguro: \$"+(int.parse(pm.insurancePrice)*int.parse(quantity.text)).toString(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10.0),
+                  child: Text(
+                    "Total: \$"+( (int.parse(pm.price)*int.parse(quantity.text)) + int.parse(pm.insurancePrice)).toString(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
@@ -177,6 +191,8 @@ class RentScreenState extends State<RentScreen> {
                       orderModel.description = pm.detail;
                       orderModel.publicationId = pm.id;
                       orderModel.image = pm.images[0];
+                      orderModel.insurancePrice = pm.insurancePrice;
+                      orderModel.insuranceName = pm.insuranceName;
                       PaymentResult paymentResult = await addOrder(orderModel);
                       // https://www.mercadopago.com.ar/developers/es/guides/online-payments/checkout-api/handling-responses
                       // en ese link hay mas casos por si quieren contemplar

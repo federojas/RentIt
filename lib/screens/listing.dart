@@ -107,6 +107,13 @@ class ListingPageState extends State<ListingScreen> {
                 ],),
               ),
             ]),
+            Padding(
+              padding: EdgeInsets.only(bottom: 15.0),
+              child: Text(
+                "+ \$${pm.insurancePrice} del seguro ${pm.insuranceName}",
+                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
+               ),
+            ),
             ButtonTheme(
                 minWidth: MediaQuery.of(context).size.width - 50.0,
                 child: RaisedButton(

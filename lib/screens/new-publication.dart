@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:argon_flutter/backend/models/insurance-model.dart';
 import 'package:argon_flutter/backend/models/publication-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
@@ -43,11 +44,19 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     S2Choice<String>(value: 'Mes', title: 'Mes'),
     S2Choice<String>(value: 'Anio', title: 'Año'),
   ];
+  InsuranceModel insurance1 = InsuranceModel("Seguro1","50");
+  InsuranceModel insurance2 = InsuranceModel("Seguro2", "100");
+
   static String value;
   static String time;
+  static InsuranceModel insuranceValue;
   List<File> _images = [];
   @override
   Widget build(BuildContext context) {
+    List<S2Choice<InsuranceModel>> insurances = [
+      S2Choice<InsuranceModel>(value: insurance1, title: "${insurance1.name}: \$${insurance1.price}"),
+      S2Choice<InsuranceModel>(value: insurance2, title: "${insurance2.name}: \$${insurance2.price}")
+    ];
     bool loaded = false;
     return Scaffold(
       appBar: Navbar(
@@ -211,13 +220,33 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                   ],
                 ),
                 Padding(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  child: Text(
+                    "Seguro",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                Column(
+                  children: <Widget>[
+                    const SizedBox(height: 7),
+                    SmartSelect<InsuranceModel>.single(
+                        placeholder: "Seleccionar",
+                        title: 'Seguros',
+                        value: insuranceValue,
+                        modalType: S2ModalType.bottomSheet,
+                        choiceItems: insurances,
+                        onChange: (selected) => insuranceValue = selected.value
+                    )
+                  ],
+                ),
+                Padding(
                   padding: EdgeInsets.only(bottom: 30.0),
                 ),
                 ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
                     onPressed: () async {
-                      if(value != "" && _nameField.text != "" && _detailField.text != "" && _priceField.text != "" && time != "" && _images.isNotEmpty) {
+                      if(value != "" && _nameField.text != "" && _detailField.text != "" && _priceField.text != "" && time != "" && _images.isNotEmpty && insuranceValue != null) {
                         PublicationModel pm = PublicationModel();
                         pm.name = _nameField.text;
                         pm.detail = _detailField.text;
@@ -227,6 +256,8 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
                         pm.timeUnit = time;
                         pm.isFavourite = false;
                         pm.id = "73";
+                        pm.insuranceName = insuranceValue.name;
+                        pm.insurancePrice = insuranceValue.price;
                         DocumentReference docRef = await addPublication(pm);
                         savePublicationImages(_images, docRef);
                         successDialog(context);

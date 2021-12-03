@@ -5,8 +5,10 @@ class OrderModel {
   String description;
   String uid;
   String image;
+  String insuranceName;
+  String insurancePrice;
 
-  OrderModel({this.publicationId, this.price, this.productName, this.description, this.uid, this.image});
+  OrderModel({this.publicationId, this.price, this.productName, this.description, this.uid, this.image,  this.insuranceName, this.insurancePrice});
 
   factory OrderModel.fromMap(map) {
     return OrderModel(
@@ -15,7 +17,9 @@ class OrderModel {
         productName: map['productName'],
         description: map['description'],
         uid: map['uid'],
-        image: map['image']
+        image: map['image'],
+        insuranceName: map['insuranceName'],
+        insurancePrice: map['insurancePrice']
     );
   }
 
@@ -26,7 +30,9 @@ class OrderModel {
       'productName': productName,
       'description': description,
       'uid': uid,
-      'image': image
+      'image': image,
+      'insuranceName': insuranceName,
+      'insurancePrice': insurancePrice
     };
   }
 }

@@ -1,13 +1,7 @@
-import 'dart:ffi';
 import 'package:argon_flutter/backend/models/rent-model.dart';
 import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/constants/Theme.dart';
-import 'package:argon_flutter/widgets/card-category.dart';
 import 'package:argon_flutter/widgets/card-notif.dart';
-import 'package:argon_flutter/widgets/card-shopping.dart';
-import 'package:argon_flutter/widgets/card-small.dart';
-import 'package:argon_flutter/widgets/card-square.dart';
-import 'package:argon_flutter/widgets/card-square-fav.dart';
 import 'package:argon_flutter/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

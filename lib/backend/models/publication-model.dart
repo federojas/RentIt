@@ -8,10 +8,12 @@ class PublicationModel {
   String price;
   String timeUnit;
   String id;
+  String insuranceName;
+  String insurancePrice;
   bool isFavourite;
   List<String> images;
 
-  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit, this.id, this.isFavourite}) {
+  PublicationModel({this.name, this.uid, this.detail, this.category, this.price, this.images, this.timeUnit, this.id, this.isFavourite, this.insuranceName, this.insurancePrice}) {
     this.images = [];
   }
 
@@ -25,7 +27,10 @@ class PublicationModel {
       images: map['images'],
       timeUnit: map['timeUnit'],
       id: map['id'],
-      isFavourite: map['isFavourite']
+      isFavourite: map['isFavourite'],
+      insuranceName: map['insuranceName'],
+      insurancePrice: map['insurancePrice']
+
     );
   }
 
@@ -39,7 +44,9 @@ class PublicationModel {
       'images': images,
       'timeUnit': timeUnit,
       'id': id,
-      'isFavourite': isFavourite
+      'isFavourite': isFavourite,
+      'insuranceName': insuranceName,
+      'insurancePrice': insurancePrice
     };
   }
 }
