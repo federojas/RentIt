@@ -351,7 +351,8 @@ Future<PaymentResult> addOrder(OrderModel orderModel) async {
     await collectionReference.add(orderModel.toMap());
     Uri url = Uri.parse('https://api.mercadopago.com/checkout/preferences?access_token=TEST-1914964039544354-112822-76a67e6f1400654202f70eb959a208c7-315145485');
     Map<String, String> headers = {"Content-type": "application/json"};
-    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": ${orderModel.productName},"description": ${orderModel.description},"quantity": 1 ,"currency_id": "ARS","unit_price": ${orderModel.price}}, {"title": ${orderModel.insuranceName},"description": "Seguro" ,"quantity": 1 ,"currency_id": "ARS","unit_price": ${orderModel.insurancePrice}}],}';
+    String totalPrice = (int.parse(orderModel.price) + int.parse(orderModel.insurancePrice)).toString();
+    String json = '{"payer": {"email" : ${_user.email} }, "items": [{"title": "productName","description": ${orderModel.description},"quantity": 1 ,"currency_id": "ARS","unit_price": $totalPrice],}';
     Response response = await post(url, headers: headers, body: json);
 
     int statusCode = response.statusCode;
