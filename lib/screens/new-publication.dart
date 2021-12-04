@@ -44,8 +44,8 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
     S2Choice<String>(value: 'Dia', title: 'Día'),
     S2Choice<String>(value: 'Mes', title: 'Mes'),
   ];
-  InsuranceModel insurance1 = InsuranceModel("Seguro1","50");
-  InsuranceModel insurance2 = InsuranceModel("Seguro2", "100");
+  InsuranceModel insurance1 = InsuranceModel("Seguro1","30");
+  InsuranceModel insurance2 = InsuranceModel("Seguro2", "10");
 
   static String value;
   static String time;
@@ -75,8 +75,8 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
   @override
   Widget build(BuildContext context) {
     List<S2Choice<InsuranceModel>> insurances = [
-      S2Choice<InsuranceModel>(value: insurance1, title: "${insurance1.name}: \$${insurance1.price}"),
-      S2Choice<InsuranceModel>(value: insurance2, title: "${insurance2.name}: \$${insurance2.price}")
+      S2Choice<InsuranceModel>(value: insurance1, title: "${insurance1.name}: ${insurance1.price} %"),
+      S2Choice<InsuranceModel>(value: insurance2, title: "${insurance2.name}: ${insurance2.price} %")
     ];
     bool loaded = false;
     return Scaffold(

@@ -108,7 +108,7 @@ class ListingPageState extends State<ListingScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: 15.0),
               child: Text(
-                "+ \$${pm.insurancePrice} del seguro ${pm.insuranceName}",
+                "+ ${pm.insurancePrice}% del seguro ${pm.insuranceName}",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w400),
                ),
             ),

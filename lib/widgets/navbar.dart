@@ -101,7 +101,7 @@ class _NavbarState extends State<Navbar> {
                     Row(
                       children: [
                         Padding(
-                            padding: const EdgeInsets.only(top: 12,),
+                            padding: const EdgeInsets.only(top: 16,),
                             child: Text(widget.title,
                                 style: TextStyle(
                                     color: !widget.transparent

@@ -170,14 +170,14 @@ class RentScreenState extends State<RentScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Seguro: \$"+(int.parse(pm.insurancePrice)).toString(),
+                    "Seguro: "+(int.parse(pm.insurancePrice)).toString()+" % del " + pm.insuranceName,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Total: \$"+( (int.parse(pm.price)*int.parse(quantity.text)) + int.parse(pm.insurancePrice)).toString(),
+                    "Total: \$"+( (int.parse(pm.price)*int.parse(quantity.text)) + (int.parse(pm.insurancePrice)*int.parse(quantity.text)*int.parse(pm.price))/100).toString(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
@@ -187,7 +187,7 @@ class RentScreenState extends State<RentScreen> {
                     onPressed: () async {
                       OrderModel orderModel = OrderModel();
                       orderModel.productName = pm.name;
-                      orderModel.price = (int.parse(pm.price)*int.parse(quantity.text)).toString();
+                      orderModel.price = ( (int.parse(pm.price)*int.parse(quantity.text))).toString();
                       orderModel.description = pm.detail;
                       orderModel.publicationId = pm.id;
                       orderModel.image = pm.images[0];
@@ -199,7 +199,7 @@ class RentScreenState extends State<RentScreen> {
                       if(paymentResult.status == "approved") {
                         print("Se aprobo el pago");
                         RentModel rentModel = RentModel();
-                        rentModel.price = (int.parse(pm.price)*int.parse(quantity.text)).toString();
+                        rentModel.price = ( (int.parse(pm.price)*int.parse(quantity.text))).toString();
                         rentModel.productName = pm.name;
                         rentModel.image = pm.images[0];
                         rentModel.description = pm.detail;
