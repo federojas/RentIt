@@ -17,8 +17,10 @@ class MyListings extends StatelessWidget{
       appBar: Navbar(
           title: "Mis publicaciones",
           rightOptions: false,
-          bgColor: MyTheme.primary
+          bgColor: MyTheme.primary,
+          backButton: true
       ),
+      //appBar: Navbar(searchBar: true, bgColor: MyTheme.primary,backButton:true),
       drawer: ArgonDrawer(currentPage: "MyListings"),
       backgroundColor: MyTheme.bgColorScreen,
       body: FutureBuilder(

@@ -24,7 +24,7 @@ class _CategoryListState extends State<CategoryList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Navbar(searchBar: true, bgColor: MyTheme.primary),
+      appBar: Navbar(searchBar: true, bgColor: MyTheme.primary,backButton:true),
       backgroundColor: MyTheme.bgColorScreen,
       body: FutureBuilder(builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data != null &&

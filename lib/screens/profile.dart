@@ -7,6 +7,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 //widgets
 import 'package:argon_flutter/widgets/navbar.dart';
 
+import '../main.dart';
 import 'edit-profile.dart';
 import 'favourites.dart';
 import 'my-listings.dart';
@@ -315,7 +316,7 @@ class ProfileState extends State<Profile> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => Notifications(),
+                                                    builder: (context) => MainPage(index:2),
                                                   ),
                                                 );
                                               },
@@ -331,7 +332,8 @@ class ProfileState extends State<Profile> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => Favourites(),
+                                                   // builder: (context) => Favourites(),
+                                                    builder:(context)=>MainPage(index:1),
                                                   ),
                                                 );
                                               },

@@ -61,15 +61,23 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatefulWidget {
   final String title;
-  const MainPage({
+  int index=0;
+  MainPage(
+      {
     @required this.title,
-  });
+        this.index,
+  }
+  );
+
 
   @override
-  _MainPageState createState() => _MainPageState();
+  _MainPageState createState() => _MainPageState(index:index);
 }
 
 class _MainPageState extends State<MainPage> {
+  _MainPageState({
+    this.index,
+});
   int index = 0;
 
   final pages = <Widget>[

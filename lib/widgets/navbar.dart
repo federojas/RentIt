@@ -107,9 +107,10 @@ class _NavbarState extends State<Navbar> {
                                 Navigator.pop(context);
                             }),
 
-                    if(widget.searchBar)
+                    if(widget.searchBar && !widget.backButton)
                       Container(
                           height: (MediaQuery.of(context).size.height),
+
                           width: (MediaQuery.of(context).size.width)/1.15,
                           child: Input(
                                     placeholder: "¿Qué buscás?",
@@ -119,6 +120,20 @@ class _NavbarState extends State<Navbar> {
                                     suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
                                     onTap: () => null
                                 ),
+                      ),
+                    if(widget.searchBar && widget.backButton)
+                      Container(
+                        height: (MediaQuery.of(context).size.height),
+
+                        width: (MediaQuery.of(context).size.width)/1.75,
+                        child: Input(
+                            placeholder: "¿Qué buscás?",
+                            controller: widget.searchController,
+                            onChanged: widget.searchOnChanged,
+                            autofocus: widget.searchAutofocus,
+                            suffixIcon: Icon(Icons.zoom_in, color: MyTheme.muted),
+                            onTap: () => null
+                        ),
                       ),
 
                     if(!widget.searchBar)
