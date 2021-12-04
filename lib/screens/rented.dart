@@ -30,10 +30,9 @@ class RentedScreenState extends State<RentedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
-          rightOptions: true,
-          favOption: false,
+          title: rm.productName,
+          bgColor: MyTheme.primary,
           backButton: true,
-          bgColor: MyTheme.primary
       ),
 
       body: Container(
@@ -44,13 +43,6 @@ class RentedScreenState extends State<RentedScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Text(
-                    rm.productName,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                ),
                 ImageSlideshow(
                   width: double.infinity,
                   height: 250,
