@@ -71,7 +71,13 @@ class _NavbarState extends State<Navbar> {
     bool fav = false;
 
     return Container(
-        height: 150.0,
+        height: widget.searchBar
+            ? (!categories
+            ? (tagsExist ? 211.0 : 158.0)
+            : (tagsExist ? 262.0 : 210.0))
+            : (!categories
+            ? (tagsExist ? 162.0 : 80.0)
+            : (tagsExist ? 200.0 : 150.0)),
         decoration: BoxDecoration(
             color: !widget.transparent ? widget.bgColor : Colors.transparent,
             boxShadow: [
@@ -94,16 +100,19 @@ class _NavbarState extends State<Navbar> {
                   children: [
                     Row(
                       children: [
+                        Padding(
+                            padding: const EdgeInsets.only(top: 12,),
+                            child: Text(widget.title,
+                                style: TextStyle(
+                                    color: !widget.transparent
+                                        ? (widget.bgColor == MyTheme.white
+                                        ? MyTheme.initial
+                                        : MyTheme.white)
+                                        : MyTheme.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18.0)),
 
-                        Text(widget.title,
-                            style: TextStyle(
-                                color: !widget.transparent
-                                    ? (widget.bgColor == MyTheme.white
-                                    ? MyTheme.initial
-                                    : MyTheme.white)
-                                    : MyTheme.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18.0)),
+                        ),
                       ],
                     ),
                     if (widget.rightOptions)
