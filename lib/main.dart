@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             textTheme:
                 GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
         initialRoute: "/onboarding",
-        home: MainPage(index:0),
+        home: MainPage(),
         debugShowCheckedModeBanner: false,
         routes: <String, WidgetBuilder>{
           "/onboarding": (BuildContext context) => new Onboarding(),
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           "/account": (BuildContext context) => new Register(),
           "/pro": (BuildContext context) => new Pro(),
           "/register": (BuildContext context) => new Register(),
-          "/main": (BuildContext context) => new MainPage(index: 0,),
+          "/main": (BuildContext context) => new MainPage(),
           "/favourites": (BuildContext context) => new Favourites(),
           "/product": (BuildContext context) => new ProductView(),
           "/notifications": (BuildContext context) => new Notifications(),
@@ -61,13 +61,17 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatefulWidget {
   final String title;
-  final int index;
-  const MainPage(
+   int index=0;
+   MainPage(
       {
     @required this.title,
     @required this.index,
   }
-  );
+
+  ){
+     if(index==null)
+       index=0;
+   }
 
 
   @override
