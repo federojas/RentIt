@@ -36,13 +36,13 @@ class NewPublicationScreenState extends State<NewPublicationScreen> {
   static List<S2Choice<String>> options = [
     S2Choice<String>(value: 'Bicicletas', title: 'Bicicletas'),
     S2Choice<String>(value: 'Consolas', title: 'Consolas'),
-    S2Choice<String>(value: 'Disfraces', title: 'Disfraces'),
+    S2Choice<String>(value: 'Juegos', title: 'Juegos'),
+    S2Choice<String>(value: 'Artículos de playa', title: 'Artículos de playa'),
   ];
   static List<S2Choice<String>> times = [
     S2Choice<String>(value: 'Hora', title: 'Hora'),
     S2Choice<String>(value: 'Dia', title: 'Día'),
     S2Choice<String>(value: 'Mes', title: 'Mes'),
-    S2Choice<String>(value: 'Anio', title: 'Año'),
   ];
   InsuranceModel insurance1 = InsuranceModel("Seguro1","50");
   InsuranceModel insurance2 = InsuranceModel("Seguro2", "100");
