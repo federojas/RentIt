@@ -83,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage>{
                       image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                            "https://images.pexels.com/photos/3307758/pexels-photo-3307758.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=250",
+                            "https://firebasestorage.googleapis.com/v0/b/rentit-22348.appspot.com/o/products_images%2Fimage_picker3710646077128464784.png?alt=media&token=36438263-70fd-4001-b8ae-cf3e976a50c3",
                           ))),
                 ),
                 Positioned(

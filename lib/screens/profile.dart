@@ -577,8 +577,8 @@ class ProfileState extends State<Profile> {
                           translation: Offset(0.0, -0.5),
                           child: Align(
                             child: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                  "assets/img/profile-screen-avatar.jpg"),
+                              backgroundImage: NetworkImage(
+                                  "https://firebasestorage.googleapis.com/v0/b/rentit-22348.appspot.com/o/products_images%2Fimage_picker3710646077128464784.png?alt=media&token=36438263-70fd-4001-b8ae-cf3e976a50c3"),
                               radius: 65.0,
                               // maxRadius: 200.0,
                             ),

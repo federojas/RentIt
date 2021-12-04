@@ -30,10 +30,8 @@ class ListingPageState extends State<ListingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Navbar(
-          rightOptions: true,
-          favOption: false,
-          backButton: true,
-          bgColor: MyTheme.primary
+          title: pm.name,
+          bgColor: MyTheme.primary,
       ),
 
       body: Container(
