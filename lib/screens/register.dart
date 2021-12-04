@@ -199,7 +199,7 @@ class _RegisterState extends State<Register> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MainPage(),
+                  builder: (context) => MainPage(index:0),
                 ),
               );
             }

@@ -316,7 +316,9 @@ class ProfileState extends State<Profile> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                    builder: (context) => MainPage(index:2),
+                                                   builder: (context) => MainPage(index:2),
+                                                   // builder: (context) => Favourites(),
+
                                                   ),
                                                 );
                                               },
@@ -332,7 +334,7 @@ class ProfileState extends State<Profile> {
                                                 Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
-                                                   // builder: (context) => Favourites(),
+                                                    //builder: (context) => Favourites(),
                                                     builder:(context)=>MainPage(index:1),
                                                   ),
                                                 );
