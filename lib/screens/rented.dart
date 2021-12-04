@@ -10,7 +10,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
+
+
 
 class RentedScreen extends StatefulWidget {
   final RentModel rm;
@@ -126,10 +129,10 @@ class RentedScreenState extends State<RentedScreen> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                 ),
-                ButtonTheme(
+                Padding(padding: EdgeInsets.only(bottom:10.0), child: ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () => {_sendSMS("¡Hola alquilé " + rm.productName + " en RentIt!", ["1155556666"])},
                     color: MyTheme.blue,
                     padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                     elevation: 2,
@@ -142,12 +145,20 @@ class RentedScreenState extends State<RentedScreen> {
                           letterSpacing: 2.2,
                           color: Colors.white),
                     ),
-                  ),),
+                  ),),),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _sendSMS(String message, List<String> recipients) async {
+    String _result = await sendSMS(message: message, recipients: recipients)
+        .catchError((onError) {
+      print(onError);
+    });
+    print(_result);
   }
 }

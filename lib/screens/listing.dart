@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
+import 'package:flutter_sms/flutter_sms.dart';
 
 class ListingScreen extends StatefulWidget {
   final PublicationModel pm;
@@ -197,7 +198,7 @@ class ListingPageState extends State<ListingScreen> {
             ButtonTheme(
               minWidth: MediaQuery.of(context).size.width - 50.0,
               child: RaisedButton(
-              onPressed: () {},
+              onPressed: () => {_sendSMS("¡Hola me interesa tu publicación " + pm.name + " en RentIt!", ["1155556666"])},
               color: MyTheme.blue,
               padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
               elevation: 2,
@@ -217,5 +218,12 @@ class ListingPageState extends State<ListingScreen> {
         ),
       ),
     );
+  }
+  void _sendSMS(String message, List<String> recipients) async {
+    String _result = await sendSMS(message: message, recipients: recipients)
+        .catchError((onError) {
+      print(onError);
+    });
+    print(_result);
   }
 }

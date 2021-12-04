@@ -250,36 +250,6 @@ class RentScreenState extends State<RentScreen> {
                       color: Colors.grey
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child: Text(
-                    "Tercer paso:",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 10.0),
-                  child:  Text("    Contactate con el vendedor:"),
-                ),
-              //  Text("    Contactá al vendedor:"),
-                ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width - 50.0,
-                  child: RaisedButton(
-                    onPressed: (){},
-                    color: MyTheme.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      "Contacto",
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -294,7 +264,7 @@ class RentScreenState extends State<RentScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Colors.green,
-            title: Text('¡Disfrute su compra!',style: TextStyle(color: Colors.white)),
+            title: Text('¡Disfrute su compra!\n\nContactese con el vendedor desde mis alquileres.',style: TextStyle(color: Colors.white)),
             actions: <Widget>[
               FlatButton(
                 child: Text('Ok',style: TextStyle(color: Colors.white)),
