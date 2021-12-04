@@ -170,7 +170,7 @@ class RentScreenState extends State<RentScreen> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    "Seguro: \$"+(int.parse(pm.insurancePrice)*int.parse(quantity.text)).toString(),
+                    "Seguro: \$"+(int.parse(pm.insurancePrice)).toString(),
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                   ),
                 ),
