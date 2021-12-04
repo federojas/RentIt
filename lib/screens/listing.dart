@@ -33,6 +33,7 @@ class ListingPageState extends State<ListingScreen> {
       appBar: Navbar(
           title: pm.name,
           bgColor: MyTheme.primary,
+          backButton: true,
       ),
 
       body: Container(

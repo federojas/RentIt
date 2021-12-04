@@ -94,34 +94,45 @@ class _NavbarState extends State<Navbar> {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Padding(padding: EdgeInsets.only(top:0.0), child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
+                    if(widget.backButton)
+                      Padding(padding: const EdgeInsets.only(top:5),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: IconButton(
+                            padding: EdgeInsets.only(top:12, right:8),
+                            constraints: BoxConstraints(),
+                            icon: Icon(Icons.arrow_back_ios_new_rounded,
+                                color: !widget.transparent
+                                    ? (widget.bgColor == MyTheme.white
+                                    ? MyTheme.initial
+                                    : MyTheme.white)
+                                    : MyTheme.white,
+                                size: 22.0),
+                            onPressed: null),
+                      ),),
                         Padding(
-                            padding: const EdgeInsets.only(top: 16,),
-                            child: Text(widget.title,
-                                style: TextStyle(
-                                    color: !widget.transparent
-                                        ? (widget.bgColor == MyTheme.white
-                                        ? MyTheme.initial
-                                        : MyTheme.white)
-                                        : MyTheme.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18.0)),
-
+                          padding: const EdgeInsets.only(top:16),
+                          child: Text(widget.title,
+                              style: TextStyle(
+                                  color: !widget.transparent
+                                      ? (widget.bgColor == MyTheme.white
+                                      ? MyTheme.initial
+                                      : MyTheme.white)
+                                      : MyTheme.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18.0)),
                         ),
-                      ],
-                    ),
                     if (widget.rightOptions)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           GestureDetector(
                             onTap: () {
-                              ;
                             },
                             child: IconButton(
                                 icon: Icon(Icons.notifications_active,
@@ -135,7 +146,6 @@ class _NavbarState extends State<Navbar> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              ;
                             },
                             child: IconButton(
                                 icon: Icon(Icons.shopping_basket,
@@ -150,7 +160,8 @@ class _NavbarState extends State<Navbar> {
                         ],
                       )
                   ],
-                ),
+                ),),
+
                 if (widget.searchBar)
                   Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
@@ -195,7 +206,6 @@ class _NavbarState extends State<Navbar> {
                       SizedBox(width: 30),
                       GestureDetector(
                         onTap: () {
-                          ;
                         },
                         child: Row(
                           children: [

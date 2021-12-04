@@ -61,9 +61,9 @@ class Home extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: const EdgeInsets.only(top: 16.0, bottom:5.0),
                 child: Text(
-                  '¡Ofertas RentIt!',
+                  '¡Descubrí RentIt!',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
