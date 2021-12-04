@@ -1,3 +1,5 @@
+import 'package:argon_flutter/backend/models/publication-model.dart';
+import 'package:argon_flutter/backend/net/flutterfire.dart';
 import 'package:argon_flutter/widgets/dialog-utils.dart';
 import 'package:argon_flutter/widgets/tabbar_material_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -10,6 +12,8 @@ import 'package:argon_flutter/widgets/navbar.dart';
 import 'package:argon_flutter/widgets/card-notif.dart';
 import 'package:argon_flutter/widgets/card-small.dart';
 import 'package:argon_flutter/widgets/card-square.dart';
+
+import 'listing.dart';
 // import 'package:argon_flutter/widgets/drawer.dart';
 
 final Map<String, Map<String, String>> homeCards = {
@@ -40,6 +44,7 @@ final Map<String, Map<String, String>> homeCards = {
 };
 
 class Home extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,23 +70,55 @@ class Home extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 20),
                 ),
               ),
-              CarouselSlider(
-                items: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 1.0),
-                    child: CardSquare(
-                        cta: "",
-                        title: homeCards["Ice Cream"]['title'],
-                        img: homeCards["Ice Cream"]['image'],
-                        tap: () {
-                          Navigator.pushNamed(context, '/pro');
-                        }),
-                  ),
-                ],
-                options: CarouselOptions(
-                  autoPlay: true,
-                ),
+              FutureBuilder(
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null && snapshot.data.length != 0) {
+                    List<Widget> pubList = new List<Widget>();
+                    for(var i = 0; i < snapshot.data.length; i++) {
+                      PublicationModel pm = snapshot.data[i];
+                      pubList.add(
+                        new Padding(
+                          padding: const EdgeInsets.only(bottom: 1.0),
+                          child: CardSquare(
+                              cta: "",
+                              title: pm.name,
+                              img: pm.images[0],
+                              tap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(pm)));},
+                            ),
+                          ),
+                      );
+                    }
+                    return Container(
+                        child: CarouselSlider(
+                          items: pubList,
+                          options: CarouselOptions(
+                            autoPlay: true,
+                          ),
+                        ),
+                    );
+                  } else if( snapshot.connectionState == ConnectionState.waiting){
+                    return Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                          child: CircularProgressIndicator()
+                      ),
+                    );
+                  } else {
+                    return Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        child: Text(
+                          "No hay favoritos",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                      ),);
+                  }
+                },
+                future: getAllPublications(),
               ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Text(

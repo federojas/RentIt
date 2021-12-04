@@ -54,7 +54,7 @@ class Favourites extends StatelessWidget{
             }
           },
           future: getFavouritesPublications(),
-        ),
+      ),
 
 
     );
