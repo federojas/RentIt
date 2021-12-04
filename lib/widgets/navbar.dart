@@ -73,11 +73,11 @@ class _NavbarState extends State<Navbar> {
     return Container(
         height: widget.searchBar
             ? (!categories
-            ? (tagsExist ? 211.0 : 158.0)
-            : (tagsExist ? 262.0 : 210.0))
+            ? (tagsExist ? 280.0 : 180.0)
+            : (tagsExist ? 280.0 : 230.0))
             : (!categories
-            ? (tagsExist ? 162.0 : 80.0)
-            : (tagsExist ? 200.0 : 150.0)),
+            ? (tagsExist ? 180.0 : 130.0)
+            : (tagsExist ? 230.0 : 180.0)),
         decoration: BoxDecoration(
             color: !widget.transparent ? widget.bgColor : Colors.transparent,
             boxShadow: [
@@ -153,8 +153,7 @@ class _NavbarState extends State<Navbar> {
                 ),
                 if (widget.searchBar)
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 8, bottom: 4, left: 15, right: 15),
+                    padding: const EdgeInsets.only(left: 15, right: 15),
                     child: Input(
                         placeholder: "  ¿Qué estás buscando?",
                         controller: widget.searchController,
@@ -166,9 +165,6 @@ class _NavbarState extends State<Navbar> {
                           // ?
                         }),
                   ),
-                SizedBox(
-                  height: 10.0,
-                ),
                 if (categories)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
