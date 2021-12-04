@@ -5,7 +5,9 @@ import 'package:argon_flutter/screens/listing.dart';
 
 class CardSquare extends StatelessWidget {
   CardSquare(
-      {this.title = "Placeholder Title",
+      {this.price = "",
+        this.timeUnit = "",
+        this.title = "Placeholder Title",
       this.cta = "",
       this.img = "https://via.placeholder.com/200",
       this.tap = defaultFunc});
@@ -14,6 +16,8 @@ class CardSquare extends StatelessWidget {
   final String img;
   final Function tap;
   final String title;
+  final String price;
+  final String timeUnit;
 
   static void defaultFunc(BuildContext context) {
     return;
@@ -48,7 +52,7 @@ class CardSquare extends StatelessWidget {
                       flex: 1,
                       child: Padding(
                         padding: const EdgeInsets.only(
-                            top: 8.0, bottom: 1.0, left: 10.0, right: 10.0),
+                            left: 10.0, right: 10.0, top:1.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,10 +60,10 @@ class CardSquare extends StatelessWidget {
                             Text(title,
                                 style: TextStyle(
                                     color: MyTheme.header, fontSize: 13)),
-                            Text(cta,
+                            Text("\$" + price + " \\" + timeUnit,
                                 style: TextStyle(
-                                    color: MyTheme.primary,
-                                    fontSize: 11,
+                                    color: MyTheme.black,
+                                    fontSize: 17,
                                     fontWeight: FontWeight.w600)),
                           ],
                         ),

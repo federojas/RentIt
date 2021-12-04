@@ -81,8 +81,10 @@ class Home extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 1.0),
                           child: CardSquare(
                               cta: "",
+                              timeUnit: pm.timeUnit,
                               title: pm.name,
                               img: pm.images[0],
+                              price: pm.price,
                               tap: () {Navigator.push(context,MaterialPageRoute(builder: (context) => ListingScreen(pm)));},
                             ),
                           ),
