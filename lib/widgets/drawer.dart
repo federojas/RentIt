@@ -79,6 +79,7 @@ class ArgonDrawer extends StatelessWidget {
                   iconColor: MyTheme.primary,
                   title: "Mis publicaciones",
                   isSelected: currentPage == "Articles" ? true : false),
+              Image.network("https://firebasestorage.googleapis.com/v0/b/rentit-22348.appspot.com/o/products_images%2FWhatsApp%20Image%202021-12-04%20at%2013.02.58.jpeg?alt=media&token=d1a09805-b46f-468a-8bc6-7fcf4a82632f")
             ],
           ),
         ),

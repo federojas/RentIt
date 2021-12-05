@@ -110,7 +110,7 @@ class Home extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Container(
                         child: Text(
-                          "No hay favoritos",
+                          "No hay publicaciones",
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
@@ -138,8 +138,8 @@ class Home extends StatelessWidget {
                 children: [
                   CardSmall(
                     cta: "View article",
-                    title: "Consolas",
-                    img: "https://i.blogs.es/86b11e/ps51/1366_2000.jpeg",
+                    title: "Inflables",
+                    img: "https://http2.mlstatic.com/D_NQ_NP_637574-MLA32044654695_092019-O.jpg",
                   ),
                 ],
               ),
@@ -156,7 +156,7 @@ class Home extends StatelessWidget {
                   SizedBox(width: 16.0),
                   CardSmall(
                     cta: "View article",
-                    title: "Bicicletas",
+                    title: "Transporte",
                     img:
                         "https://labicikleta.com/wp-content/uploads/2016/07/FeatureBiciMontana-770x513.jpg",
                   )
@@ -176,9 +176,28 @@ class Home extends StatelessWidget {
                   SizedBox(width: 16.0),
                   CardSmall(
                     cta: "View article",
-                    title: "Artículos playa",
+                    title: "Disfraces",
                     img:
-                        "https://d3ugyf2ht6aenh.cloudfront.net/stores/051/422/products/reposera-milona-ambas11-21eea12ee05e8ebfbf15793578714056-1024-1024.jpeg",
+                        "https://d3ugyf2ht6aenh.cloudfront.net/stores/454/193/products/maq-disfraces-2194_1-0a5245993d760cbc9b16070324812560-480-0.jpg",
+                  )
+                ],
+              ),
+              SizedBox(height: 8.0),
+              SizedBox(height: 8.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CardSmall(
+                    cta: "View article",
+                    title: "Trajes",
+                    img: "https://www.corbataslester.com/magazine/wp-content/uploads/2018/10/escoger-un-traje-01.jpg",
+                  ),
+                  SizedBox(width: 16.0),
+                  CardSmall(
+                    cta: "View article",
+                    title: "Instrumentos",
+                    img:
+                    "https://artemusical.com.ar/wp/wp-content/uploads/2019/06/preview.jpg",
                   )
                 ],
               ),

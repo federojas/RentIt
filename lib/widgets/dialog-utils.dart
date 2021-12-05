@@ -10,9 +10,13 @@ class DialogUtils {
   static TextEditingController _nameField = TextEditingController();
   static TextEditingController _detailField = TextEditingController();
   static List<S2Choice<String>> options = [
-    S2Choice<String>(value: 'Bicicletas', title: 'Bicicletas'),
+    S2Choice<String>(value: 'Transporte', title: 'Transporte'),
     S2Choice<String>(value: 'Consolas', title: 'Consolas'),
+    S2Choice<String>(value: 'Juegos', title: 'Juegos'),
+    S2Choice<String>(value: 'Inflables', title: 'Inflables'),
     S2Choice<String>(value: 'Disfraces', title: 'Disfraces'),
+    S2Choice<String>(value: 'Trajes', title: 'Trajes'),
+    S2Choice<String>(value: 'Instrumentos', title: 'Instrumentos'),
   ];
   static String value;
 
