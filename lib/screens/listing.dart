@@ -199,7 +199,7 @@ class ListingPageState extends State<ListingScreen> {
             ButtonTheme(
               minWidth: MediaQuery.of(context).size.width - 50.0,
               child: RaisedButton(
-              onPressed: () => {_sendSMS("¡Hola me interesa tu publicación " + pm.name + " en RentIt!", ["1155556666"])},
+              onPressed: () => {_sendSMS("¡Hola me interesa tu publicación " + pm.name + " en RentIt!", ["1145456767"])},
               color: MyTheme.blue,
               padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
               elevation: 2,

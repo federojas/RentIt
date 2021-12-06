@@ -132,7 +132,7 @@ class RentedScreenState extends State<RentedScreen> {
                 Padding(padding: EdgeInsets.only(bottom:10.0), child: ButtonTheme(
                   minWidth: MediaQuery.of(context).size.width - 50.0,
                   child: RaisedButton(
-                    onPressed: () => {_sendSMS("¡Hola alquilé " + rm.productName + " en RentIt!", ["1155556666"])},
+                    onPressed: () => {_sendSMS("¡Hola alquilé " + rm.productName + " en RentIt!", ["1145456767"])},
                     color: MyTheme.blue,
                     padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                     elevation: 2,
